@@ -1,0 +1,62 @@
+{% capture hero %}
+<header class="top-hero">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <h1>👋 Hello — I’m <span class="accent">Ray</span>.</h1>
+      <p class="sub">I’m applying to Engineering major — here are my selected projects, paper, resume, and contact details.</p>
+      <p class="buttons">
+        <a class="btn primary" href="#projects">View projects</a>
+        <a class="btn ghost" href="/assets/resume.pdf" target="_blank" rel="noopener">Download resume</a>
+      </p>
+    </div>
+
+    <div class="hero-right">
+      {% if site.portrait %}
+        <img class="avatar-img" src="{{ site.portrait }}" alt="Ray portrait">
+      {% else %}
+        <div class="avatar">RC</div>
+      {% endif %}
+    </div>
+  </div>
+</header>
+{% endcapture %}
+
+{{ hero }}
+
+<section id="about" class="card">
+  <h2>About</h2>
+  <p>High school student passionate about Robotics, I enjoy designing, building, coding and every minute spent with my buddy at BrainStem (team 8393).</p>
+  <ul class="bullets">
+    <li><strong>Interests:</strong> Robotics, Volleyball, Singing</li>
+    <li><strong>High school:</strong> North Allegheny High School</li>
+    <li><strong>Available for questions —</strong> <a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+  </ul>
+</section>
+
+<section id="projects" class="card">
+  <div class="section-head">
+    <h2>Selected Projects</h2>
+    <p class="muted">Short highlights — link to repos and demos</p>
+  </div>
+
+  <div class="projects-grid">
+    {% for p in site.data.projects %}
+    <article class="project">
+      <a class="project-title" href="{{ p.url | default: '#' }}" target="_blank">{{ p.title }}</a>
+      <p class="project-excerpt">{{ p.excerpt }}</p>
+      <p class="project-meta">{{ p.meta }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="resume" class="card">
+  <h2>Resume</h2>
+  <p>Download my resume: <a href="/assets/resume.pdf" target="_blank">resume.pdf</a> or view the <a href="/resume.md">Markdown resume</a>.</p>
+</section>
+
+<section id="contact" class="card">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+  <p class="muted">For private docs (transcripts, recommendations) mention “available on request” instead of publishing them here.</p>
+</section>

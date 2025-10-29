@@ -1,11 +1,9 @@
-::root{
+:root{
   --bg:#f6fbff;
   --card:#ffffff;
-  --accent:#4f46e5;   /* purple-blue */
-  --accent-2:#06b6d4; /* teal */
-  --sun:#ffd166;      /* pop yellow */
+  --accent:#4f46e5;
+  --accent-2:#06b6d4;
   --muted:#6b7280;
-  --glass: rgba(255,255,255,0.7);
   --radius:16px;
   --max:1100px;
   font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
@@ -24,14 +22,18 @@ body{
 }
 .wrap{max-width:var(--max);margin:28px auto;padding:0 20px}
 
+/* header */
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.site-brand a{color:var(--accent);text-decoration:none;font-size:1.05rem}
+.tag{color:var(--muted);font-size:0.9rem}
+
 /* HERO */
 .top-hero{padding:26px 0}
 .hero-grid{display:flex;align-items:center;justify-content:space-between;gap:18px}
 .hero-left h1{
-  margin:0;font-family:'Baloo 2', 'Baloo', cursive; font-weight:700;font-size:2.1rem;
-  letter-spacing:-0.5px;
+  margin:0;font-family:'Baloo 2', cursive; font-weight:700;font-size:2.1rem;
 }
-.hero-left .accent{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.accent{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .sub{color:var(--muted);margin:10px 0 14px}
 .buttons{margin-top:6px}
 .btn{display:inline-block;padding:10px 14px;border-radius:12px;font-weight:600;text-decoration:none;transition:transform .12s ease, box-shadow .12s ease}
@@ -40,7 +42,6 @@ body{
 .btn:hover{transform:translateY(-3px)}
 
 /* avatar */
-.hero-right{display:flex;align-items:center;justify-content:center}
 .avatar{
   width:92px;height:92px;border-radius:16px;
   background:linear-gradient(135deg,var(--accent),var(--accent-2));
@@ -48,10 +49,11 @@ body{
   box-shadow: 0 18px 50px rgba(6,182,212,0.08), 0 6px 18px rgba(79,70,229,0.09);
   transform:rotate(-2deg);
 }
+.avatar-img{width:92px;height:92px;border-radius:16px;object-fit:cover;box-shadow:0 18px 50px rgba(6,182,212,0.08)}
 
 /* cards */
 .card{
-  background: linear-gradient(180deg, rgba(255,255,255,0.9), var(--glass));
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
   border-radius:var(--radius);padding:20px;margin-bottom:18px;
   box-shadow:0 12px 30px rgba(11,37,64,0.04);
   border: 1px solid rgba(11,37,64,0.04);
@@ -76,12 +78,8 @@ body{
 .project-excerpt{color:var(--muted);margin:8px 0}
 .project-meta{color:var(--muted);font-size:0.9rem}
 
-/* footer */
-.site-footer{padding:22px 0;text-align:center;color:var(--muted);font-size:0.9rem}
-
 /* responsive */
 @media (max-width:880px){
   .hero-grid{flex-direction:column;align-items:flex-start}
-  .hero-right{align-self:flex-end}
   .avatar{transform:none}
 }
