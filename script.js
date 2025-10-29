@@ -10,9 +10,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 top: targetPosition,
                 behavior: 'smooth'
             });
+            
+            // Close mobile menu after clicking a link
+            const navMenu = document.getElementById('navMenu');
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            if (navMenu && mobileMenuToggle) {
+                navMenu.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            }
         }
     });
 });
+
+// Mobile menu toggle
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const navMenu = document.getElementById('navMenu');
+
+if (mobileMenuToggle && navMenu) {
+    mobileMenuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active');
+    });
+}
 
 // Navbar background change on scroll
 window.addEventListener('scroll', function() {
@@ -37,10 +56,48 @@ if (contactForm) {
         
         // Simple validation
         if (name && email && message) {
-            alert(`Thank you for your message, ${name}! I'll get back to you soon.`);
+            // Create success message element
+            const successMessage = document.createElement('div');
+            successMessage.style.cssText = 'background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 5px; margin-top: 1rem; border: 1px solid #c3e6cb;';
+            successMessage.textContent = `Thank you for your message, ${name}! I'll get back to you soon.`;
+            
+            // Remove any existing messages
+            const existingMessage = contactForm.querySelector('.form-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            // Add message to form
+            successMessage.className = 'form-message';
+            contactForm.appendChild(successMessage);
+            
+            // Reset form
             contactForm.reset();
+            
+            // Remove message after 5 seconds
+            setTimeout(() => {
+                successMessage.remove();
+            }, 5000);
         } else {
-            alert('Please fill in all fields.');
+            // Create error message element
+            const errorMessage = document.createElement('div');
+            errorMessage.style.cssText = 'background-color: #f8d7da; color: #721c24; padding: 1rem; border-radius: 5px; margin-top: 1rem; border: 1px solid #f5c6cb;';
+            errorMessage.textContent = 'Please fill in all fields.';
+            
+            // Remove any existing messages
+            const existingMessage = contactForm.querySelector('.form-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            // Add message to form
+            errorMessage.className = 'form-message';
+            contactForm.appendChild(errorMessage);
+            
+            // Remove message after 5 seconds
+            setTimeout(() => {
+                errorMessage.remove();
+            }, 5000);
         }
     });
 }
