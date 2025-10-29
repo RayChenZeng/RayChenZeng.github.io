@@ -151,3 +151,16 @@ window.addEventListener('scroll', function() {
         }
     });
 });
+
+// Resume download button handler
+const resumeDownloadBtn = document.getElementById('resumeDownloadBtn');
+if (resumeDownloadBtn) {
+    resumeDownloadBtn.addEventListener('click', function(e) {
+        // Check if the href is still a placeholder
+        if (this.getAttribute('href') === '#') {
+            e.preventDefault();
+            // You can add a more elegant notification here if desired
+            console.log('Please upload your resume PDF to the images/resume folder and update this link.');
+        }
+    });
+}
