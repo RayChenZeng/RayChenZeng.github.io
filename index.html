@@ -16,7 +16,10 @@
       --muted: #6b7280;
       --accent: #2b6ef6;
       --radius: 14px;
-      --project-accent: #5b21b6; /* purple link color seen in screenshot */
+      --project-accent: #5b21b6;
+      --single-hue-1: #e6f0ff; /* light shade */
+      --single-hue-2: #cfe0ff; /* mid shade */
+      --single-hue-3: #b8d0ff; /* darker shade */
     }
 
     body {
@@ -32,18 +35,13 @@
       padding: 28px;
     }
 
-    /* 1) Reduce the header bottom padding so About (in header) sits closer to main */
+    /* reduce the gap further: half of prior small values */
     header.top-hero {
-      padding: 44px 0 8px; /* top 44px, bottom 8px (reduced) */
+      padding: 44px 0 4px; /* bottom reduced to 4px (half of 8px) */
     }
 
-    /* reduce the top padding for main so the first section sits closer */
     main.wrap {
-      padding-top: 8px; /* was 28px */
-    }
-
-    .top-hero {
-      /* no additional padding here */
+      padding-top: 4px; /* half of 8px */
     }
 
     .hero-grid {
@@ -64,20 +62,19 @@
 
     .hero-left h1 .accent { color: var(--accent); }
 
+    /* remove the explanatory subtitle entirely */
     .hero-left p.sub {
-      color: var(--muted);
-      margin: 0 0 18px 0;
-      max-width: 680px;
+      display: none;
     }
 
-    /* About card moved into hero-left */
+    /* About card */
     .about-card {
       background: var(--card);
       border-radius: var(--radius);
       padding: 20px 22px;
       box-shadow: 0 8px 20px rgba(12, 28, 48, 0.06);
       margin-top: 22px;
-      margin-bottom: 0; /* remove space under about */
+      margin-bottom: 0;
     }
 
     .about-card h3 {
@@ -105,7 +102,7 @@
 
     .about-list li strong { font-weight: 700; margin-right: 6px; color: #0b1220; }
 
-    /* Make portrait larger */
+    /* portrait */
     .hero-right {
       display: flex;
       justify-content: center;
@@ -113,92 +110,15 @@
     }
 
     .hero-right img.portrait {
-      width: 320px;   /* increased */
-      height: 320px;  /* increased */
+      width: 320px;
+      height: 320px;
       object-fit: cover;
       border-radius: 50%;
       box-shadow: 0 14px 40px rgba(11,18,32,0.18);
       display: block;
     }
 
-    /* Interests separate card with big clickable circles */
-    .interests-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 8px 20px rgba(12, 28, 48, 0.06);
-      margin: 0 0 28px 0; /* remove top margin so it sits directly under the content above */
-    }
-
-    .interests-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .interests-grid {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    /* 2) Make interest circles higher-contrast and larger */
-    .interest {
-      width: 180px;             /* increased from 140px */
-      height: 180px;            /* increased from 140px */
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 16px 40px rgba(11,18,32,0.18);
-      transition: transform 180ms ease, box-shadow 180ms ease;
-      flex-direction: column;
-      text-align: center;
-      border: 5px solid rgba(255,255,255,0.92); /* crisp white border for contrast */
-    }
-
-    .interest:hover { transform: translateY(-6px); box-shadow: 0 22px 48px rgba(11,18,32,0.2); }
-
-    /* increase emoji/icon size inside the circle */
-    .interest > span {
-      font-size: 40px; /* larger icon */
-      line-height: 1;
-    }
-
-    /* stronger color choices to increase contrast */
-    .interest-robotics {
-      background: linear-gradient(135deg,#0b3d91 0%, #1350d6 100%); /* strong deep-blue */
-    }
-    .interest-volleyball {
-      background: linear-gradient(135deg,#0b6623 0%, #06b685 100%); /* deep green -> teal */
-    }
-    .interest-singing {
-      background: linear-gradient(135deg,#8b1452 0%, #ef2f7a 100%); /* magenta / pink */
-    }
-
-    .interest-label {
-      margin-top: 10px;
-      font-size: 15px;
-      font-weight: 700;
-      color: #071124;
-      background: rgba(255,255,255,0.95);
-      padding: 6px 12px;
-      border-radius: 999px;
-      text-decoration: none;
-    }
-
-    /* label beneath circle */
-    .interest-wrapper { display:flex; flex-direction:column; align-items:center; gap:8px; }
-
-    /* --- Styles adjusted to position projects above interests and show two boxes --- */
-
-    /* Generic card used by projects / resume / contact areas */
+    /* Generic card */
     .card {
       background: var(--card);
       border-radius: var(--radius);
@@ -207,7 +127,6 @@
       margin: 18px 0;
     }
 
-    /* Section header: keep title on left and muted text on right */
     .section-head {
       display: flex;
       justify-content: space-between;
@@ -219,80 +138,169 @@
     .section-head h2 { margin: 0; font-size: 18px; }
     .section-head .muted { margin: 0; color: var(--muted); }
 
-    /* Projects grid: two columns for the two boxes requested */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 6px; /* tightened so projects sit close to header/about */
+    /* Projects -> EMG research layout: left for image + overview, right for paper abstract link */
+    #projects.card {
+      margin-top: 3px; /* half of prior 6px -> ~3px */
+      padding: 16px;
     }
 
-    /* Each project looks like a small card inside the main card */
-    .project {
-      background: #ffffff;
+    .emg-grid {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .emg-image {
+      background: linear-gradient(180deg, #f3f7ff, #eef6ff);
+      border-radius: 10px;
+      min-height: 220px; /* reserved space for picture */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-weight: 600;
+      border: 1px dashed rgba(15,23,42,0.06);
+    }
+
+    .emg-overview {
+      margin-top: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .paper-box {
+      background: #fff;
       border-radius: 10px;
       padding: 16px;
       border: 1px solid rgba(15,23,42,0.04);
-      box-shadow: 0 4px 10px rgba(11,18,32,0.04);
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      min-height: 130px;
+      gap: 12px;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 120px;
     }
 
-    .project-title {
+    .paper-box a {
       color: var(--project-accent);
       font-weight: 700;
       text-decoration: none;
-      display: inline-block;
-      margin-bottom: 8px;
     }
 
-    .project-excerpt {
-      color: var(--muted);
-      margin-top: 6px;
-      font-size: 14px;
-      line-height: 1.4;
-      flex: 1;
+    /* Below-row: left column (interests) and right column (resume above contact) */
+    .below-row {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 20px;
+      align-items: start;
     }
 
-    .project-meta {
-      color: var(--muted);
-      margin-top: 12px;
-      font-size: 13px;
+    /* Interests (renamed) - make box smaller and less contrast (single hue shades) */
+    .interests-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 16px; /* smaller */
+      box-shadow: 0 6px 16px rgba(12, 28, 48, 0.05);
+      margin: 0;
     }
 
-    /* 3) Larger images inside project cards (if present) */
-    .project img.project-image {
-      width: 100%;
-      height: 220px; /* increased */
-      object-fit: cover;
-      border-radius: 8px;
-      display: block;
+    .interests-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
       margin-bottom: 12px;
     }
 
-    /* Resume and contact sections: keep their spacing and make them full-width cards */
-    #resume, #contact {
-      padding: 18px;
+    .interests-grid {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
     }
 
-    /* Footer slight left alignment to match the screenshot */
+    /* less contrast unified blue shades, smaller circles */
+    .interest {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #07436a; /* darker text for label/icon */
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(11,18,32,0.06);
+      transition: transform 150ms ease, box-shadow 150ms ease;
+      flex-direction: column;
+      text-align: center;
+      border: 3px solid rgba(255,255,255,0.85);
+    }
+
+    .interest:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(11,18,32,0.08); }
+
+    .interest > span {
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    /* unified single-hue shades */
+    .interest-shade1 { background: linear-gradient(180deg, var(--single-hue-1), var(--single-hue-2)); }
+    .interest-shade2 { background: linear-gradient(180deg, var(--single-hue-2), var(--single-hue-3)); }
+    .interest-shade3 { background: linear-gradient(180deg, var(--single-hue-3), #9fc0ff); }
+
+    .interest-label {
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #071124;
+      background: rgba(255,255,255,0.95);
+      padding: 6px 10px;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+
+    /* Resume (right column top) */
+    .right-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .resume-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 8px 18px rgba(12, 28, 48, 0.06);
+      border: 1px solid rgba(15,23,42,0.03);
+    }
+
+    .contact-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 8px 18px rgba(12, 28, 48, 0.06);
+      border: 1px solid rgba(15,23,42,0.03);
+    }
+
+    /* Footer wrap */
     .site-footer .wrap {
       padding: 12px 28px;
     }
 
     /* Responsive adjustments */
     @media (max-width: 980px) {
-      .projects-grid { grid-template-columns: 1fr; }
+      .emg-grid { grid-template-columns: 1fr; }
+      .below-row { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
       .hero-grid { grid-template-columns: 1fr; }
       .hero-right { margin-top: 18px; justify-content: center; }
       .hero-right img.portrait { width: 220px; height: 220px; }
-      .interest { width: 150px; height: 150px; }
-      .interest > span { font-size: 34px; }
+      .interest { width: 110px; height: 110px; }
+      .interest > span { font-size: 26px; }
     }
   </style>
 </head>
@@ -302,9 +310,8 @@
       <div class="hero-left">
         <h1>👋 Hello — I’m <span class="accent">Ray</span>.</h1>
 
-        <p class="sub">I’m applying to Engineering major — here are my selected projects, paper, resume, and contact details.</p>
+        <!-- subtitle removed as requested -->
 
-        <!-- About card moved into hero area -->
         <div class="about-card" id="about">
           <h3>About</h3>
           <p>I am a senior at North Allegheny High school. I am passionate about Engineering/Robotics, research and innovation. I enjoy exploring mechanical design, physics, coding, applied problem-solving and every minute spent with my buddy at BrainStem. Outside academics, I stay active through volleyball and express creativity through singing. My goal is to continue combining science, creativity and leadership to make a real impact for the development of Robotics.</p>
@@ -316,80 +323,84 @@
       </div>
 
       <div class="hero-right">
-        <!-- Larger portrait -->
         <img class="portrait" src="/assets/images/portrait.jpg" alt="Portrait of Ray">
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <!-- Selected Projects (moved above Interests). Projects include larger images. -->
+    <!-- EMG Research section (replaces Selected Projects) -->
     <section id="projects" class="card">
       <div class="section-head">
-        <h2>Selected Projects</h2>
-        <p class="muted">Short highlights — link to repos and demos</p>
+        <h2>EMG Research at Robotics Lab in Harvard</h2>
+        <p class="muted">Overview and paper</p>
       </div>
 
-      <div class="projects-grid">
-        <article class="project">
-          <!-- optional image: replace with your actual image file -->
-          <img class="project-image" src="/assets/images/emg-demo.jpg" alt="EMG demo">
-          <a class="project-title" href="#" target="_blank">EMG research at Harvard</a>
-          <p class="project-excerpt">Overview: EMG-based signal processing and visualization for human–machine interfaces. Built an interactive demo using D3/JS and collected experimental data to evaluate classification approaches.</p>
-          <p class="project-meta">JS · D3 · Data Collection · Solo</p>
-        </article>
+      <div class="emg-grid">
+        <div>
+          <!-- reserved picture space (replace with <img> if available) -->
+          <div class="emg-image">
+            Reserved space for EMG / project picture
+          </div>
 
-        <article class="project">
-          <img class="project-image" src="/assets/images/paper-abstract.jpg" alt="Paper abstract illustration">
-          <a class="project-title" href="#" target="_blank">Submitted paper — Abstract</a>
-          <p class="project-excerpt">Abstract: (Submitted) A combined hardware-software approach for robust EMG signal interpretation in wearable assistive devices. Includes dataset description, preprocessing pipeline, feature extraction, and preliminary classification results.</p>
-          <p class="project-meta">Paper · Abstract · Methods</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Interests card: now directly below projects with no extra space -->
-    <section id="interests" class="interests-card">
-      <div class="interests-head">
-        <h2 style="margin:0;">Interests</h2>
-        <p class="muted" style="margin:0;">Click a circle to view multiple pictures</p>
-      </div>
-
-      <div class="interests-grid" role="list" aria-label="Interests">
-        <div class="interest-wrapper" role="listitem">
-          <a class="interest interest-robotics" href="interests/robotics.html" aria-label="Robotics gallery">
-            <span>🤖</span>
-          </a>
-          <a class="interest-label" href="interests/robotics.html">Robotics</a>
+          <div class="emg-overview">
+            <p><strong>Overview:</strong> EMG-based signal processing and visualization for human–machine interfaces. Built an interactive demo using D3/JS, collected experimental data, and evaluated preliminary classification approaches. The demo and dataset support further analysis for wearable assistive devices.</p>
+          </div>
         </div>
 
-        <div class="interest-wrapper" role="listitem">
-          <a class="interest interest-volleyball" href="interests/volleyball.html" aria-label="Volleyball gallery">
-            <span>🏐</span>
-          </a>
-          <a class="interest-label" href="interests/volleyball.html">Volleyball</a>
-        </div>
-
-        <div class="interest-wrapper" role="listitem">
-          <a class="interest interest-singing" href="interests/singing.html" aria-label="Singing gallery">
-            <span>🎤</span>
-          </a>
-          <a class="interest-label" href="interests/singing.html">Singing</a>
-        </div>
+        <aside class="paper-box">
+          <div style="font-size:14px; color:var(--muted);">Paper</div>
+          <a href="interests/paper-abstract.html" target="_blank" rel="noopener">Click to view submitted paper abstract</a>
+          <div style="font-size:13px; color:var(--muted);">Includes dataset description, preprocessing, and initial results.</div>
+        </aside>
       </div>
     </section>
 
-    <!-- The rest of the page (Resume, Contact) left unchanged -->
-    <section id="resume" class="card">
-      <h2>Resume</h2>
-      <p>Download my resume: <a href="assets/resume.pdf" target="_blank">resume.pdf</a> or view the <a href="resume.md">Markdown resume</a>.</p>
-    </section>
+    <!-- Below-row: left = Other things I love, right = resume (top) + contact (below) -->
+    <div class="below-row">
+      <section id="interests" class="interests-card">
+        <div class="interests-head">
+          <h2 style="margin:0;">Other things I love</h2>
+          <p class="muted" style="margin:0;">Click a circle</p>
+        </div>
 
-    <section id="contact" class="card">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:zengrayc@gmail.com">zengrayc@gmail.com</a></p>
-      <p class="muted">For private docs (transcripts, recommendations) mention “available on request” instead of publishing them here.</p>
-    </section>
+        <div class="interests-grid" role="list" aria-label="Other things I love">
+          <div class="interest-wrapper" role="listitem" style="text-align:center;">
+            <a class="interest interest-shade1" href="interests/robotics.html" aria-label="Robotics gallery">
+              <span>🤖</span>
+            </a>
+            <a class="interest-label" href="interests/robotics.html">Robotics</a>
+          </div>
+
+          <div class="interest-wrapper" role="listitem" style="text-align:center;">
+            <a class="interest interest-shade2" href="interests/volleyball.html" aria-label="Volleyball gallery">
+              <span>🏐</span>
+            </a>
+            <a class="interest-label" href="interests/volleyball.html">Volleyball</a>
+          </div>
+
+          <div class="interest-wrapper" role="listitem" style="text-align:center;">
+            <a class="interest interest-shade3" href="interests/singing.html" aria-label="Singing gallery">
+              <span>🎤</span>
+            </a>
+            <a class="interest-label" href="interests/singing.html">Singing</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="right-stack">
+        <div class="resume-card" id="resume">
+          <h3 style="margin:0 0 8px 0;">Resume</h3>
+          <p style="margin:0;">Download my resume: <a href="assets/resume.pdf" target="_blank" rel="noopener">resume.pdf</a></p>
+        </div>
+
+        <div class="contact-card" id="contact">
+          <h3 style="margin:0 0 8px 0;">Contact</h3>
+          <p style="margin:0;">Email: <a href="mailto:zengrayc@gmail.com">zengrayc@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <footer class="site-footer">
