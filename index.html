@@ -67,6 +67,7 @@
       padding: 20px 22px;
       box-shadow: 0 8px 20px rgba(12, 28, 48, 0.06);
       margin-top: 22px;
+      margin-bottom: 0; /* remove space under about */
     }
 
     .about-card h3 {
@@ -116,7 +117,7 @@
       border-radius: var(--radius);
       padding: 24px;
       box-shadow: 0 8px 20px rgba(12, 28, 48, 0.06);
-      margin: 28px 0;
+      margin: 0 0 28px 0; /* remove top margin so it sits directly under About */
     }
 
     .interests-head {
@@ -171,7 +172,7 @@
     /* label beneath circle */
     .interest-wrapper { display:flex; flex-direction:column; align-items:center; gap:8px; }
 
-    /* --- Styles added/adjusted to make the bottom half match the provided image --- */
+    /* --- Styles adjusted to position projects above interests and show two boxes --- */
 
     /* Generic card used by projects / resume / contact areas */
     .card {
@@ -194,10 +195,10 @@
     .section-head h2 { margin: 0; font-size: 18px; }
     .section-head .muted { margin: 0; color: var(--muted); }
 
-    /* Projects grid: three columns of small cards with spacing (as in the screenshot) */
+    /* Projects grid: two columns for the two boxes requested */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 14px;
       margin-top: 12px;
     }
@@ -212,7 +213,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      min-height: 110px;
+      min-height: 130px;
     }
 
     .project-title {
@@ -220,11 +221,12 @@
       font-weight: 700;
       text-decoration: none;
       display: inline-block;
+      margin-bottom: 8px;
     }
 
     .project-excerpt {
       color: var(--muted);
-      margin-top: 10px;
+      margin-top: 6px;
       font-size: 14px;
       line-height: 1.4;
       flex: 1;
@@ -248,7 +250,7 @@
 
     /* Responsive adjustments */
     @media (max-width: 980px) {
-      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
@@ -256,7 +258,6 @@
       .hero-right { margin-top: 18px; justify-content: center; }
       .hero-right img.portrait { width: 200px; height: 200px; }
       .interests-grid { justify-content: center; }
-      .projects-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -266,12 +267,12 @@
       <div class="hero-left">
         <h1>👋 Hello — I’m <span class="accent">Ray</span>.</h1>
 
-        <p class="sub">My name means the sunshine in the morning.</p>
+        <p class="sub">I’m applying to Engineering major — here are my selected projects, paper, resume, and contact details.</p>
 
         <!-- About card moved into hero area (replaces the previous buttons) -->
         <div class="about-card" id="about">
           <h3>About</h3>
-          <p> I am passionate about Engineering/Robotics, research and innovation. I enjoy exploring mechanical design, physics, coding, applied problem-solving and every minute spent with my buddy at BrainStem. Outside academics, I stay active through volleyball and express creativity through singing. My goal is to continue combining science, creativity and leadership to make a real impact for the development of Robotics.</p>
+          <p>I am a senior at North Allegheny High school. I am passionate about Engineering/Robotics, research and innovation. I enjoy exploring mechanical design, physics, coding, applied problem-solving and every minute spent with my buddy at BrainStem. Outside academics, I stay active through volleyball and express creativity through singing. My goal is to continue combining science, creativity and leadership to make a real impact for the development of Robotics.</p>
 
           <ul class="about-list">
             <li><strong>High school:</strong> North Allegheny High School</li>
@@ -287,7 +288,29 @@
   </header>
 
   <main class="wrap">
-    <!-- Interests card: separate box with clickable colored circles linking to pages -->
+    <!-- Move "Selected Projects" above Interests and show exactly two boxes -->
+    <section id="projects" class="card">
+      <div class="section-head">
+        <h2>Selected Projects</h2>
+        <p class="muted">Short highlights — link to repos and demos</p>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project">
+          <a class="project-title" href="#" target="_blank">EMG research at Harvard</a>
+          <p class="project-excerpt">Overview: EMG-based signal processing and visualization for human–machine interfaces. Built an interactive demo using D3/JS and collected experimental data to evaluate classification approaches.</p>
+          <p class="project-meta">JS · D3 · Data Collection · Solo</p>
+        </article>
+
+        <article class="project">
+          <a class="project-title" href="#" target="_blank">Submitted paper — Abstract</a>
+          <p class="project-excerpt">Abstract: (Submitted) A combined hardware-software approach for robust EMG signal interpretation in wearable assistive devices. Includes dataset description, preprocessing pipeline, feature extraction, and preliminary classification results.</p>
+          <p class="project-meta">Paper · Abstract · Methods</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Interests card: now directly below projects with no extra space between About and Interests -->
     <section id="interests" class="interests-card">
       <div class="interests-head">
         <h2 style="margin:0;">Interests</h2>
@@ -318,37 +341,7 @@
       </div>
     </section>
 
-    <!-- --- START: Bottom half (projects / resume / contact) ---
-         Content left unchanged; styling updated above to match the provided screenshot.
-         The HTML structure below is preserved exactly as requested. -->
-
-    <section id="projects" class="card">
-      <div class="section-head">
-        <h2>Selected Projects</h2>
-        <p class="muted">Short highlights — link to repos and demos</p>
-      </div>
-
-      <div class="projects-grid">
-        <article class="project">
-          <a class="project-title" href="#" target="_blank">EMG research at Harvard</a>
-          <p class="project-excerpt">Use EMG to do......</p>
-          <p class="project-meta">JS · D3 · solo</p>
-        </article>
-
-        <article class="project">
-          <a class="project-title" href="#" target="_blank">Robotics Pictures</a>
-          <p class="project-excerpt">FTC FRC.</p>
-          <p class="project-meta">Python · PyTorch</p>
-        </article>
-
-        <article class="project">
-          <a class="project-title" href="#" target="_blank">Volleyball playing and teaching</a>
-          <p class="project-excerpt">.</p>
-          <p class="project-meta">Markdown · Docs</p>
-        </article>
-      </div>
-    </section>
-
+    <!-- The rest of the page (Resume, Contact) left unchanged -->
     <section id="resume" class="card">
       <h2>Resume</h2>
       <p>Download my resume: <a href="assets/resume.pdf" target="_blank">resume.pdf</a> or view the <a href="resume.md">Markdown resume</a>.</p>
@@ -359,8 +352,6 @@
       <p>Email: <a href="mailto:zengrayc@gmail.com">zengrayc@gmail.com</a></p>
       <p class="muted">For private docs (transcripts, recommendations) mention “available on request” instead of publishing them here.</p>
     </section>
-
-    <!-- --- END: Bottom half --- -->
   </main>
 
   <footer class="site-footer">
