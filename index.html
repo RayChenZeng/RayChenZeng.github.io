@@ -7,6 +7,177 @@
   <meta name="description" content="Hello — I'm Ray. Applying to Engineering. Projects, paper, resume, contact." />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
+
+  <!-- Inline styles for the layout changes requested -->
+  <style>
+    :root{
+      --bg: #f6fbfd;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --accent: #2b6ef6;
+      --radius: 14px;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: #0f172a;
+      margin: 0;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    .top-hero {
+      padding: 44px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .hero-left h1 {
+      font-family: "Baloo 2", "Inter", system-ui;
+      font-size: 36px;
+      margin: 0 0 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-left h1 .accent { color: var(--accent); }
+
+    .hero-left p.sub {
+      color: var(--muted);
+      margin: 0 0 18px 0;
+      max-width: 680px;
+    }
+
+    /* About card moved into hero-left */
+    .about-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      box-shadow: 0 8px 20px rgba(12, 28, 48, 0.06);
+      margin-top: 22px;
+    }
+
+    .about-card h3 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+    }
+
+    .about-card p {
+      margin: 0 0 14px 0;
+      line-height: 1.5;
+      color: #0f172a;
+    }
+
+    .about-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .about-list li {
+      margin: 8px 0;
+      color: #0f172a;
+      font-weight: 500;
+    }
+
+    .about-list li strong { font-weight: 700; margin-right: 6px; color: #0b1220; }
+
+    /* Make portrait much larger */
+    .hero-right {
+      display: flex;
+      justify-content: center;
+      align-items: start;
+    }
+
+    .hero-right img.portrait {
+      width: 260px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 10px 30px rgba(11,18,32,0.12);
+      display: block;
+    }
+
+    /* Interests separate card with big clickable circles */
+    .interests-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 8px 20px rgba(12, 28, 48, 0.06);
+      margin: 28px 0;
+    }
+
+    .interests-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .interests-grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .interest {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 26px rgba(11,18,32,0.12);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .interest:hover { transform: translateY(-6px); box-shadow: 0 14px 36px rgba(11,18,32,0.14); }
+
+    .interest-label {
+      margin-top: 8px;
+      color: #071124;
+      font-weight: 600;
+      font-size: 14px;
+      background: rgba(255,255,255,0.9);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #071124;
+      text-decoration: none;
+    }
+
+    .interest-robotics { background: linear-gradient(135deg,#4f46e5,#2b6ef6); }
+    .interest-volleyball { background: linear-gradient(135deg,#06b6d4,#10b981); }
+    .interest-singing { background: linear-gradient(135deg,#f97316,#ef3b7a); }
+
+    /* label beneath circle */
+    .interest-wrapper { display:flex; flex-direction:column; align-items:center; gap:8px; }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-right { margin-top: 18px; justify-content: center; }
+      .hero-right img.portrait { width: 200px; height: 200px; }
+      .interests-grid { justify-content: center; }
+    }
+  </style>
 </head>
 <body>
   <header class="top-hero">
@@ -14,35 +185,60 @@
       <div class="hero-left">
         <h1>👋 Hello — I’m <span class="accent">Ray</span>.</h1>
 
-
-
-
         <p class="sub">I’m applying to Engineering major — here are my selected projects, paper, resume, and contact details.</p>
-        <p class="buttons">
-          <a class="btn primary" href="#projects">View projects</a>
-          <a class="btn ghost" href="assets/resume.pdf" target="_blank" rel="noopener">Download resume</a>
-        </p>
+
+        <!-- About card moved into hero area (replaces the previous buttons) -->
+        <div class="about-card" id="about">
+          <h3>About</h3>
+          <p>I am a senior at North Allegheny High school. I am passionate about Engineering/Robotics, research and innovation. I enjoy exploring mechanical design, physics, coding, applied problem-solving and every minute spent with my buddy at BrainStem. Outside academics, I stay active through volleyball and express creativity through singing. My goal is to continue combining science, creativity and leadership to make a real impact for the development of Robotics.</p>
+
+          <ul class="about-list">
+            <li><strong>High school:</strong> North Allegheny High School</li>
+          </ul>
+        </div>
       </div>
 
       <div class="hero-right">
-        <!-- If you have a portrait, add assets/portrait.png and replace the div below with an <img> -->
-        <img src="/assets/images/portrait.jpg" alt="Ray" style="width:200px; border-radius:50%; margin-bottom:20px;">
+        <!-- Larger portrait -->
+        <img class="portrait" src="/assets/images/portrait.jpg" alt="Portrait of Ray">
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <section id="about" class="card">
-      <h2>About</h2>
-      <p>I am a senior at North Allegheny High school. I am passionate about Engineering/Robotics, research and innovation. I enjoy exploring mechanical design, physics, coding, applied problem-solving and every minute spent with my buddy at BrainStem. Outside academics, I stay active through volleyball and express creativity through singing. My goal is to comtinue combining science, creativity and leadership to make a real impact for the development of Robotics </p>
-      <ul class="bullets">
-        <li><strong>Interests:</strong> Robotics, Volleyball, Singing</li>
-        <li><strong>High school:</strong> North Allegheny High School</li>
-        <li><strong>Available for questions —</strong> <a href="mailto:zengrayc@gmail.com">zengrayc@gmail.com</a></li>
-      </ul>
+    <!-- Interests card: separate box with clickable colored circles linking to pages -->
+    <section id="interests" class="interests-card">
+      <div class="interests-head">
+        <h2 style="margin:0;">Interests</h2>
+        <p class="muted" style="margin:0;">Click a circle to view multiple pictures</p>
+      </div>
+
+      <div class="interests-grid" role="list" aria-label="Interests">
+        <div class="interest-wrapper" role="listitem">
+          <a class="interest interest-robotics" href="interests/robotics.html" aria-label="Robotics gallery">
+            <span style="font-size:30px;">🤖</span>
+          </a>
+          <a class="interest-label" href="interests/robotics.html">Robotics</a>
+        </div>
+
+        <div class="interest-wrapper" role="listitem">
+          <a class="interest interest-volleyball" href="interests/volleyball.html" aria-label="Volleyball gallery">
+            <span style="font-size:30px;">🏐</span>
+          </a>
+          <a class="interest-label" href="interests/volleyball.html">Volleyball</a>
+        </div>
+
+        <div class="interest-wrapper" role="listitem">
+          <a class="interest interest-singing" href="interests/singing.html" aria-label="Singing gallery">
+            <span style="font-size:30px;">🎤</span>
+          </a>
+          <a class="interest-label" href="interests/singing.html">Singing</a>
+        </div>
+      </div>
     </section>
 
-    <section id="projects" class="card">
+    <!-- Selected Projects (kept on the page) -->
+    <section id="projects" class="card" style="margin-top: 18px;">
       <div class="section-head">
         <h2>Selected Projects</h2>
         <p class="muted">Short highlights — link to repos and demos</p>
