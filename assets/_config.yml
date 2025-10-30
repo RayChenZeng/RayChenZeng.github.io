@@ -1,0 +1,16 @@
+title: "Ray — Creative Engineering Portfolio"
+email: "zengrayc@gmail.com"
+description: "Hello — I'm Ray. Applying to Engineering. Projects, paper, resume, contact."
+baseurl: "" # no subpath for user site
+url: "https://RayChenZeng.github.io"
+# No external theme; we use the layouts in the repo
+permalink: /:path/
+markdown: kramdown
+collections:
+  # add collections if you later want blog/posts or papers
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
