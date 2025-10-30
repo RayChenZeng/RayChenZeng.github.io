@@ -16,6 +16,7 @@
       --muted: #6b7280;
       --accent: #2b6ef6;
       --radius: 14px;
+      --project-accent: #5b21b6; /* purple link color seen in screenshot */
     }
 
     body {
@@ -170,12 +171,92 @@
     /* label beneath circle */
     .interest-wrapper { display:flex; flex-direction:column; align-items:center; gap:8px; }
 
-    /* Responsive */
-    @media (max-width: 880px) {
+    /* --- Styles added/adjusted to make the bottom half match the provided image --- */
+
+    /* Generic card used by projects / resume / contact areas */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(12, 28, 48, 0.06);
+      margin: 18px 0;
+    }
+
+    /* Section header: keep title on left and muted text on right */
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding-bottom: 6px;
+    }
+
+    .section-head h2 { margin: 0; font-size: 18px; }
+    .section-head .muted { margin: 0; color: var(--muted); }
+
+    /* Projects grid: three columns of small cards with spacing (as in the screenshot) */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    /* Each project looks like a small card inside the main card */
+    .project {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 16px;
+      border: 1px solid rgba(15,23,42,0.04);
+      box-shadow: 0 4px 10px rgba(11,18,32,0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 110px;
+    }
+
+    .project-title {
+      color: var(--project-accent);
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .project-excerpt {
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .project-meta {
+      color: var(--muted);
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    /* Resume and contact sections: keep their spacing and make them full-width cards */
+    #resume, #contact {
+      padding: 18px;
+    }
+
+    /* Footer slight left alignment to match the screenshot */
+    .site-footer .wrap {
+      padding: 12px 28px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 980px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
       .hero-grid { grid-template-columns: 1fr; }
       .hero-right { margin-top: 18px; justify-content: center; }
       .hero-right img.portrait { width: 200px; height: 200px; }
       .interests-grid { justify-content: center; }
+      .projects-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -185,12 +266,12 @@
       <div class="hero-left">
         <h1>👋 Hello — I’m <span class="accent">Ray</span>.</h1>
 
-        <p class="sub">I’m applying to Engineering major — here are my selected projects, paper, resume, and contact details.</p>
+        <p class="sub">My name means the sunshine in the morning.</p>
 
         <!-- About card moved into hero area (replaces the previous buttons) -->
         <div class="about-card" id="about">
           <h3>About</h3>
-          <p>I am a senior at North Allegheny High school. I am passionate about Engineering/Robotics, research and innovation. I enjoy exploring mechanical design, physics, coding, applied problem-solving and every minute spent with my buddy at BrainStem. Outside academics, I stay active through volleyball and express creativity through singing. My goal is to continue combining science, creativity and leadership to make a real impact for the development of Robotics.</p>
+          <p> I am passionate about Engineering/Robotics, research and innovation. I enjoy exploring mechanical design, physics, coding, applied problem-solving and every minute spent with my buddy at BrainStem. Outside academics, I stay active through volleyball and express creativity through singing. My goal is to continue combining science, creativity and leadership to make a real impact for the development of Robotics.</p>
 
           <ul class="about-list">
             <li><strong>High school:</strong> North Allegheny High School</li>
@@ -237,8 +318,11 @@
       </div>
     </section>
 
-    <!-- Selected Projects (kept on the page) -->
-    <section id="projects" class="card" style="margin-top: 18px;">
+    <!-- --- START: Bottom half (projects / resume / contact) ---
+         Content left unchanged; styling updated above to match the provided screenshot.
+         The HTML structure below is preserved exactly as requested. -->
+
+    <section id="projects" class="card">
       <div class="section-head">
         <h2>Selected Projects</h2>
         <p class="muted">Short highlights — link to repos and demos</p>
@@ -275,6 +359,8 @@
       <p>Email: <a href="mailto:zengrayc@gmail.com">zengrayc@gmail.com</a></p>
       <p class="muted">For private docs (transcripts, recommendations) mention “available on request” instead of publishing them here.</p>
     </section>
+
+    <!-- --- END: Bottom half --- -->
   </main>
 
   <footer class="site-footer">
