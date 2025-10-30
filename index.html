@@ -246,9 +246,28 @@
     }
 
     /* unified single-hue shades */
-    .interest-shade1 { background: linear-gradient(180deg, var(--single-hue-1), var(--single-hue-2)); }
-    .interest-shade2 { background: linear-gradient(180deg, var(--single-hue-2), var(--single-hue-3)); }
-    .interest-shade3 { background: linear-gradient(180deg, var(--single-hue-3), #9fc0ff); }
+    /* Replace the existing .interest-shade* rules with these lighter shades */
+
+.interest-shade1 {
+  /* very light blue */
+  background: linear-gradient(180deg, #f6fbff 0%, #eef7ff 100%);
+}
+
+.interest-shade2 {
+  /* slightly darker but still light */
+  background: linear-gradient(180deg, #eef6ff 0%, #e1f0ff 100%);
+}
+
+.interest-shade3 {
+  /* light-mid shade */
+  background: linear-gradient(180deg, #e7f0ff 0%, #d6e8ff 100%);
+}
+
+/* keep icon/text legible on lighter backgrounds */
+.interest {
+  color: #07335a; /* darker blue for icons/emoji so they contrast on light backgrounds */
+  border: 2px solid rgba(7,51,90,0.06); /* subtle border for definition */
+}
 
     .interest-label {
       margin-top: 8px;
@@ -314,7 +333,7 @@
 
         <div class="about-card" id="about">
           <h3>About</h3>
-          <p>I am a senior at North Allegheny High school. I am passionate about Engineering/Robotics, research and innovation. I enjoy exploring mechanical design, physics, coding, applied problem-solving and every minute spent with my buddy at BrainStem. Outside academics, I stay active through volleyball and express creativity through singing. My goal is to continue combining science, creativity and leadership to make a real impact for the development of Robotics.</p>
+          <p>I am passionate about Engineering/Robotics, research and innovation. I enjoy exploring mechanical design, physics, coding, applied problem-solving and every minute spent with my buddy at BrainStem. Outside academics, I stay active through volleyball and express creativity through singing. My goal is to continue combining science, creativity and leadership to make a real impact for the development of Robotics.</p>
 
           <ul class="about-list">
             <li><strong>High school:</strong> North Allegheny High School</li>
