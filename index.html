@@ -33,9 +33,10 @@
     const perSlideSeconds = 4; // seconds each slide is visible
     const totalDuration = n * perSlideSeconds;
 
-    // Use steps(n) timing so each slide is held for the same interval and the transform jumps
+    // Use steps(n, jump-none) timing so each slide is held for the same interval and the transform jumps
     // discretely between slides rather than performing short transitions that can look like "fly by".
-    slidesContainer.style.animation = `slide ${totalDuration}s steps(${n}) infinite`;
+    // jump-none ensures all n slides (including first and last positions) are held for equal duration.
+    slidesContainer.style.animation = `slide ${totalDuration}s steps(${n}, jump-none) infinite`;
 
     // (Optional) If you want a small smooth crossfade rather than a hard step, you can
     // change to 'linear' and generate more precise keyframes — but steps() is simplest and robust.
