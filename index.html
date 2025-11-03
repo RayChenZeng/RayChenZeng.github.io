@@ -17,9 +17,16 @@
       --accent: #2b6ef6;
       --radius: 14px;
       --project-accent: #5b21b6;
-      --single-hue-1: #e6f0ff; /* light shade */
-      --single-hue-2: #cfe0ff; /* mid shade */
-      --single-hue-3: #b8d0ff; /* darker shade */
+
+      /* hue shades (will be used for the three circles) */
+      --robotics-1: #031a3b; /* darkest */
+      --robotics-2: #06407a;
+
+      --volley-1: #2b7f6e; /* mid/light */
+      --volley-2: #6fc9a7;
+
+      --sing-1: #ffdff0; /* lightest */
+      --sing-2: #fff6fb;
     }
 
     body {
@@ -37,11 +44,11 @@
 
     /* reduce the gap further: half of prior small values */
     header.top-hero {
-      padding: 44px 0 4px; /* bottom reduced to 4px (half of 8px) */
+      padding: 44px 0 4px; /* bottom reduced to 4px */
     }
 
     main.wrap {
-      padding-top: 4px; /* half of 8px */
+      padding-top: 4px;
     }
 
     .hero-grid {
@@ -62,10 +69,8 @@
 
     .hero-left h1 .accent { color: var(--accent); }
 
-    /* remove the explanatory subtitle entirely */
-    .hero-left p.sub {
-      display: none;
-    }
+    /* subtitle removed */
+    .hero-left p.sub { display: none; }
 
     /* About card */
     .about-card {
@@ -77,38 +82,14 @@
       margin-bottom: 0;
     }
 
-    .about-card h3 {
-      margin: 0 0 10px 0;
-      font-size: 18px;
-    }
-
-    .about-card p {
-      margin: 0 0 14px 0;
-      line-height: 1.5;
-      color: #0f172a;
-    }
-
-    .about-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .about-list li {
-      margin: 8px 0;
-      color: #0f172a;
-      font-weight: 500;
-    }
-
+    .about-card h3 { margin: 0 0 10px 0; font-size: 18px; }
+    .about-card p { margin: 0 0 14px 0; line-height: 1.5; color: #0f172a; }
+    .about-list { list-style: none; padding: 0; margin: 0; }
+    .about-list li { margin: 8px 0; color: #0f172a; font-weight: 500; }
     .about-list li strong { font-weight: 700; margin-right: 6px; color: #0b1220; }
 
     /* portrait */
-    .hero-right {
-      display: flex;
-      justify-content: center;
-      align-items: start;
-    }
-
+    .hero-right { display: flex; justify-content: center; align-items: start; }
     .hero-right img.portrait {
       width: 320px;
       height: 320px;
@@ -140,7 +121,7 @@
 
     /* Projects -> EMG research layout: left for image + overview, right for paper abstract link */
     #projects.card {
-      margin-top: 3px; /* half of prior 6px -> ~3px */
+      margin-top: 3px;
       padding: 16px;
     }
 
@@ -151,23 +132,30 @@
       align-items: start;
     }
 
+    /* Updated: emg-image will contain the video (if available) or fallback */
     .emg-image {
       background: linear-gradient(180deg, #f3f7ff, #eef6ff);
       border-radius: 10px;
-      min-height: 220px; /* reserved space for picture */
+      min-height: 220px; /* reserved space for picture / video */
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--muted);
       font-weight: 600;
       border: 1px dashed rgba(15,23,42,0.06);
+      overflow: hidden;
     }
 
-    .emg-overview {
-      margin-top: 12px;
-      color: var(--muted);
-      line-height: 1.45;
+    /* responsive video sizing inside the emg-image container */
+    .emg-image video,
+    .emg-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
+
+    .emg-overview { margin-top: 12px; color: var(--muted); line-height: 1.45; }
 
     .paper-box {
       background: #fff;
@@ -182,13 +170,9 @@
       min-height: 120px;
     }
 
-    .paper-box a {
-      color: var(--project-accent);
-      font-weight: 700;
-      text-decoration: none;
-    }
+    .paper-box a { color: var(--project-accent); font-weight: 700; text-decoration: none; }
 
-    /* Below-row: left column (interests) and right column (resume above contact) */
+    /* Below-row: left column (interests) and right column (linkedin/resume/contact stack) */
     .below-row {
       display: grid;
       grid-template-columns: 1fr 360px;
@@ -196,11 +180,11 @@
       align-items: start;
     }
 
-    /* Interests (renamed) - make box smaller and less contrast (single hue shades) */
+    /* Interests (renamed) - smaller box and single-hue family previously; now adjust per-request */
     .interests-card {
       background: var(--card);
       border-radius: var(--radius);
-      padding: 16px; /* smaller */
+      padding: 16px;
       box-shadow: 0 6px 16px rgba(12, 28, 48, 0.05);
       margin: 0;
     }
@@ -220,7 +204,7 @@
       align-items: center;
     }
 
-    /* less contrast unified blue shades, smaller circles */
+    /* circle base */
     .interest {
       width: 120px;
       height: 120px;
@@ -228,7 +212,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #07436a; /* darker text for label/icon */
+      color: #07436a;
       font-weight: 700;
       text-decoration: none;
       box-shadow: 0 8px 20px rgba(11,18,32,0.06);
@@ -239,35 +223,26 @@
     }
 
     .interest:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(11,18,32,0.08); }
+    .interest > span { font-size: 30px; line-height: 1; }
 
-    .interest > span {
-      font-size: 30px;
-      line-height: 1;
+    /* robotics darkest, volleyball lighter, singing lightest (more hue variety) */
+    .interest-shade1 {
+      background: linear-gradient(135deg, var(--robotics-1) 0%, var(--robotics-2) 100%);
+      color: #ffffff;
+      border: 2px solid rgba(255,255,255,0.08);
     }
 
-    /* unified single-hue shades */
-    /* Replace the existing .interest-shade* rules with these lighter shades */
+    .interest-shade2 {
+      background: linear-gradient(135deg, var(--volley-1) 0%, var(--volley-2) 100%);
+      color: #052b24;
+      border: 2px solid rgba(0,0,0,0.04);
+    }
 
-.interest-shade1 {
-  /* very light blue */
-  background: linear-gradient(180deg, #f6fbff 0%, #eef7ff 100%);
-}
-
-.interest-shade2 {
-  /* slightly darker but still light */
-  background: linear-gradient(180deg, #eef6ff 0%, #e1f0ff 100%);
-}
-
-.interest-shade3 {
-  /* light-mid shade */
-  background: linear-gradient(180deg, #e7f0ff 0%, #d6e8ff 100%);
-}
-
-/* keep icon/text legible on lighter backgrounds */
-.interest {
-  color: #07335a; /* darker blue for icons/emoji so they contrast on light backgrounds */
-  border: 2px solid rgba(7,51,90,0.06); /* subtle border for definition */
-}
+    .interest-shade3 {
+      background: linear-gradient(135deg, var(--sing-1) 0%, var(--sing-2) 100%);
+      color: #4b2440;
+      border: 1px solid rgba(75,36,64,0.06);
+    }
 
     .interest-label {
       margin-top: 8px;
@@ -280,14 +255,14 @@
       text-decoration: none;
     }
 
-    /* Resume (right column top) */
+    /* Right stack (LinkedIn + Resume + Contact) */
     .right-stack {
       display: flex;
       flex-direction: column;
       gap: 14px;
     }
 
-    .resume-card {
+    .linkedin-card, .resume-card, .contact-card {
       background: var(--card);
       border-radius: 12px;
       padding: 14px;
@@ -295,27 +270,24 @@
       border: 1px solid rgba(15,23,42,0.03);
     }
 
-    .contact-card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 14px;
-      box-shadow: 0 8px 18px rgba(12, 28, 48, 0.06);
-      border: 1px solid rgba(15,23,42,0.03);
+    .linkedin-card a {
+      color: #0b66c3;
+      font-weight: 700;
+      text-decoration: none;
+      word-break: break-all;
     }
 
     /* Footer wrap */
-    .site-footer .wrap {
-      padding: 12px 28px;
-    }
+    .site-footer .wrap { padding: 12px 28px; }
 
     /* Responsive adjustments */
     @media (max-width: 980px) {
       .emg-grid { grid-template-columns: 1fr; }
       .below-row { grid-template-columns: 1fr; }
+      .hero-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
-      .hero-grid { grid-template-columns: 1fr; }
       .hero-right { margin-top: 18px; justify-content: center; }
       .hero-right img.portrait { width: 220px; height: 220px; }
       .interest { width: 110px; height: 110px; }
@@ -328,8 +300,6 @@
     <div class="wrap hero-grid">
       <div class="hero-left">
         <h1>👋 Hello — I’m <span class="accent">Ray</span>.</h1>
-
-        <!-- subtitle removed as requested -->
 
         <div class="about-card" id="about">
           <h3>About</h3>
@@ -348,7 +318,7 @@
   </header>
 
   <main class="wrap">
-    <!-- EMG Research section (replaces Selected Projects) -->
+    <!-- EMG Research section -->
     <section id="projects" class="card">
       <div class="section-head">
         <h2>EMG Research at Robotics Lab in Harvard</h2>
@@ -357,9 +327,15 @@
 
       <div class="emg-grid">
         <div>
-          <!-- reserved picture space (replace with <img> if available) -->
-          <div class="emg-image">
-            Reserved space for EMG / project picture
+          <!-- VIDEO: inserted inside the emg-image container.
+               The user said the video file is the 3rd file; using path assets/video/harvard_results.mp4.
+               If your actual filename or extension differs, update the src accordingly. -->
+          <div class="emg-image" aria-label="EMG project video or image">
+            <video controls preload="metadata" poster="/assets/images/emg-poster.jpg" style="width:100%;height:100%;" >
+              <source src="/assets/video/harvard_results.mp4" type="video/mp4">
+              <source src="/assets/video/harvard_results.webm" type="video/webm">
+              Your browser does not support HTML5 video. You can <a href="/assets/video/harvard_results.mp4">download the video</a>.
+            </video>
           </div>
 
           <div class="emg-overview">
@@ -375,7 +351,7 @@
       </div>
     </section>
 
-    <!-- Below-row: left = Other things I love, right = resume (top) + contact (below) -->
+    <!-- Below-row: left = Other things I love, right = linkedin + resume + contact stack -->
     <div class="below-row">
       <section id="interests" class="interests-card">
         <div class="interests-head">
@@ -407,7 +383,12 @@
         </div>
       </section>
 
-      <div class="right-stack">
+      <div class="right-stack" aria-label="Right column">
+        <div class="linkedin-card">
+          <h3 style="margin:0 0 8px 0;">LinkedIn</h3>
+          <p style="margin:0;"><a href="https://www.linkedin.com/in/ray-chen-zeng-45b121378/" target="_blank" rel="noopener">https://www.linkedin.com/in/ray-chen-zeng-45b121378/</a></p>
+        </div>
+
         <div class="resume-card" id="resume">
           <h3 style="margin:0 0 8px 0;">Resume</h3>
           <p style="margin:0;">Download my resume: <a href="assets/resume.pdf" target="_blank" rel="noopener">resume.pdf</a></p>
@@ -419,7 +400,6 @@
         </div>
       </div>
     </div>
-
   </main>
 
   <footer class="site-footer">
