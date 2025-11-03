@@ -175,6 +175,8 @@
       display: flex;
       width: 300%; /* will be overridden in JS if number of slides differs */
       animation: slide 12s infinite;
+      /* make animation smooth */
+      animation-timing-function: linear;
     }
 
     .css-slideshow img {
@@ -417,13 +419,18 @@
   </footer>
 
   <!-- Minimal JS to adjust slideshow behavior based on number of images
-       and set correct flex percentages and keyframe timing so the CSS-only autoplay works with any number of slides. -->
+       and set correct flex percentages and keyframe timing so the CSS-only autoplay works with any number of slides.
+       Changes made:
+       - Slower playback: 6 seconds per slide (previously 4s).
+       - Longer "hold" time for each slide so images are easier to see.
+       - Uses per-slide percent math so timing adjusts automatically with count.
+  -->
   <script>
     (function(){
       const slidesContainer = document.getElementById('slides');
       if (!slidesContainer) return;
       const imgs = Array.from(slidesContainer.querySelectorAll('img'));
-      const n = imgs.length || 1;
+      const n = Math.max(1, imgs.length);
 
       // set flex-basis on each image
       imgs.forEach(img => {
@@ -433,36 +440,50 @@
       // set container width to match count
       slidesContainer.style.width = (n * 100) + '%';
 
-      // generate keyframes dynamically to split time evenly:
-      // show each slide for (80% / n) of animation and transition during remaining
-      const showPct = Math.floor(80 / n); // percent of cycle each slide is shown
-      const step = 100 / n;
-      const timing = [];
-      for (let i=0;i<n;i++){
-        const start = Math.round(i * step);
-        const showStart = start;
-        const showEnd = Math.round(start + showPct);
-        timing.push({i, showStart, showEnd});
+      // Parameters to control feel:
+      const secondsPerSlide = 6; // slower: 6s per slide (increase to taste)
+      const totalDuration = secondsPerSlide * n;
+
+      // Percent of each slide's interval to HOLD on the slide (not transitioning).
+      // 0.75 means 75% of each per-slide interval is held, 25% is used for transitioning.
+      const holdFraction = 0.75;
+
+      // Compute percentages per slide
+      const perSlidePct = 100 / n;
+      const holdPct = perSlidePct * holdFraction;
+
+      // Build timing for each slide: holdStart (percent), holdEnd (percent)
+      const timings = [];
+      for (let i = 0; i < n; i++) {
+        const slideStart = i * perSlidePct;
+        const holdStart = Math.round(slideStart);
+        const holdEnd = Math.round(slideStart + holdPct);
+        timings.push({ i, holdStart, holdEnd });
       }
 
       // build keyframes string
+      // Each slide will be held at translateX(-i*100%) from holdStart% to holdEnd%
+      // Between holdEnd of slide i and holdStart of slide i+1, the transform will change
+      // (this produces the transition). Using linear timing for smooth motion.
       let keyframes = '@keyframes slide {';
-      for (let i=0;i<timing.length;i++){
-        const t = timing[i];
-        // maintain at translateX(-i*100%) from showStart to showEnd
-        keyframes += `${t.showStart}%{transform:translateX(-${i*100}%);} `;
-        keyframes += `${t.showEnd}%{transform:translateX(-${i*100}%);} `;
+      for (let t = 0; t < timings.length; t++) {
+        const cur = timings[t];
+        keyframes += `${cur.holdStart}%{transform:translateX(-${cur.i * 100}%);} `;
+        keyframes += `${cur.holdEnd}%{transform:translateX(-${cur.i * 100}%);} `;
       }
-      keyframes += `100%{transform:translateX(-${(n-1)*100}%);} }`;
+      // Ensure final state is last slide position
+      keyframes += `100%{transform:translateX(-${(n - 1) * 100}%);} }`;
 
-      // append to document
+      // append to document (remove previous if exists to avoid duplicates)
+      const existing = document.getElementById('dynamic-slideshow-keyframes');
+      if (existing) existing.remove();
       const style = document.createElement('style');
+      style.id = 'dynamic-slideshow-keyframes';
       style.innerHTML = keyframes;
       document.head.appendChild(style);
 
-      // Also adjust animation duration proportional to number of slides (4s per slide)
-      const totalDuration = n * 4; // seconds
-      slidesContainer.style.animation = `slide ${totalDuration}s infinite`;
+      // Apply the generated animation with the new total duration and linear timing
+      slidesContainer.style.animation = `slide ${totalDuration}s infinite linear`;
     })();
   </script>
 </body>
