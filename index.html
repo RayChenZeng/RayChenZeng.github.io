@@ -132,23 +132,30 @@
       align-items: start;
     }
 
-    /* Updated: emg-image will contain the video (if available) or fallback */
-    .emg-image {
-      background: linear-gradient(180deg, #f3f7ff, #eef6ff);
+    /* emg-media: contains two videos side-by-side on wide screens */
+    .emg-media {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
       border-radius: 10px;
-      min-height: 220px; /* reserved space for picture / video */
+      overflow: hidden;
+      min-height: 220px;
+    }
+
+    /* Each video box keeps the aspect and fills the grid cell */
+    .emg-media .video-box {
+      background: linear-gradient(180deg, #f3f7ff, #eef6ff);
+      border-radius: 8px;
+      overflow: hidden;
+      min-height: 220px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--muted);
-      font-weight: 600;
       border: 1px dashed rgba(15,23,42,0.06);
-      overflow: hidden;
     }
 
-    /* responsive video sizing inside the emg-image container */
-    .emg-image video,
-    .emg-image img {
+    /* responsive video sizing inside the video-box container */
+    .video-box video {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -285,6 +292,7 @@
       .emg-grid { grid-template-columns: 1fr; }
       .below-row { grid-template-columns: 1fr; }
       .hero-grid { grid-template-columns: 1fr; }
+      .emg-media { grid-template-columns: 1fr; } /* stack videos on small screens */
     }
 
     @media (max-width: 640px) {
@@ -327,15 +335,27 @@
 
       <div class="emg-grid">
         <div>
-          <!-- VIDEO: inserted inside the emg-image container.
-               The user said the video file is the 3rd file; using path assets/video/harvard_results.mp4.
-               If your actual filename or extension differs, update the src accordingly. -->
-          <div class="emg-image" aria-label="EMG project video or image">
-            <video controls preload="metadata" poster="/assets/images/emg-poster.jpg" style="width:100%;height:100%;" >
-              <source src="/assets/video/harvard_results.mp4" type="video/mp4">
-              <source src="/assets/video/harvard_results.webm" type="video/webm">
-              Your browser does not support HTML5 video. You can <a href="/assets/video/harvard_results.mp4">download the video</a>.
-            </video>
+          <!-- TWO VIDEOS SIDE-BY-SIDE: update filenames if yours differ.
+               Based on your assets folder, I used:
+               - /assets/video/harvard_results.mp4  (first video)
+               - /assets/video/Video2.mp4           (second video; update name if different)
+           -->
+          <div class="emg-media" aria-label="Project videos">
+            <div class="video-box" aria-label="Harvard results video">
+              <video controls preload="metadata" poster="/assets/images/emg-poster.jpg" playsinline>
+                <source src="/assets/video/harvard_results.mp4" type="video/mp4">
+                <source src="/assets/video/harvard_results.webm" type="video/webm">
+                Your browser does not support HTML5 video. You can <a href="/assets/video/harvard_results.mp4">download the video</a>.
+              </video>
+            </div>
+
+            <div class="video-box" aria-label="Second project video">
+              <video controls preload="metadata" poster="/assets/images/video2-poster.jpg" playsinline>
+                <source src="/assets/video/Video2.mp4" type="video/mp4">
+                <source src="/assets/video/Video2.webm" type="video/webm">
+                Your browser does not support HTML5 video. You can <a href="/assets/video/Video2.mp4">download the video</a>.
+              </video>
+            </div>
           </div>
 
           <div class="emg-overview">
