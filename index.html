@@ -174,8 +174,7 @@
     .css-slideshow .slides {
       display: flex;
       width: 300%; /* will be overridden in JS if number of slides differs */
-      animation: slide 12s infinite;
-      /* make animation smooth */
+      /* animation will be replaced by JS runtime so we can control timing */
       animation-timing-function: linear;
     }
 
@@ -185,16 +184,6 @@
       display: block;
       object-fit: cover;
       height: 260px;
-    }
-
-    /* keyframes set up for 3 images. If you add >3 images, JS below will replace animation to match count. */
-    @keyframes slide {
-      0%   { transform: translateX(0%); }
-      33%  { transform: translateX(0%); }
-      44%  { transform: translateX(-100%); }
-      77%  { transform: translateX(-100%); }
-      88%  { transform: translateX(-200%); }
-      100% { transform: translateX(-200%); }
     }
 
     /* Interests column (right column top) */
@@ -342,10 +331,10 @@
       <!-- left: slideshow card -->
       <div class="slideshow-card">
         <h3 style="margin:0 0 6px 0;">Project photos</h3>
-        <!-- Simple CSS-only slideshow.
-             Replace the image filenames below with the real files in
-             /assets/images/Slides_show/ (e.g. FRC_humanPlayer.jpeg, FTC_MT1.jpeg, Harvard_intern.jpeg, etc.)
-             The JS at the bottom will adjust animation if you have a different number of images. -->
+        <!-- Simple CSS-only slideshow. JS will:
+             - duplicate the first slide at the end to allow a seamless wrapback
+             - slow the slideshow dramatically (configurable)
+             - compute timings so each slide is held and transitions smoothly -->
         <section class="css-slideshow" aria-label="Project photos slideshow">
           <div class="slides" id="slides">
             <img src="/assets/images/Slides_show/FRC_humanPlayer.jpeg" alt="FRC human player">
@@ -418,61 +407,87 @@
     </div>
   </footer>
 
-  <!-- Minimal JS to adjust slideshow behavior based on number of images
-       and set correct flex percentages and keyframe timing so the CSS-only autoplay works with any number of slides.
-       Changes made:
-       - Slower playback: 6 seconds per slide (previously 4s).
-       - Longer "hold" time for each slide so images are easier to see.
-       - Uses per-slide percent math so timing adjusts automatically with count.
+  <!-- Minimal JS to adjust slideshow behavior for:
+       - seamless wrapback (duplicate first slide at end)
+       - much slower playback (configurable secondsPerSlide)
+       - even hold/transition timing per slide
   -->
   <script>
     (function(){
       const slidesContainer = document.getElementById('slides');
       if (!slidesContainer) return;
-      const imgs = Array.from(slidesContainer.querySelectorAll('img'));
-      const n = Math.max(1, imgs.length);
 
-      // set flex-basis on each image
-      imgs.forEach(img => {
-        img.style.flex = '0 0 ' + (100 / n) + '%';
+      // grab original images (live NodeList => convert to array to snapshot original set)
+      const originalImgs = Array.from(slidesContainer.querySelectorAll('img'));
+      const originalCount = Math.max(1, originalImgs.length);
+
+      // Duplicate the first slide and append to the end to allow a smooth wrapback.
+      // We use a cloned element so the visual at the end matches the start and the animation can move
+      // to -(originalCount)*100% then the animation loop snaps back to 0% showing the first image seamlessly.
+      const firstClone = originalImgs[0].cloneNode(true);
+      slidesContainer.appendChild(firstClone);
+
+      // total slides including duplicate
+      const totalSlides = originalCount + 1;
+
+      // set flex-basis on each image (including the cloned one)
+      Array.from(slidesContainer.querySelectorAll('img')).forEach(img => {
+        img.style.flex = '0 0 ' + (100 / totalSlides) + '%';
       });
 
-      // set container width to match count
-      slidesContainer.style.width = (n * 100) + '%';
+      // set container width to match total slides
+      slidesContainer.style.width = (totalSlides * 100) + '%';
 
-      // Parameters to control feel:
-      const secondsPerSlide = 6; // slower: 6s per slide (increase to taste)
-      const totalDuration = secondsPerSlide * n;
+      // =========== Configurable animation speed ===========
+      // Much much slower: increase secondsPerSlide to taste.
+      // Example: 12 seconds per slide gives a very slow slideshow.
+      // You can set this to 8/10/12/15 etc.
+      const secondsPerSlide = 12; // <-- change this to make it even slower (e.g. 15)
+      const totalDuration = secondsPerSlide * originalCount; // total duration cycles through originalCount slides
+      // Note: we base totalDuration on originalCount (not totalSlides) so the duplicate doesn't add extra time.
 
-      // Percent of each slide's interval to HOLD on the slide (not transitioning).
-      // 0.75 means 75% of each per-slide interval is held, 25% is used for transitioning.
-      const holdFraction = 0.75;
+      // Fraction of each per-slide interval to HOLD on the slide (not transitioning).
+      // 0.80 means 80% hold, 20% used for transition.
+      const holdFraction = 0.80;
 
-      // Compute percentages per slide
-      const perSlidePct = 100 / n;
+      // Compute percentages per original slide interval
+      const perSlidePct = 100 / originalCount;
       const holdPct = perSlidePct * holdFraction;
 
-      // Build timing for each slide: holdStart (percent), holdEnd (percent)
+      // Build timing for each original slide i (0..originalCount-1),
+      // but map to translation values using totalSlides positions so the duplicated last position (-originalCount*100%) exists.
       const timings = [];
-      for (let i = 0; i < n; i++) {
+      for (let i = 0; i < originalCount; i++) {
         const slideStart = i * perSlidePct;
         const holdStart = Math.round(slideStart);
         const holdEnd = Math.round(slideStart + holdPct);
         timings.push({ i, holdStart, holdEnd });
       }
 
-      // build keyframes string
-      // Each slide will be held at translateX(-i*100%) from holdStart% to holdEnd%
-      // Between holdEnd of slide i and holdStart of slide i+1, the transform will change
-      // (this produces the transition). Using linear timing for smooth motion.
+      // Build keyframes string.
+      // We animate from 0% to 100%:
+      // - For slide i we hold transform: translateX(-i * 100%) between holdStart% and holdEnd%
+      // - When i reaches last original slide (i = originalCount - 1), the animation will move to translateX(-(originalCount)*100%)
+      //   which shows the cloned first slide. At the end of the animation (100%) the browser will loop and the content
+      //   will snap back to translateX(0%), showing the real first slide — visually seamless because the clone matched it.
       let keyframes = '@keyframes slide {';
+
       for (let t = 0; t < timings.length; t++) {
         const cur = timings[t];
+        // hold at the position of slide `cur.i`
         keyframes += `${cur.holdStart}%{transform:translateX(-${cur.i * 100}%);} `;
         keyframes += `${cur.holdEnd}%{transform:translateX(-${cur.i * 100}%);} `;
       }
-      // Ensure final state is last slide position
-      keyframes += `100%{transform:translateX(-${(n - 1) * 100}%);} }`;
+
+      // After last hold, we need to ensure animation proceeds to the cloned-first position before loop resets.
+      // Place a frame slightly after the last hold end that translates to -originalCount*100% (the clone).
+      const last = timings[timings.length - 1];
+      // compute a small next percent: either last.holdEnd+1 or clamp to 99 to avoid exceeding 100
+      const nextPct = Math.min(99, last.holdEnd + 2);
+      keyframes += `${nextPct}%{transform:translateX(-${originalCount * 100}%);} `;
+
+      // final state at 100% should be at the cloned-first position so the loop snaps back to 0 without visual mismatch
+      keyframes += `100%{transform:translateX(-${originalCount * 100}%);} }`;
 
       // append to document (remove previous if exists to avoid duplicates)
       const existing = document.getElementById('dynamic-slideshow-keyframes');
@@ -484,6 +499,9 @@
 
       // Apply the generated animation with the new total duration and linear timing
       slidesContainer.style.animation = `slide ${totalDuration}s infinite linear`;
+
+      // Optional: reduce GPU jitter by setting will-change
+      slidesContainer.style.willChange = 'transform';
     })();
   </script>
 </body>
