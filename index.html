@@ -49,7 +49,7 @@
 
     .emg-overview { margin-top:12px; color:var(--muted); line-height:1.45; }
 
-    /* small box for the paper image placed next to overview text */
+    /* paper / media report box */
     .paper-image-box {
       background: #fff;
       border-radius: 10px;
@@ -60,8 +60,12 @@
       justify-content:center;
       min-height:120px;
       gap:8px;
+      flex-direction:column;
+      text-align:center;
     }
     .paper-image-box img { max-width:100%; max-height:100%; display:block; border-radius:8px; }
+
+    .paper-caption { font-size:13px; color:var(--muted); margin-top:6px; }
 
     /* below-row layout */
     .below-row { display:grid; grid-template-columns: 1fr 360px; gap:20px; align-items:start; margin-top:8px; }
@@ -156,17 +160,19 @@
           <div class="emg-overview">
             <p><strong>Overview:</strong> EMG-based signal processing and visualization for human–machine interfaces. Built an interactive demo using D3/JS, collected experimental data, and evaluated preliminary classification approaches. The demo and dataset support further analysis for wearable assistive devices.</p>
 
-            <!-- moved paper text here (updated wording) -->
+            <!-- updated paper message -->
             <p style="margin-top:10px; color:var(--muted);">
               Submitted — abstract available upon request.
             </p>
           </div>
         </div>
 
-        <!-- replaced the paper "link box" with a picture box -->
-        <aside class="paper-image-box" aria-label="Paper / dataset image">
-          <!-- Replace the image path below with a thumbnail of your paper or dataset screenshot -->
-          <img src="/assets/images/emg-paper-thumb.jpg" alt="Paper thumbnail or dataset visualization">
+        <!-- NEW: Media report box (separate from slideshow) -->
+        <aside class="paper-image-box" aria-label="Media Report image">
+          <strong>Media Report</strong>
+          <!-- Use the mediaReport.jpg you uploaded to /assets/images/ -->
+          <img src="/assets/images/mediaReport.jpg" alt="Media report image or dataset visualization">
+          <div class="paper-caption">Media Report — click to open full-size</div>
         </aside>
       </div>
     </section>
@@ -180,8 +186,9 @@
             <img src="/assets/images/Slides_show/FRC_humanPlayer.jpeg" alt="FRC human player">
             <img src="/assets/images/Slides_show/FTC_MT1.jpeg" alt="FTC match">
             <img src="/assets/images/Slides_show/Harvard_intern.jpeg" alt="Harvard internship">
-            <img src="/assets/images/Slides_show/IMG_4099.png" alt="Media Report">
+            <!-- mediaReport removed from slideshow per request -->
             <img src="/assets/images/Slides_show/SchoolTeam_JV.jpeg" alt="School team">
+            <!-- add more <img> lines here if you have more photos -->
           </div>
         </section>
         <div style="font-size:13px;color:var(--muted);">Slideshow auto-plays and loops. Images come from assets/images/Slides_show/</div>
@@ -194,8 +201,6 @@
         </div>
 
         <div class="interests-grid" role="list" aria-label="Other things I love">
-          <!-- Each circle now links to a gallery page (gallery.html) with a folder query parameter.
-               That gallery page will render all images listed in that folder's index.json (see instructions below). -->
           <div class="interest-wrapper" role="listitem" style="text-align:center;">
             <a class="interest interest-shade1" href="/interests/gallery.html?folder=Slides_show/robotics" aria-label="Robotics gallery">
               <span>🤖</span>
@@ -231,7 +236,6 @@
           <div style="font-weight:700;">Links & contact</div>
           <div class="links-grid">
             <div><a id="linkedin" href="https://www.linkedin.com/in/ray-chen-zeng-45b121378/" target="_blank" rel="noopener">LinkedIn</a></div>
-            <!-- changed text to "Resume" (note: keep the href pointing to the actual file path on your server) -->
             <div><a id="resume-link" href="/assets/resume.pdf" target="_blank" rel="noopener">Resume</a></div>
             <div><a id="email-link" href="mailto:zengrayc@gmail.com">Email</a></div>
           </div>
@@ -246,9 +250,7 @@
     </div>
   </footer>
 
-  <!-- Slideshow script (keeps smooth wrap and is much slower).
-       The slideshow duplicates first frame for seamless wrap, and uses a very slow per-slide duration.
-       Feel free to increase secondsPerSlide to make it even slower. -->
+  <!-- Slideshow script (keeps smooth wrap and is very slow). -->
   <script>
     (function(){
       const slidesContainer = document.getElementById('slides');
@@ -269,10 +271,10 @@
       slidesContainer.style.width = (total * 100) + '%';
 
       // VERY slow playback
-      const secondsPerSlide = 18; // <<<< set to 18s per slide (change if you want even slower)
+      const secondsPerSlide = 18; // change if you want even slower
       const totalDuration = secondsPerSlide * count;
 
-      const holdFraction = 0.82; // how much of each slide's interval is held (rest used for transition)
+      const holdFraction = 0.82; // hold time per slide
       const perSlidePct = 100 / count;
       const holdPct = perSlidePct * holdFraction;
 
@@ -290,7 +292,6 @@
         keyframes += `${cur.start}%{transform:translateX(-${cur.i * 100}%);} `;
         keyframes += `${cur.end}%{transform:translateX(-${cur.i * 100}%);} `;
       }
-      // move to the cloned first slide just after the last hold, so animation ends showing the clone
       const last = timings[timings.length - 1];
       const nextPct = Math.min(99, last.end + 2);
       keyframes += `${nextPct}%{transform:translateX(-${count * 100}%);} `;
@@ -307,8 +308,5 @@
       slidesContainer.style.willChange = 'transform';
     })();
   </script>
-
-  <!-- Note: no special JS needed here for the interest-circle links — they point to /interests/gallery.html?folder=... -->
-  <!-- See the separate file interests/gallery.html for the gallery implementation and instructions -->
 </body>
 </html>
