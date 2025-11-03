@@ -23,11 +23,14 @@ This is a personal portfolio website built with Jekyll and hosted on GitHub Page
 │   └── footer.html     # Site footer component
 ├── _layouts/           # Page layouts
 │   └── home.html       # Home page layout template
-├── assets/             # Static assets (images, PDFs, etc.)
-│   ├── resume.pdf      # Resume file
-│   └── style.css       # Additional styles (if any)
+├── assets/             # Static assets (images, PDFs, videos, etc.)
+│   ├── Resume.pdf      # Resume file
+│   ├── PG_news.pdf     # Publication/news PDF
+│   ├── images/         # Image files
+│   ├── video/          # Video files
+│   └── _config.yml     # Asset configuration
 ├── index.html          # Main homepage with inline styles
-├── style.css           # Main stylesheet
+├── style.css           # Main stylesheet (root level)
 ├── Gemfile.txt         # Ruby gem dependencies
 └── README.md           # Project documentation
 ```
@@ -111,9 +114,11 @@ Since this is a Jekyll site, you can build and serve it locally:
 
 ### Updating Styles
 
-1. Modify CSS in `style.css` for global styles
-2. For component-specific styles, consider using scoped styles or updating inline styles in `index.html`
-3. Use existing CSS custom properties for colors and spacing
+1. The main stylesheet is `style.css` in the root directory
+2. Note: `index.html` currently has extensive inline styles in a `<style>` block
+3. For global styles, modify `style.css`
+4. For page-specific styles, consider the inline styles in `index.html`
+5. Use existing CSS custom properties for colors and spacing
 
 ### Changing Layout
 
@@ -130,10 +135,11 @@ Since this is a Jekyll site, you can build and serve it locally:
 
 ## File Conventions
 
-- **Images**: Place in `assets/` directory
-- **Documents**: Store PDFs and other documents in `assets/`
+- **Images**: Place in `assets/images/` directory
+- **Videos**: Place in `assets/video/` directory
+- **Documents**: Store PDFs and other documents in `assets/` (e.g., Resume.pdf)
 - **Data**: Keep structured data in `_data/` as YAML files
-- **Styles**: Main styles in `style.css`, component styles in respective files
+- **Styles**: Main stylesheet is `style.css` in root; page-specific styles can be inline in HTML
 - **Templates**: Layouts in `_layouts/`, reusable components in `_includes/`
 
 ## Important Notes
