@@ -41,7 +41,13 @@
     .section-head h2 { margin:0; font-size:18px; }
     .muted { color: #6b7280; margin:0; }
 
-    .emg-grid { display:grid; grid-template-columns: 1fr 300px; gap:18px; align-items:start; }
+    /* EMG area: left column for media report, right column for videos + overview */
+    .emg-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr; /* media report left (fixed width), content right */
+      gap: 18px;
+      align-items: start;
+    }
 
     .emg-media { display:grid; grid-template-columns: 1fr 1fr; gap:12px; border-radius:10px; overflow:hidden; min-height:220px; }
     .video-box { background: linear-gradient(180deg,#f3f7ff,#eef6ff); border-radius:8px; min-height:220px; border:1px dashed rgba(15,23,42,0.06); overflow:hidden; }
@@ -49,23 +55,24 @@
 
     .emg-overview { margin-top:12px; color:var(--muted); line-height:1.45; }
 
-    /* paper / media report box */
-    .paper-image-box {
-      background: #fff;
-      border-radius: 10px;
-      padding: 8px;
-      border: 1px solid rgba(15,23,42,0.04);
+    /* media-report box on the left of EMG */
+    .media-report-box {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 12px;
+      box-shadow: 0 8px 20px rgba(12,28,48,0.06);
+      border: 1px solid rgba(15,23,42,0.03);
       display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:120px;
-      gap:8px;
       flex-direction:column;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-start;
       text-align:center;
+      min-height: 260px;
     }
-    .paper-image-box img { max-width:100%; max-height:100%; display:block; border-radius:8px; }
-
-    .paper-caption { font-size:13px; color:var(--muted); margin-top:6px; }
+    .media-report-box img { width:100%; height:auto; max-height: 180px; object-fit: cover; border-radius: 8px; display:block; }
+    .media-report-box .caption { font-weight:700; color:#071124; }
+    .media-report-box .sub { font-size:13px; color:var(--muted); }
 
     /* below-row layout */
     .below-row { display:grid; grid-template-columns: 1fr 360px; gap:20px; align-items:start; margin-top:8px; }
@@ -94,7 +101,8 @@
     .links-grid a { color:var(--project-accent); font-weight:700; text-decoration:none; }
 
     @media (max-width:980px) {
-      .emg-grid { grid-template-columns:1fr; }
+      /* stack media report above videos on small screens */
+      .emg-grid { grid-template-columns: 1fr; }
       .below-row { grid-template-columns:1fr; }
       .hero-grid { grid-template-columns: 1fr; }
       .emg-media { grid-template-columns: 1fr; }
@@ -137,7 +145,19 @@
         <p class="muted">Overview and paper</p>
       </div>
 
+      <!-- EMG grid updated: media report box on left, videos + overview on right -->
       <div class="emg-grid">
+        <!-- LEFT: Media Report -->
+        <aside class="media-report-box" aria-label="Media Report">
+          <div class="caption">Media Report</div>
+          <!-- user indicated mediaReport.png is the saved file; use .png here -->
+          <a href="/assets/images/mediaReport.png" target="_blank" rel="noopener">
+            <img src="/assets/images/mediaReport.png" alt="Media report image or dataset visualization">
+          </a>
+          <div class="sub">Media Report — click to open full-size</div>
+        </aside>
+
+        <!-- RIGHT: Videos and overview -->
         <div>
           <div class="emg-media" aria-label="Project videos">
             <div class="video-box" aria-label="Harvard results video">
@@ -166,14 +186,6 @@
             </p>
           </div>
         </div>
-
-        <!-- NEW: Media report box (separate from slideshow) -->
-        <aside class="paper-image-box" aria-label="Media Report image">
-          <strong>Media Report</strong>
-          <!-- Use the mediaReport.png you uploaded to /assets/images/ -->
-          <img src="/assets/images/mediaReport.png" alt="Media report image">
-          <div class="paper-caption">Media Report — click to open full-size</div>
-        </aside>
       </div>
     </section>
 
@@ -186,9 +198,7 @@
             <img src="/assets/images/Slides_show/FRC_humanPlayer.jpeg" alt="FRC human player">
             <img src="/assets/images/Slides_show/FTC_MT1.jpeg" alt="FTC match">
             <img src="/assets/images/Slides_show/Harvard_intern.jpeg" alt="Harvard internship">
-            <!-- mediaReport removed from slideshow per request -->
             <img src="/assets/images/Slides_show/SchoolTeam_JV.jpeg" alt="School team">
-            <!-- add more <img> lines here if you have more photos -->
           </div>
         </section>
         <div style="font-size:13px;color:var(--muted);">Slideshow auto-plays and loops. Images come from assets/images/Slides_show/</div>
