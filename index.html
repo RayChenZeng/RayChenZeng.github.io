@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
 
-  <!-- Inline styles with requested adjustments applied -->
   <style>
     :root{
       --bg: #f6fbfd;
@@ -17,246 +16,89 @@
       --accent: #2b6ef6;
       --radius: 14px;
       --project-accent: #5b21b6;
-
-      /* hue shades (will be used for the three circles) */
-      --robotics-1: #031a3b; /* darkest */
-      --robotics-2: #06407a;
-
-      --volley-1: #2b7f6e; /* mid/light */
-      --volley-2: #6fc9a7;
-
-      --sing-1: #ffdff0; /* lightest */
-      --sing-2: #fff6fb;
     }
 
-    body {
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: var(--bg);
-      color: #0f172a;
-      margin: 0;
-    }
+    body { font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: var(--bg); color: #0f172a; margin: 0; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 28px; }
+    header.top-hero { padding: 44px 0 4px; }
+    main.wrap { padding-top: 4px; }
 
-    .wrap {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 28px;
-    }
+    .hero-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
+    .hero-left h1 { font-family: "Baloo 2", "Inter", system-ui; font-size: 36px; margin: 0 0 12px 0; display:flex; gap:10px; align-items:center; }
+    .accent { color: var(--accent); }
 
-    header.top-hero {
-      padding: 44px 0 4px;
-    }
-
-    main.wrap {
-      padding-top: 4px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 28px;
-      align-items: start;
-    }
-
-    .hero-left h1 {
-      font-family: "Baloo 2", "Inter", system-ui;
-      font-size: 36px;
-      margin: 0 0 12px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .hero-left h1 .accent { color: var(--accent); }
-    .hero-left p.sub { display: none; }
-
-    .about-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-      box-shadow: 0 8px 20px rgba(12, 28, 48, 0.06);
-      margin-top: 22px;
-      margin-bottom: 0;
-    }
-
+    .about-card { background: var(--card); border-radius: 14px; padding: 20px 22px; box-shadow: 0 8px 20px rgba(12,28,48,0.06); margin-top: 22px; }
     .about-card h3 { margin: 0 0 10px 0; font-size: 18px; }
     .about-card p { margin: 0 0 14px 0; line-height: 1.5; color: #0f172a; }
     .about-list { list-style: none; padding: 0; margin: 0; }
-    .about-list li { margin: 8px 0; color: #0f172a; font-weight: 500; }
-    .about-list li strong { font-weight: 700; margin-right: 6px; color: #0b1220; }
 
-    .hero-right { display: flex; justify-content: center; align-items: start; }
-    .hero-right img.portrait {
-      width: 320px;
-      height: 320px;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow: 0 14px 40px rgba(11,18,32,0.18);
-      display: block;
-    }
+    .hero-right { display:flex; justify-content:center; align-items:start; }
+    .portrait { width:320px; height:320px; object-fit:cover; border-radius:50%; box-shadow: 0 14px 40px rgba(11,18,32,0.18); }
 
-    .card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: 0 8px 20px rgba(12, 28, 48, 0.06);
-      margin: 18px 0;
-    }
+    .card { background: var(--card); border-radius: 14px; padding: 20px; box-shadow: 0 8px 20px rgba(12,28,48,0.06); margin: 18px 0; }
 
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding-bottom: 6px;
-    }
+    .section-head { display:flex; justify-content:space-between; align-items:center; gap:20px; padding-bottom:6px; }
+    .section-head h2 { margin:0; font-size:18px; }
+    .muted { color: #6b7280; margin:0; }
 
-    .section-head h2 { margin: 0; font-size: 18px; }
-    .section-head .muted { margin: 0; color: var(--muted); }
+    .emg-grid { display:grid; grid-template-columns: 1fr 300px; gap:18px; align-items:start; }
 
-    #projects.card {
-      margin-top: 3px;
-      padding: 16px;
-    }
-
-    .emg-grid {
-      display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 18px;
-      align-items: start;
-    }
-
-    /* emg-media: two videos side-by-side grid (kept for compatibility) */
-    .emg-media {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      border-radius: 10px;
-      overflow: hidden;
-      min-height: 220px;
-    }
-    .video-box { background: linear-gradient(180deg, #f3f7ff, #eef6ff); border-radius: 8px; overflow:hidden; min-height:220px; border:1px dashed rgba(15,23,42,0.06); }
+    .emg-media { display:grid; grid-template-columns: 1fr 1fr; gap:12px; border-radius:10px; overflow:hidden; min-height:220px; }
+    .video-box { background: linear-gradient(180deg,#f3f7ff,#eef6ff); border-radius:8px; min-height:220px; border:1px dashed rgba(15,23,42,0.06); overflow:hidden; }
     .video-box video { width:100%; height:100%; object-fit:cover; display:block; }
 
-    .emg-overview { margin-top: 12px; color: var(--muted); line-height: 1.45; }
-    .paper-box { background:#fff; border-radius:10px; padding:16px; border:1px solid rgba(15,23,42,0.04); min-height:120px; }
+    .emg-overview { margin-top:12px; color:var(--muted); line-height:1.45; }
 
-    /* NEW: below-row changed to have top row with slideshow + interests, second row full-width links box */
-    .below-row {
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 20px;
-      align-items: start;
-      margin-top: 8px;
-    }
-
-    /* Slideshow container (left column) */
-    .slideshow-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 12px;
-      box-shadow: 0 6px 18px rgba(12,28,48,0.06);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    /* CSS-only slideshow (simple autoplay & responsive)
-       - Replace image filenames in HTML below to match your assets/images/Slides_show/*.jpg
-       - This is the "simple" solution the user requested. */
-    .css-slideshow {
-      width: 100%;
-      overflow: hidden;
+    /* small box for the paper image placed next to overview text */
+    .paper-image-box {
+      background: #fff;
       border-radius: 10px;
-      position: relative;
-      min-height: 260px;
-    }
-
-    .css-slideshow .slides {
-      display: flex;
-      width: 300%; /* will be overridden in JS if number of slides differs */
-      /* animation will be replaced by JS runtime so we can control timing */
-      animation-timing-function: linear;
-    }
-
-    .css-slideshow img {
-      width: 100%;
-      flex: 0 0 33.3333%; /* default if 3 images */
-      display: block;
-      object-fit: cover;
-      height: 260px;
-    }
-
-    /* Interests column (right column top) */
-    .interests-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: 0 6px 16px rgba(12, 28, 48, 0.05);
-      margin: 0;
-    }
-
-    .interests-head {
+      padding: 8px;
+      border: 1px solid rgba(15,23,42,0.04);
       display:flex;
       align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:12px;
+      justify-content:center;
+      min-height:120px;
+      gap:8px;
     }
+    .paper-image-box img { max-width:100%; max-height:100%; display:block; border-radius:8px; }
 
-    .interests-grid {
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
+    /* below-row layout */
+    .below-row { display:grid; grid-template-columns: 1fr 360px; gap:20px; align-items:start; margin-top:8px; }
 
-    .interest {
-      width: 120px; height: 120px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-      color:#07436a; font-weight:700; text-decoration:none; box-shadow:0 8px 20px rgba(11,18,32,0.06);
-      transition:transform 150ms ease, box-shadow 150ms ease; flex-direction:column; text-align:center; border:3px solid rgba(255,255,255,0.85);
-    }
-    .interest:hover { transform: translateY(-4px); box-shadow:0 12px 28px rgba(11,18,32,0.08); }
+    .slideshow-card { background:var(--card); border-radius:14px; padding:12px; box-shadow: 0 6px 18px rgba(12,28,48,0.06); display:flex; flex-direction:column; gap:12px; }
+    .css-slideshow { width:100%; overflow:hidden; border-radius:10px; position:relative; min-height:260px; }
+    .css-slideshow .slides { display:flex; width:300%; animation-timing-function:linear; }
+    .css-slideshow img { width:100%; flex:0 0 33.3333%; display:block; object-fit:cover; height:260px; }
+
+    .interests-card { background:var(--card); border-radius:14px; padding:16px; box-shadow: 0 6px 16px rgba(12,28,48,0.05); }
+    .interests-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; }
+    .interests-grid { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+
+    .interest { width:120px; height:120px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#07436a; font-weight:700; text-decoration:none; box-shadow:0 8px 20px rgba(11,18,32,0.06); transition:transform 150ms ease; flex-direction:column; text-align:center; border:3px solid rgba(255,255,255,0.85); }
+    .interest:hover { transform:translateY(-4px); box-shadow:0 12px 28px rgba(11,18,32,0.08); }
     .interest > span { font-size:30px; line-height:1; }
+    .interest-label { margin-top:8px; font-size:13px; font-weight:700; color:#071124; background:rgba(255,255,255,0.95); padding:6px 10px; border-radius:999px; text-decoration:none; display:inline-block; }
 
-    .interest-shade1 { background: linear-gradient(135deg, var(--robotics-1) 0%, var(--robotics-2) 100%); color:#fff; border:2px solid rgba(255,255,255,0.08); }
-    .interest-shade2 { background: linear-gradient(135deg, var(--volley-1) 0%, var(--volley-2) 100%); color:#052b24; border:2px solid rgba(0,0,0,0.04); }
-    .interest-shade3 { background: linear-gradient(135deg, var(--sing-1) 0%, var(--sing-2) 100%); color:#4b2440; border:1px solid rgba(75,36,64,0.06); }
+    .interest-shade1 { background: linear-gradient(135deg,#031a3b 0%, #06407a 100%); color:#fff; }
+    .interest-shade2 { background: linear-gradient(135deg,#2b7f6e 0%, #6fc9a7 100%); color:#052b24; }
+    .interest-shade3 { background: linear-gradient(135deg,#ffdff0 0%, #fff6fb 100%); color:#4b2440; }
+    .interest-deca { background: linear-gradient(135deg,#ffd28a 0%, #fff1d6 100%); color:#402e00; }
 
-    .interest-deca { background: linear-gradient(135deg,#ffd28a 0%, #fff1d6 100%); color:#402e00; border:1px solid rgba(64,46,0,0.06); }
-
-    .interest-label { margin-top:8px; font-size:13px; font-weight:700; color:#071124; background:rgba(255,255,255,0.95); padding:6px 10px; border-radius:999px; text-decoration:none; }
-
-    /* Combined links box below the two boxes (spans full width under them) */
-    .links-box {
-      grid-column: 1 / -1;  /* span full width of the below-row grid */
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 14px;
-      box-shadow: 0 8px 20px rgba(12,28,48,0.06);
-      border: 1px solid rgba(15,23,42,0.03);
-      margin-top: 6px;
-    }
-
-    .links-grid {
-      display:flex;
-      gap:18px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
+    .links-box { grid-column:1 / -1; background:var(--card); border-radius:14px; padding:14px; box-shadow:0 8px 20px rgba(12,28,48,0.06); border:1px solid rgba(15,23,42,0.03); margin-top:6px; }
+    .links-grid { display:flex; gap:18px; flex-wrap:wrap; align-items:center; }
     .links-grid a { color:var(--project-accent); font-weight:700; text-decoration:none; }
 
-    /* Responsive adjustments */
-    @media (max-width: 980px) {
-      .emg-grid { grid-template-columns: 1fr; }
-      .below-row { grid-template-columns: 1fr; }
+    @media (max-width:980px) {
+      .emg-grid { grid-template-columns:1fr; }
+      .below-row { grid-template-columns:1fr; }
       .hero-grid { grid-template-columns: 1fr; }
       .emg-media { grid-template-columns: 1fr; }
-      .css-slideshow img { height: 200px; }
+      .css-slideshow img { height:200px; }
     }
 
-    @media (max-width: 640px) {
-      .hero-right img.portrait { width:220px; height:220px; }
+    @media (max-width:640px) {
+      .portrait { width:220px; height:220px; }
       .interest { width:110px; height:110px; }
       .interest > span { font-size:26px; }
     }
@@ -285,7 +127,6 @@
   </header>
 
   <main class="wrap">
-    <!-- EMG Research section -->
     <section id="projects" class="card">
       <div class="section-head">
         <h2>EMG Research at Robotics Lab in Harvard</h2>
@@ -314,42 +155,38 @@
 
           <div class="emg-overview">
             <p><strong>Overview:</strong> EMG-based signal processing and visualization for human–machine interfaces. Built an interactive demo using D3/JS, collected experimental data, and evaluated preliminary classification approaches. The demo and dataset support further analysis for wearable assistive devices.</p>
+
+            <!-- moved paper text here (updated wording) -->
+            <p style="margin-top:10px; color:var(--muted);">
+              Submitted — abstract available upon request.
+            </p>
           </div>
         </div>
 
-        <aside class="paper-box">
-          <div style="font-size:14px; color:var(--muted);">Paper</div>
-          <a href="interests/paper-abstract.html" target="_blank" rel="noopener">Click to view submitted paper abstract</a>
-          <div style="font-size:13px; color:var(--muted);">Includes dataset description, preprocessing, and initial results.</div>
+        <!-- replaced the paper "link box" with a picture box -->
+        <aside class="paper-image-box" aria-label="Paper / dataset image">
+          <!-- Replace the image path below with a thumbnail of your paper or dataset screenshot -->
+          <img src="/assets/images/emg-paper-thumb.jpg" alt="Paper thumbnail or dataset visualization">
         </aside>
       </div>
     </section>
 
-    <!-- NEW: below-row (top: slideshow + interests; bottom: combined links box) -->
     <div class="below-row">
 
-      <!-- left: slideshow card -->
       <div class="slideshow-card">
         <h3 style="margin:0 0 6px 0;">Project photos</h3>
-        <!-- Simple CSS-only slideshow. JS will:
-             - duplicate the first slide at the end to allow a seamless wrapback
-             - slow the slideshow dramatically (configurable)
-             - compute timings so each slide is held and transitions smoothly -->
         <section class="css-slideshow" aria-label="Project photos slideshow">
           <div class="slides" id="slides">
-            <img src="/assets/images/Slides_show/IMG_4099.png" alt="Media Report">
             <img src="/assets/images/Slides_show/FRC_humanPlayer.jpeg" alt="FRC human player">
             <img src="/assets/images/Slides_show/FTC_MT1.jpeg" alt="FTC match">
             <img src="/assets/images/Slides_show/Harvard_intern.jpeg" alt="Harvard internship">
+            <img src="/assets/images/Slides_show/IMG_4099.png" alt="Media Report">
             <img src="/assets/images/Slides_show/SchoolTeam_JV.jpeg" alt="School team">
-            <img src="/assets/images/Slides_show/FRC_humanPlayer.jpeg" alt="FRC human player">
-            <!-- add more <img> lines here if you have more photos -->
           </div>
         </section>
         <div style="font-size:13px;color:var(--muted);">Slideshow auto-plays and loops. Images come from assets/images/Slides_show/</div>
       </div>
 
-      <!-- right: Other things I love -->
       <section id="interests" class="interests-card">
         <div class="interests-head">
           <h2 style="margin:0;">Other things I love</h2>
@@ -357,45 +194,46 @@
         </div>
 
         <div class="interests-grid" role="list" aria-label="Other things I love">
+          <!-- Each circle now links to a gallery page (gallery.html) with a folder query parameter.
+               That gallery page will render all images listed in that folder's index.json (see instructions below). -->
           <div class="interest-wrapper" role="listitem" style="text-align:center;">
-            <a class="interest interest-shade1" href="interests/robotics.html" aria-label="Robotics gallery">
+            <a class="interest interest-shade1" href="/interests/gallery.html?folder=Slides_show/robotics" aria-label="Robotics gallery">
               <span>🤖</span>
             </a>
-            <a class="interest-label" href="interests/robotics.html">Robotics</a>
+            <a class="interest-label" href="/interests/gallery.html?folder=Slides_show/robotics">Robotics</a>
           </div>
 
           <div class="interest-wrapper" role="listitem" style="text-align:center;">
-            <a class="interest interest-shade2" href="interests/volleyball.html" aria-label="Volleyball gallery">
+            <a class="interest interest-shade2" href="/interests/gallery.html?folder=Slides_show/volleyball" aria-label="Volleyball gallery">
               <span>🏐</span>
             </a>
-            <a class="interest-label" href="interests/volleyball.html">Volleyball</a>
+            <a class="interest-label" href="/interests/gallery.html?folder=Slides_show/volleyball">Volleyball</a>
           </div>
 
           <div class="interest-wrapper" role="listitem" style="text-align:center;">
-            <a class="interest interest-shade3" href="interests/singing.html" aria-label="Singing gallery">
+            <a class="interest interest-shade3" href="/interests/gallery.html?folder=Slides_show/singing" aria-label="Singing gallery">
               <span>🎤</span>
             </a>
-            <a class="interest-label" href="interests/singing.html">Singing</a>
+            <a class="interest-label" href="/interests/gallery.html?folder=Slides_show/singing">Singing</a>
           </div>
 
-          <!-- NEW: DECA circle -->
           <div class="interest-wrapper" role="listitem" style="text-align:center;">
-            <a class="interest interest-deca" href="interests/deca.html" aria-label="DECA gallery or page">
+            <a class="interest interest-deca" href="/interests/gallery.html?folder=Slides_show/deca" aria-label="DECA gallery">
               <span>🏅</span>
             </a>
-            <a class="interest-label" href="interests/deca.html">DECA</a>
+            <a class="interest-label" href="/interests/gallery.html?folder=Slides_show/deca">DECA</a>
           </div>
         </div>
       </section>
 
-      <!-- bottom: link box spanning full width under the two boxes -->
       <div class="links-box">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
           <div style="font-weight:700;">Links & contact</div>
           <div class="links-grid">
-            <div><a href="https://www.linkedin.com/in/ray-chen-zeng-45b121378/" target="_blank" rel="noopener">LinkedIn</a></div>
-            <div><a href="assets/resume.pdf" target="_blank" rel="noopener">Download resume</a></div>
-            <div><a href="mailto:zengrayc@gmail.com">Email</a></div>
+            <div><a id="linkedin" href="https://www.linkedin.com/in/ray-chen-zeng-45b121378/" target="_blank" rel="noopener">LinkedIn</a></div>
+            <!-- changed text to "Resume" (note: keep the href pointing to the actual file path on your server) -->
+            <div><a id="resume-link" href="/assets/resume.pdf" target="_blank" rel="noopener">Resume</a></div>
+            <div><a id="email-link" href="mailto:zengrayc@gmail.com">Email</a></div>
           </div>
         </div>
       </div>
@@ -408,89 +246,56 @@
     </div>
   </footer>
 
-  <!-- Minimal JS to adjust slideshow behavior for:
-       - seamless wrapback (duplicate first slide at end)
-       - much slower playback (configurable secondsPerSlide)
-       - even hold/transition timing per slide
-  -->
+  <!-- Slideshow script (keeps smooth wrap and is much slower).
+       The slideshow duplicates first frame for seamless wrap, and uses a very slow per-slide duration.
+       Feel free to increase secondsPerSlide to make it even slower. -->
   <script>
     (function(){
       const slidesContainer = document.getElementById('slides');
       if (!slidesContainer) return;
 
-      // grab original images (live NodeList => convert to array to snapshot original set)
-      const originalImgs = Array.from(slidesContainer.querySelectorAll('img'));
-      const originalCount = Math.max(1, originalImgs.length);
+      const imgs = Array.from(slidesContainer.querySelectorAll('img'));
+      const count = Math.max(1, imgs.length);
 
-      // Duplicate the first slide and append to the end to allow a smooth wrapback.
-      // We use a cloned element so the visual at the end matches the start and the animation can move
-      // to -(originalCount)*100% then the animation loop snaps back to 0% showing the first image seamlessly.
-      const firstClone = originalImgs[0].cloneNode(true);
+      // clone first slide for seamless loop
+      const firstClone = imgs[0].cloneNode(true);
       slidesContainer.appendChild(firstClone);
+      const total = count + 1;
 
-      // total slides including duplicate
-      const totalSlides = originalCount + 1;
-
-      // set flex-basis on each image (including the cloned one)
+      // set flex and width
       Array.from(slidesContainer.querySelectorAll('img')).forEach(img => {
-        img.style.flex = '0 0 ' + (100 / totalSlides) + '%';
+        img.style.flex = '0 0 ' + (100 / total) + '%';
       });
+      slidesContainer.style.width = (total * 100) + '%';
 
-      // set container width to match total slides
-      slidesContainer.style.width = (totalSlides * 100) + '%';
+      // VERY slow playback
+      const secondsPerSlide = 18; // <<<< set to 18s per slide (change if you want even slower)
+      const totalDuration = secondsPerSlide * count;
 
-      // =========== Configurable animation speed ===========
-      // Much much slower: increase secondsPerSlide to taste.
-      // Example: 12 seconds per slide gives a very slow slideshow.
-      // You can set this to 8/10/12/15 etc.
-      const secondsPerSlide = 25; // <-- change this to make it even slower (e.g. 15)
-      const totalDuration = secondsPerSlide * originalCount; // total duration cycles through originalCount slides
-      // Note: we base totalDuration on originalCount (not totalSlides) so the duplicate doesn't add extra time.
-
-      // Fraction of each per-slide interval to HOLD on the slide (not transitioning).
-      // 0.80 means 80% hold, 20% used for transition.
-      const holdFraction = 0.80;
-
-      // Compute percentages per original slide interval
-      const perSlidePct = 100 / originalCount;
+      const holdFraction = 0.82; // how much of each slide's interval is held (rest used for transition)
+      const perSlidePct = 100 / count;
       const holdPct = perSlidePct * holdFraction;
 
-      // Build timing for each original slide i (0..originalCount-1),
-      // but map to translation values using totalSlides positions so the duplicated last position (-originalCount*100%) exists.
       const timings = [];
-      for (let i = 0; i < originalCount; i++) {
-        const slideStart = i * perSlidePct;
-        const holdStart = Math.round(slideStart);
-        const holdEnd = Math.round(slideStart + holdPct);
-        timings.push({ i, holdStart, holdEnd });
+      for (let i=0;i<count;i++){
+        const start = Math.round(i * perSlidePct);
+        const end = Math.round(i * perSlidePct + holdPct);
+        timings.push({i, start, end});
       }
 
-      // Build keyframes string.
-      // We animate from 0% to 100%:
-      // - For slide i we hold transform: translateX(-i * 100%) between holdStart% and holdEnd%
-      // - When i reaches last original slide (i = originalCount - 1), the animation will move to translateX(-(originalCount)*100%)
-      //   which shows the cloned first slide. At the end of the animation (100%) the browser will loop and the content
-      //   will snap back to translateX(0%), showing the real first slide — visually seamless because the clone matched it.
+      // build keyframes dynamically
       let keyframes = '@keyframes slide {';
-
-      for (let t = 0; t < timings.length; t++) {
+      for (let t=0;t<timings.length;t++){
         const cur = timings[t];
-        // hold at the position of slide `cur.i`
-        keyframes += `${cur.holdStart}%{transform:translateX(-${cur.i * 100}%);} `;
-        keyframes += `${cur.holdEnd}%{transform:translateX(-${cur.i * 100}%);} `;
+        keyframes += `${cur.start}%{transform:translateX(-${cur.i * 100}%);} `;
+        keyframes += `${cur.end}%{transform:translateX(-${cur.i * 100}%);} `;
       }
-
-      // After last hold, we need to ensure animation proceeds to the cloned-first position before loop resets.
-      // Place a frame slightly after the last hold end that translates to -originalCount*100% (the clone).
+      // move to the cloned first slide just after the last hold, so animation ends showing the clone
       const last = timings[timings.length - 1];
-      // compute a small next percent: either last.holdEnd+1 or clamp to 99 to avoid exceeding 100
-      const nextPct = Math.min(99, last.holdEnd + 2);
-      keyframes += `${nextPct}%{transform:translateX(-${originalCount * 100}%);} `;
+      const nextPct = Math.min(99, last.end + 2);
+      keyframes += `${nextPct}%{transform:translateX(-${count * 100}%);} `;
+      keyframes += `100%{transform:translateX(-${count * 100}%);} }`;
 
-      // final state at 100% should be at the cloned-first position so the loop snaps back to 0 without visual mismatch
-      keyframes += `100%{transform:translateX(-${originalCount * 100}%);} }`;
-
-      // append to document (remove previous if exists to avoid duplicates)
       const existing = document.getElementById('dynamic-slideshow-keyframes');
       if (existing) existing.remove();
       const style = document.createElement('style');
@@ -498,12 +303,12 @@
       style.innerHTML = keyframes;
       document.head.appendChild(style);
 
-      // Apply the generated animation with the new total duration and linear timing
       slidesContainer.style.animation = `slide ${totalDuration}s infinite linear`;
-
-      // Optional: reduce GPU jitter by setting will-change
       slidesContainer.style.willChange = 'transform';
     })();
   </script>
+
+  <!-- Note: no special JS needed here for the interest-circle links — they point to /interests/gallery.html?folder=... -->
+  <!-- See the separate file interests/gallery.html for the gallery implementation and instructions -->
 </body>
 </html>
