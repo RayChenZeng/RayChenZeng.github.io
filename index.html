@@ -42,9 +42,8 @@
       padding: 28px;
     }
 
-    /* reduce the gap further: half of prior small values */
     header.top-hero {
-      padding: 44px 0 4px; /* bottom reduced to 4px */
+      padding: 44px 0 4px;
     }
 
     main.wrap {
@@ -68,11 +67,8 @@
     }
 
     .hero-left h1 .accent { color: var(--accent); }
-
-    /* subtitle removed */
     .hero-left p.sub { display: none; }
 
-    /* About card */
     .about-card {
       background: var(--card);
       border-radius: var(--radius);
@@ -88,7 +84,6 @@
     .about-list li { margin: 8px 0; color: #0f172a; font-weight: 500; }
     .about-list li strong { font-weight: 700; margin-right: 6px; color: #0b1220; }
 
-    /* portrait */
     .hero-right { display: flex; justify-content: center; align-items: start; }
     .hero-right img.portrait {
       width: 320px;
@@ -99,7 +94,6 @@
       display: block;
     }
 
-    /* Generic card */
     .card {
       background: var(--card);
       border-radius: var(--radius);
@@ -119,7 +113,6 @@
     .section-head h2 { margin: 0; font-size: 18px; }
     .section-head .muted { margin: 0; color: var(--muted); }
 
-    /* Projects -> EMG research layout: left for image + overview, right for paper abstract link */
     #projects.card {
       margin-top: 3px;
       padding: 16px;
@@ -132,7 +125,7 @@
       align-items: start;
     }
 
-    /* emg-media: contains two videos side-by-side on wide screens */
+    /* emg-media: two videos side-by-side grid (kept for compatibility) */
     .emg-media {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -141,53 +134,68 @@
       overflow: hidden;
       min-height: 220px;
     }
-
-    /* Each video box keeps the aspect and fills the grid cell */
-    .emg-media .video-box {
-      background: linear-gradient(180deg, #f3f7ff, #eef6ff);
-      border-radius: 8px;
-      overflow: hidden;
-      min-height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px dashed rgba(15,23,42,0.06);
-    }
-
-    /* responsive video sizing inside the video-box container */
-    .video-box video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .video-box { background: linear-gradient(180deg, #f3f7ff, #eef6ff); border-radius: 8px; overflow:hidden; min-height:220px; border:1px dashed rgba(15,23,42,0.06); }
+    .video-box video { width:100%; height:100%; object-fit:cover; display:block; }
 
     .emg-overview { margin-top: 12px; color: var(--muted); line-height: 1.45; }
+    .paper-box { background:#fff; border-radius:10px; padding:16px; border:1px solid rgba(15,23,42,0.04); min-height:120px; }
 
-    .paper-box {
-      background: #fff;
-      border-radius: 10px;
-      padding: 16px;
-      border: 1px solid rgba(15,23,42,0.04);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: flex-start;
-      justify-content: center;
-      min-height: 120px;
-    }
-
-    .paper-box a { color: var(--project-accent); font-weight: 700; text-decoration: none; }
-
-    /* Below-row: left column (interests) and right column (linkedin/resume/contact stack) */
+    /* NEW: below-row changed to have top row with slideshow + interests, second row full-width links box */
     .below-row {
       display: grid;
       grid-template-columns: 1fr 360px;
       gap: 20px;
       align-items: start;
+      margin-top: 8px;
     }
 
-    /* Interests (renamed) - smaller box and single-hue family previously; now adjust per-request */
+    /* Slideshow container (left column) */
+    .slideshow-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 12px;
+      box-shadow: 0 6px 18px rgba(12,28,48,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* CSS-only slideshow (simple autoplay & responsive)
+       - Replace image filenames in HTML below to match your assets/images/Slides_show/*.jpg
+       - This is the "simple" solution the user requested. */
+    .css-slideshow {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+      position: relative;
+      min-height: 260px;
+    }
+
+    .css-slideshow .slides {
+      display: flex;
+      width: 300%; /* will be overridden in JS if number of slides differs */
+      animation: slide 12s infinite;
+    }
+
+    .css-slideshow img {
+      width: 100%;
+      flex: 0 0 33.3333%; /* default if 3 images */
+      display: block;
+      object-fit: cover;
+      height: 260px;
+    }
+
+    /* keyframes set up for 3 images. If you add >3 images, JS below will replace animation to match count. */
+    @keyframes slide {
+      0%   { transform: translateX(0%); }
+      33%  { transform: translateX(0%); }
+      44%  { transform: translateX(-100%); }
+      77%  { transform: translateX(-100%); }
+      88%  { transform: translateX(-200%); }
+      100% { transform: translateX(-200%); }
+    }
+
+    /* Interests column (right column top) */
     .interests-card {
       background: var(--card);
       border-radius: var(--radius);
@@ -197,109 +205,69 @@
     }
 
     .interests-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
     }
 
     .interests-grid {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      align-items: center;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
     }
 
-    /* circle base */
     .interest {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #07436a;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 8px 20px rgba(11,18,32,0.06);
-      transition: transform 150ms ease, box-shadow 150ms ease;
-      flex-direction: column;
-      text-align: center;
-      border: 3px solid rgba(255,255,255,0.85);
+      width: 120px; height: 120px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      color:#07436a; font-weight:700; text-decoration:none; box-shadow:0 8px 20px rgba(11,18,32,0.06);
+      transition:transform 150ms ease, box-shadow 150ms ease; flex-direction:column; text-align:center; border:3px solid rgba(255,255,255,0.85);
     }
+    .interest:hover { transform: translateY(-4px); box-shadow:0 12px 28px rgba(11,18,32,0.08); }
+    .interest > span { font-size:30px; line-height:1; }
 
-    .interest:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(11,18,32,0.08); }
-    .interest > span { font-size: 30px; line-height: 1; }
+    .interest-shade1 { background: linear-gradient(135deg, var(--robotics-1) 0%, var(--robotics-2) 100%); color:#fff; border:2px solid rgba(255,255,255,0.08); }
+    .interest-shade2 { background: linear-gradient(135deg, var(--volley-1) 0%, var(--volley-2) 100%); color:#052b24; border:2px solid rgba(0,0,0,0.04); }
+    .interest-shade3 { background: linear-gradient(135deg, var(--sing-1) 0%, var(--sing-2) 100%); color:#4b2440; border:1px solid rgba(75,36,64,0.06); }
 
-    /* robotics darkest, volleyball lighter, singing lightest (more hue variety) */
-    .interest-shade1 {
-      background: linear-gradient(135deg, var(--robotics-1) 0%, var(--robotics-2) 100%);
-      color: #ffffff;
-      border: 2px solid rgba(255,255,255,0.08);
-    }
+    .interest-deca { background: linear-gradient(135deg,#ffd28a 0%, #fff1d6 100%); color:#402e00; border:1px solid rgba(64,46,0,0.06); }
 
-    .interest-shade2 {
-      background: linear-gradient(135deg, var(--volley-1) 0%, var(--volley-2) 100%);
-      color: #052b24;
-      border: 2px solid rgba(0,0,0,0.04);
-    }
+    .interest-label { margin-top:8px; font-size:13px; font-weight:700; color:#071124; background:rgba(255,255,255,0.95); padding:6px 10px; border-radius:999px; text-decoration:none; }
 
-    .interest-shade3 {
-      background: linear-gradient(135deg, var(--sing-1) 0%, var(--sing-2) 100%);
-      color: #4b2440;
-      border: 1px solid rgba(75,36,64,0.06);
-    }
-
-    .interest-label {
-      margin-top: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #071124;
-      background: rgba(255,255,255,0.95);
-      padding: 6px 10px;
-      border-radius: 999px;
-      text-decoration: none;
-    }
-
-    /* Right stack (LinkedIn + Resume + Contact) */
-    .right-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .linkedin-card, .resume-card, .contact-card {
+    /* Combined links box below the two boxes (spans full width under them) */
+    .links-box {
+      grid-column: 1 / -1;  /* span full width of the below-row grid */
       background: var(--card);
-      border-radius: 12px;
+      border-radius: var(--radius);
       padding: 14px;
-      box-shadow: 0 8px 18px rgba(12, 28, 48, 0.06);
+      box-shadow: 0 8px 20px rgba(12,28,48,0.06);
       border: 1px solid rgba(15,23,42,0.03);
+      margin-top: 6px;
     }
 
-    .linkedin-card a {
-      color: #0b66c3;
-      font-weight: 700;
-      text-decoration: none;
-      word-break: break-all;
+    .links-grid {
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
     }
 
-    /* Footer wrap */
-    .site-footer .wrap { padding: 12px 28px; }
+    .links-grid a { color:var(--project-accent); font-weight:700; text-decoration:none; }
 
     /* Responsive adjustments */
     @media (max-width: 980px) {
       .emg-grid { grid-template-columns: 1fr; }
       .below-row { grid-template-columns: 1fr; }
       .hero-grid { grid-template-columns: 1fr; }
-      .emg-media { grid-template-columns: 1fr; } /* stack videos on small screens */
+      .emg-media { grid-template-columns: 1fr; }
+      .css-slideshow img { height: 200px; }
     }
 
     @media (max-width: 640px) {
-      .hero-right { margin-top: 18px; justify-content: center; }
-      .hero-right img.portrait { width: 220px; height: 220px; }
-      .interest { width: 110px; height: 110px; }
-      .interest > span { font-size: 26px; }
+      .hero-right img.portrait { width:220px; height:220px; }
+      .interest { width:110px; height:110px; }
+      .interest > span { font-size:26px; }
     }
   </style>
 </head>
@@ -335,11 +303,6 @@
 
       <div class="emg-grid">
         <div>
-          <!-- TWO VIDEOS SIDE-BY-SIDE: update filenames if yours differ.
-               Based on your assets folder, I used:
-               - /assets/video/harvard_results.mp4  (first video)
-               - /assets/video/Video2.mp4           (second video; update name if different)
-           -->
           <div class="emg-media" aria-label="Project videos">
             <div class="video-box" aria-label="Harvard results video">
               <video controls preload="metadata" poster="/assets/images/emg-poster.jpg" playsinline>
@@ -371,8 +334,29 @@
       </div>
     </section>
 
-    <!-- Below-row: left = Other things I love, right = linkedin + resume + contact stack -->
+    <!-- NEW: below-row (top: slideshow + interests; bottom: combined links box) -->
     <div class="below-row">
+
+      <!-- left: slideshow card -->
+      <div class="slideshow-card">
+        <h3 style="margin:0 0 6px 0;">Project photos</h3>
+        <!-- Simple CSS-only slideshow.
+             Replace the image filenames below with the real files in
+             /assets/images/Slides_show/ (e.g. FRC_humanPlayer.jpg, FTC_MT1.jpg, Harvard_intern.jpg, etc.)
+             The JS at the bottom will adjust animation if you have a different number of images. -->
+        <section class="css-slideshow" aria-label="Project photos slideshow">
+          <div class="slides" id="slides">
+            <img src="/assets/images/Slides_show/FRC_humanPlayer.jpg" alt="FRC human player">
+            <img src="/assets/images/Slides_show/FTC_MT1.jpg" alt="FTC match">
+            <img src="/assets/images/Slides_show/Harvard_intern.jpg" alt="Harvard internship">
+            <img src="/assets/images/Slides_show/SchoolTeam_JV.jpg" alt="School team">
+            <!-- add more <img> lines here if you have more photos -->
+          </div>
+        </section>
+        <div style="font-size:13px;color:var(--muted);">Slideshow auto-plays and loops. Images come from assets/images/Slides_show/</div>
+      </div>
+
+      <!-- right: Other things I love -->
       <section id="interests" class="interests-card">
         <div class="interests-head">
           <h2 style="margin:0;">Other things I love</h2>
@@ -400,23 +384,26 @@
             </a>
             <a class="interest-label" href="interests/singing.html">Singing</a>
           </div>
+
+          <!-- NEW: DECA circle -->
+          <div class="interest-wrapper" role="listitem" style="text-align:center;">
+            <a class="interest interest-deca" href="interests/deca.html" aria-label="DECA gallery or page">
+              <span>🏅</span>
+            </a>
+            <a class="interest-label" href="interests/deca.html">DECA</a>
+          </div>
         </div>
       </section>
 
-      <div class="right-stack" aria-label="Right column">
-        <div class="linkedin-card">
-          <h3 style="margin:0 0 8px 0;">LinkedIn</h3>
-          <p style="margin:0;"><a href="https://www.linkedin.com/in/ray-chen-zeng-45b121378/" target="_blank" rel="noopener">https://www.linkedin.com/in/ray-chen-zeng-45b121378/</a></p>
-        </div>
-
-        <div class="resume-card" id="resume">
-          <h3 style="margin:0 0 8px 0;">Resume</h3>
-          <p style="margin:0;">Download my resume: <a href="assets/resume.pdf" target="_blank" rel="noopener">resume.pdf</a></p>
-        </div>
-
-        <div class="contact-card" id="contact">
-          <h3 style="margin:0 0 8px 0;">Contact</h3>
-          <p style="margin:0;">Email: <a href="mailto:zengrayc@gmail.com">zengrayc@gmail.com</a></p>
+      <!-- bottom: link box spanning full width under the two boxes -->
+      <div class="links-box">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div style="font-weight:700;">Links & contact</div>
+          <div class="links-grid">
+            <div><a href="https://www.linkedin.com/in/ray-chen-zeng-45b121378/" target="_blank" rel="noopener">LinkedIn</a></div>
+            <div><a href="assets/resume.pdf" target="_blank" rel="noopener">Download resume</a></div>
+            <div><a href="mailto:zengrayc@gmail.com">Email</a></div>
+          </div>
         </div>
       </div>
     </div>
@@ -427,5 +414,55 @@
       <small>© 2025 Ray — Creative Engineering kid • Built with ❤️</small>
     </div>
   </footer>
+
+  <!-- Minimal JS to adjust slideshow behavior based on number of images
+       and set correct flex percentages and keyframe timing so the CSS-only autoplay works with any number of slides. -->
+  <script>
+    (function(){
+      const slidesContainer = document.getElementById('slides');
+      if (!slidesContainer) return;
+      const imgs = Array.from(slidesContainer.querySelectorAll('img'));
+      const n = imgs.length || 1;
+
+      // set flex-basis on each image
+      imgs.forEach(img => {
+        img.style.flex = '0 0 ' + (100 / n) + '%';
+      });
+
+      // set container width to match count
+      slidesContainer.style.width = (n * 100) + '%';
+
+      // generate keyframes dynamically to split time evenly:
+      // show each slide for (80% / n) of animation and transition during remaining
+      const showPct = Math.floor(80 / n); // percent of cycle each slide is shown
+      const step = 100 / n;
+      const timing = [];
+      for (let i=0;i<n;i++){
+        const start = Math.round(i * step);
+        const showStart = start;
+        const showEnd = Math.round(start + showPct);
+        timing.push({i, showStart, showEnd});
+      }
+
+      // build keyframes string
+      let keyframes = '@keyframes slide {';
+      for (let i=0;i<timing.length;i++){
+        const t = timing[i];
+        // maintain at translateX(-i*100%) from showStart to showEnd
+        keyframes += `${t.showStart}%{transform:translateX(-${i*100}%);} `;
+        keyframes += `${t.showEnd}%{transform:translateX(-${i*100}%);} `;
+      }
+      keyframes += `100%{transform:translateX(-${(n-1)*100}%);} }`;
+
+      // append to document
+      const style = document.createElement('style');
+      style.innerHTML = keyframes;
+      document.head.appendChild(style);
+
+      // Also adjust animation duration proportional to number of slides (4s per slide)
+      const totalDuration = n * 4; // seconds
+      slidesContainer.style.animation = `slide ${totalDuration}s infinite`;
+    })();
+  </script>
 </body>
 </html>
