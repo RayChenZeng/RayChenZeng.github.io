@@ -59,37 +59,29 @@
     }
 
     #intro img {
-      flex: 1 1 300px;
-      width: 280px;
-      height: 280px;
+      flex: 0 0 auto;           /* prevents stretch */
+      width: 260px;
+      height: 260px;
       border-radius: 50%;
       object-fit: cover;
       margin-left: 60px;
+      aspect-ratio: 1 / 1;      /* forces perfect circle */
       box-shadow: 0 12px 35px rgba(0,0,0,0.25);
       transition: transform 0.4s ease;
     }
 
-    #intro img:hover {
-      transform: scale(1.05);
-    }
+    #intro img:hover { transform: scale(1.05); }
 
     @media (max-width: 900px) {
-      #intro {
-        flex-direction: column;
-        text-align: center;
-      }
-      #intro-text {
-        text-align: center;
-      }
+      #intro { flex-direction: column; text-align: center; }
+      #intro-text { text-align: center; }
       #intro img {
         margin-left: 0;
         margin-top: 30px;
-        width: 220px;
-        height: 220px;
+        width: 200px;
+        height: 200px;
       }
-      #intro-text h1 {
-        font-size: 48px;
-      }
+      #intro-text h1 { font-size: 48px; }
     }
 
     /* ---------- Main Three Boxes ---------- */
@@ -134,19 +126,13 @@
       transition: background 0.3s ease;
     }
 
-    /* Hover Effects */
     .highlight-box:hover {
       transform: scale(1.09);
       box-shadow: 0 25px 45px rgba(0,0,0,0.3);
     }
 
-    .highlight-box:hover img {
-      transform: scale(1.15);
-    }
-
-    .highlight-box:hover .highlight-overlay {
-      background: rgba(0,0,0,0.65);
-    }
+    .highlight-box:hover img { transform: scale(1.15); }
+    .highlight-box:hover .highlight-overlay { background: rgba(0,0,0,0.65); }
 
     /* ---------- Other Section ---------- */
     #other {
@@ -233,7 +219,8 @@
     </a>
 
     <a href="/volleyball.html" class="highlight-box volleyball">
-      <img src="/assets/images/volleyball_box.png" alt="Volleyball">
+      <!-- capital V to match your actual file -->
+      <img src="/assets/images/Volleyball_box.png" alt="Volleyball">
       <div class="highlight-overlay">Volleyball</div>
     </a>
   </section>
