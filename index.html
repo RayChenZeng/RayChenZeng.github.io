@@ -12,7 +12,7 @@
       --bg: #f6fbfd;
       --card: #ffffff;
       --muted: #6b7280;
-      --accent: #f59e0b; /* Soft orange for name */
+      --accent: #f59e0b;
       --radius: 14px;
     }
 
@@ -24,94 +24,85 @@
     }
 
     .wrap { max-width: 1080px; margin: 0 auto; padding: 28px; }
-    header.top-hero { padding: 44px 0 4px; }
-    .hero-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
-    .hero-left h1 { font-family: "Baloo 2"; font-size: 36px; margin: 0 0 12px 0; color: #0f172a; }
-    .name-orange { color: var(--accent); }
 
-    .about-card {
-      background: var(--card);
-      border-radius: 14px;
-      padding: 20px 22px;
-      box-shadow: 0 8px 20px rgba(12,28,48,0.06);
-      margin-top: 22px;
+    /* ---------- Intro Section ---------- */
+    #intro {
+      text-align: center;
+      padding: 80px 20px 40px;
     }
-
-    .about-card h3 { margin: 0 0 10px 0; font-size: 18px; }
-    .about-card p { margin: 0; line-height: 1.6; }
-
-    .portrait {
-      width: 320px;
-      height: 320px;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow: 0 14px 40px rgba(11,18,32,0.18);
-    }
-
-    .card {
-      background: var(--card);
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 8px 20px rgba(12,28,48,0.06);
-      margin: 28px 0;
-    }
-
-    .section-head h2 {
-      font-size: 22px;
-      margin: 0 0 10px 0;
+    #intro h1 {
+      font-family: "Baloo 2";
+      font-size: 42px;
+      margin-bottom: 10px;
       color: #0f172a;
     }
+    #intro p {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+    #intro img {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
 
-    .emg-grid {
+    /* ---------- Grid Section ---------- */
+    #highlights {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
-      align-items: start;
+      padding: 40px 20px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    .emg-overview p {
-      color: #0f172a; /* Black text for Overview */
-      line-height: 1.55;
-      margin: 0;
-    }
-
-    .video-box video {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(12,28,48,0.1);
-    }
-
-    /* Slideshow styling */
-    .slideshow {
-      width: 100%;
+    .highlight-box {
+      position: relative;
+      height: 260px;
       overflow: hidden;
       border-radius: 12px;
-      margin-top: 16px;
-      position: relative;
+      cursor: pointer;
+      transition: transform 0.35s ease, box-shadow 0.3s ease;
     }
 
-    .slideshow img {
+    .highlight-box img {
       width: 100%;
-      height: 360px;
+      height: 100%;
       object-fit: cover;
-      display: none;
-      border-radius: 12px;
+      transition: transform 0.4s ease;
     }
 
-    .slideshow img.active {
-      display: block;
-      animation: fade 1s ease-in-out;
+    .highlight-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      padding: 15px;
+      letter-spacing: 0.3px;
+      transition: background 0.3s ease;
     }
 
-    @keyframes fade {
-      from { opacity: 0.4; }
-      to { opacity: 1; }
+    /* Hover effects */
+    .highlight-box:hover .highlight-overlay {
+      background: rgba(0,0,0,0.6);
     }
-
-    @media (max-width: 900px) {
-      .emg-grid { grid-template-columns: 1fr; }
-      .portrait { width: 220px; height: 220px; }
-      .slideshow img { height: 240px; }
+    .highlight-box:hover img {
+      transform: scale(1.05);
+    }
+    /* Slightly stronger effect for Research and Robotics */
+    .highlight-box.research:hover,
+    .highlight-box.robotics:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
     }
 
     footer {
@@ -120,127 +111,62 @@
       font-size: 14px;
       color: var(--muted);
     }
+
+    @media (max-width: 800px) {
+      #intro h1 { font-size: 32px; }
+      .highlight-overlay { font-size: 18px; }
+    }
   </style>
 </head>
 
 <body>
-  <header class="top-hero">
-    <div class="wrap hero-grid">
-      <div class="hero-left">
-        <h1><span class="name-orange">Ray Chen Zeng</span> — Welcome to my website!</h1>
-        <div class="about-card" id="about">
-          <h3>About</h3>
-          <p>I have a diverse set of interests, and I pursue each one relentlessly. Check out my life!</p>
-        </div>
-      </div>
-      <div class="hero-right">
-        <img class="portrait" src="/assets/images/portrait.jpg" alt="Portrait of Ray Chen Zeng">
-      </div>
-    </div>
-  </header>
 
-  <main class="wrap">
+  <!-- ---------- Intro Section ---------- -->
+  <section id="intro">
+    <h1>My name is <span style="color: var(--accent);">Ray Chen Zeng</span>.</h1>
+    <p>Welcome to my website!</p>
+    <img src="/assets/images/portrait.jpg" alt="Portrait of Ray Chen Zeng">
+  </section>
 
-    <!-- Harvard Research Section -->
-    <section id="harvard" class="card">
-      <div class="section-head">
-        <h2>Robotics Research at Harvard SEAS</h2>
-      </div>
-      <div class="emg-grid">
-        <div class="emg-overview">
-          <p><strong>Overview:</strong> At Harvard’s School of Engineering and Applied Sciences, I developed an EMG-based controller that translates muscle activity into robotic motion. My research focused on improving signal accuracy and responsiveness for wearable assistive devices, combining mechanical design, embedded systems, and data processing to push human–robot interaction forward.</p>
-        </div>
-        <div class="video-box">
-          <video controls preload="metadata" playsinline>
-            <source src="/assets/video/harvard_results.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-          </video>
-        </div>
-      </div>
-      <div class="slideshow" id="harvard-slideshow">
-        <img src="/assets/images/harvard1.jpg" class="active" alt="Harvard photo 1">
-        <img src="/assets/images/harvard2.jpg" alt="Harvard photo 2">
-        <img src="/assets/images/harvard3.jpg" alt="Harvard photo 3">
-        <img src="/assets/images/harvard4.jpg" alt="Harvard photo 4">
-        <img src="/assets/images/harvard5.jpg" alt="Harvard photo 5">
-      </div>
-    </section>
+  <!-- ---------- Grid Section ---------- -->
+  <section id="highlights">
 
-    <!-- Robotics Section -->
-    <section id="robotics" class="card">
-      <div class="section-head">
-        <h2>Robotics</h2>
-      </div>
-      <div class="emg-grid">
-        <div class="emg-overview">
-          <p><strong>Overview:</strong> From building autonomous competition robots to developing custom mechanisms, robotics has been the foundation of my creativity. These projects combine software precision and hardware reliability to solve real-world challenges and inspire new ideas.</p>
-        </div>
-        <div class="video-box">
-          <video controls preload="metadata" playsinline>
-            <source src="/assets/video/robotics_demo.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-          </video>
-        </div>
-      </div>
-      <div class="slideshow" id="robotics-slideshow">
-        <img src="/assets/images/robotics1.jpg" class="active" alt="Robotics photo 1">
-        <img src="/assets/images/robotics2.jpg" alt="Robotics photo 2">
-        <img src="/assets/images/robotics3.jpg" alt="Robotics photo 3">
-        <img src="/assets/images/robotics4.jpg" alt="Robotics photo 4">
-        <img src="/assets/images/robotics5.jpg" alt="Robotics photo 5">
-      </div>
-    </section>
+    <!-- Row 1 -->
+    <a href="/harvard.html" class="highlight-box research">
+      <img src="/assets/images/harvard_box.jpg" alt="Harvard Research">
+      <div class="highlight-overlay">My Research at Harvard University</div>
+    </a>
 
-    <!-- Volleyball Section -->
-    <section id="volleyball" class="card">
-      <div class="section-head">
-        <h2>Volleyball</h2>
-      </div>
-      <div class="emg-grid">
-        <div class="emg-overview">
-          <p><strong>Overview:</strong> Volleyball has taught me teamwork, persistence, and leadership. Whether competing or coaching through Elevate Volleyball, I bring the same drive for improvement and collaboration that fuels my engineering work.</p>
-        </div>
-        <div class="video-box">
-          <video controls preload="metadata" playsinline>
-            <source src="/assets/video/volleyball_demo.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-          </video>
-        </div>
-      </div>
-      <div class="slideshow" id="volleyball-slideshow">
-        <img src="/assets/images/volleyball1.jpg" class="active" alt="Volleyball photo 1">
-        <img src="/assets/images/volleyball2.jpg" alt="Volleyball photo 2">
-        <img src="/assets/images/volleyball3.jpg" alt="Volleyball photo 3">
-        <img src="/assets/images/volleyball4.jpg" alt="Volleyball photo 4">
-        <img src="/assets/images/volleyball5.jpg" alt="Volleyball photo 5">
-      </div>
-    </section>
+    <a href="/robotics.html" class="highlight-box robotics">
+      <img src="/assets/images/robotics_box.jpg" alt="Competitive Robotics">
+      <div class="highlight-overlay">Competitive Robotics</div>
+    </a>
 
-  </main>
+    <a href="/volleyball.html" class="highlight-box volleyball">
+      <img src="/assets/images/volleyball_box.jpg" alt="Volleyball">
+      <div class="highlight-overlay">Volleyball</div>
+    </a>
+
+    <!-- Row 2 -->
+    <a href="/singing.html" class="highlight-box singing">
+      <img src="/assets/images/singing_box.jpg" alt="Singing">
+      <div class="highlight-overlay">Singing</div>
+    </a>
+
+    <a href="/deca.html" class="highlight-box deca">
+      <img src="/assets/images/deca_box.jpg" alt="DECA">
+      <div class="highlight-overlay">DECA</div>
+    </a>
+
+    <a href="/academics.html" class="highlight-box academics">
+      <img src="/assets/images/typing_box.jpg" alt="Speed Typing / Academics">
+      <div class="highlight-overlay">Speed Typing & Academics</div>
+    </a>
+
+  </section>
 
   <footer>
     <p>© 2025 Ray Chen Zeng — Built with ❤️</p>
   </footer>
-
-  <!-- Slideshow script -->
-  <script>
-    function createSlideshow(id) {
-      const container = document.getElementById(id);
-      const slides = container.querySelectorAll("img");
-      let current = 0;
-
-      function showNext() {
-        slides[current].classList.remove("active");
-        current = (current + 1) % slides.length;
-        slides[current].classList.add("active");
-      }
-
-      setInterval(showNext, 4000); // 4 seconds per image
-    }
-
-    createSlideshow("harvard-slideshow");
-    createSlideshow("robotics-slideshow");
-    createSlideshow("volleyball-slideshow");
-  </script>
 </body>
 </html>
