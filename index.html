@@ -10,10 +10,8 @@
   <style>
     :root {
       --bg: #f6fbfd;
-      --card: #ffffff;
       --muted: #6b7280;
       --accent: #f59e0b;
-      --radius: 14px;
     }
 
     body {
@@ -21,58 +19,102 @@
       background: var(--bg);
       color: #0f172a;
       margin: 0;
+      overflow-x: hidden;
     }
-
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 28px; }
 
     /* ---------- Intro Section ---------- */
     #intro {
-      text-align: center;
-      padding: 80px 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 100px 40px;
+      background: var(--bg);
+      max-width: 1400px;
+      margin: 0 auto;
     }
-    #intro h1 {
+
+    #intro-text {
+      flex: 1 1 500px;
+      text-align: left;
+    }
+
+    #intro-text h1 {
       font-family: "Baloo 2";
-      font-size: 42px;
-      margin-bottom: 10px;
+      font-size: 70px;
+      line-height: 1.1;
+      margin-bottom: 12px;
       color: #0f172a;
     }
-    #intro p {
-      font-size: 18px;
-      color: var(--muted);
-      margin-bottom: 30px;
+
+    #intro-text .accent {
+      color: var(--accent);
     }
+
+    #intro-text p {
+      font-size: 22px;
+      color: var(--muted);
+      margin: 0;
+    }
+
     #intro img {
-      width: 260px;
-      height: 260px;
+      flex: 1 1 400px;
+      width: 360px;
+      height: 360px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      margin-left: 60px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+      transition: transform 0.4s ease;
+    }
+
+    #intro img:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 900px) {
+      #intro {
+        flex-direction: column;
+        text-align: center;
+      }
+      #intro-text {
+        text-align: center;
+      }
+      #intro img {
+        margin-left: 0;
+        margin-top: 30px;
+        width: 280px;
+        height: 280px;
+      }
+      #intro-text h1 {
+        font-size: 48px;
+      }
     }
 
     /* ---------- Grid Section ---------- */
     #highlights {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      padding: 40px 20px 80px;
-      max-width: 1200px;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 28px;
+      padding: 60px 40px 100px;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
     .highlight-box {
       position: relative;
-      height: 260px;
+      height: 360px;
       overflow: hidden;
-      border-radius: 12px;
+      border-radius: 16px;
       cursor: pointer;
-      transition: transform 0.35s ease, box-shadow 0.3s ease;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
 
     .highlight-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s ease;
+      transition: transform 0.5s ease;
     }
 
     .highlight-overlay {
@@ -84,25 +126,25 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 22px;
-      font-weight: 600;
+      font-size: 28px;
+      font-weight: 700;
       padding: 15px;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.4px;
       transition: background 0.3s ease;
     }
 
-    /* Hover effects */
+    /* Hover Effects */
+    .highlight-box:hover {
+      transform: scale(1.07);
+      box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+    }
+
+    .highlight-box:hover img {
+      transform: scale(1.12);
+    }
+
     .highlight-box:hover .highlight-overlay {
       background: rgba(0,0,0,0.6);
-    }
-    .highlight-box:hover img {
-      transform: scale(1.05);
-    }
-    /* Slightly stronger effect for Research and Robotics */
-    .highlight-box.research:hover,
-    .highlight-box.robotics:hover {
-      transform: scale(1.02);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
     }
 
     footer {
@@ -113,8 +155,8 @@
     }
 
     @media (max-width: 800px) {
-      #intro h1 { font-size: 32px; }
-      .highlight-overlay { font-size: 18px; }
+      .highlight-box { height: 280px; }
+      .highlight-overlay { font-size: 20px; }
     }
   </style>
 </head>
@@ -123,8 +165,10 @@
 
   <!-- ---------- Intro Section ---------- -->
   <section id="intro">
-    <h1>My name is <span style="color: var(--accent);">Ray Chen Zeng</span>.</h1>
-    <p>Welcome to my website!</p>
+    <div id="intro-text">
+      <h1>My name is <span class="accent">Ray Chen Zeng</span>.</h1>
+      <p>Welcome to my website!</p>
+    </div>
     <img src="/assets/images/portrait.jpg" alt="Portrait of Ray Chen Zeng">
   </section>
 
