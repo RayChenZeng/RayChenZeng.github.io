@@ -29,27 +29,30 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      padding: 100px 40px 40px;
+      padding: 80px 60px 20px;
       background: var(--bg);
-      max-width: 1400px;
+      max-width: 1600px;
       margin: 0 auto;
     }
 
     #intro-text {
-      flex: 1 1 500px;
+      flex: 1 1 600px;
       text-align: left;
     }
 
     #intro-text h1 {
       font-family: "Baloo 2";
-      font-size: 70px;
-      line-height: 1.1;
-      margin-bottom: 12px;
+      font-size: 100px;
+      line-height: 1.05;
+      margin-bottom: 16px;
       color: #0f172a;
     }
 
     #intro-text .accent {
       color: var(--accent);
+      font-size: 120px;
+      display: block;
+      line-height: 1;
     }
 
     #intro-text p {
@@ -81,26 +84,24 @@
         width: 200px;
         height: 200px;
       }
-      #intro-text h1 { font-size: 48px; }
+      #intro-text h1 { font-size: 60px; }
+      #intro-text .accent { font-size: 70px; }
     }
 
-    /* ---------- Slideshow ---------- */
+    /* ---------- Full-Width Slideshow ---------- */
     #slideshow {
       width: 100%;
-      max-width: 1100px;
-      margin: 30px auto 70px;
+      margin: 0;
       position: relative;
-      border-radius: 18px;
+      border-radius: 0;
       overflow: hidden;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
     }
 
     #slideshow img {
       width: 100%;
-      height: 500px;
+      height: 600px;
       object-fit: cover;
       display: none;
-      border-radius: 18px;
       transition: opacity 1s ease;
     }
 
@@ -111,25 +112,24 @@
     }
 
     @keyframes fade {
-      from { opacity: 0.3; }
+      from { opacity: 0.4; }
       to { opacity: 1; }
     }
 
-    /* ---------- Main Three Boxes ---------- */
+    /* ---------- Main Boxes ---------- */
     #highlights {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-      gap: 28px;
-      padding: 60px 40px 80px;
-      max-width: 1400px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 30px;
+      padding: 40px 0 60px;
+      margin: 0;
     }
 
     .highlight-box {
       position: relative;
-      height: 360px;
+      height: 85vh;
       overflow: hidden;
-      border-radius: 16px;
+      border-radius: 0;
       cursor: pointer;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
@@ -138,7 +138,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s ease;
     }
 
     .highlight-overlay {
@@ -150,7 +150,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 28px;
+      font-size: 36px;
       font-weight: 700;
       padding: 15px;
       letter-spacing: 0.4px;
@@ -158,11 +158,11 @@
     }
 
     .highlight-box:hover {
-      transform: scale(1.09);
+      transform: scale(1.03);
       box-shadow: 0 25px 45px rgba(0,0,0,0.3);
     }
 
-    .highlight-box:hover img { transform: scale(1.15); }
+    .highlight-box:hover img { transform: scale(1.1); }
     .highlight-box:hover .highlight-overlay { background: rgba(0,0,0,0.65); }
 
     /* ---------- Other Section ---------- */
@@ -174,7 +174,7 @@
 
     #other h2 {
       font-family: "Baloo 2";
-      font-size: 36px;
+      font-size: 40px;
       margin-bottom: 40px;
       color: #0f172a;
     }
@@ -231,20 +231,20 @@
   <!-- ---------- Intro Section ---------- -->
   <section id="intro">
     <div id="intro-text">
-      <h1>My name is <span class="accent">Ray Chen Zeng</span>.</h1>
+      <h1>My name is <span class="accent">Ray Chen Zeng</span></h1>
       <p>Welcome to my website!</p>
     </div>
     <img src="/assets/images/portrait.jpg" alt="Portrait of Ray Chen Zeng">
   </section>
 
-  <!-- ---------- Rotating Slideshow ---------- -->
+  <!-- ---------- Full-Width Slideshow ---------- -->
   <section id="slideshow">
     <img src="/assets/images/harvard_box.png" class="active" alt="Harvard photo 1">
     <img src="/assets/images/robotics_box.png" alt="Robotics photo 2">
     <img src="/assets/images/Volleyball_box.png" alt="Volleyball photo 3">
   </section>
 
-  <!-- ---------- Main Three Boxes ---------- -->
+  <!-- ---------- Main Boxes ---------- -->
   <section id="highlights">
     <a href="/harvard.html" class="highlight-box research">
       <img src="/assets/images/harvard_box.png" alt="Harvard Research">
