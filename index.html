@@ -4,79 +4,240 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Ray Chen Zeng — Portfolio</title>
-<link rel="icon" type="image/png" href="/assets/images/portrait.jpg" />  <!-- favicon -->
-
+<link rel="icon" type="image/png" href="/assets/images/portrait.jpg" />
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --accent:#f59e0b;
-  --muted:#6b7280;
-  --soft-orange:#fff6e5;
-  --blue:#0ea5e9;
+  --cream:#fff6e5;
+  --muted:#9ca3af;
 }
-body{margin:0;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto;overflow-x:hidden;background:#0f0f0f;color:#0f172a;}
+body {
+  margin:0;
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto;
+  background:#000;
+  color:#0f172a;
+  overflow-x:hidden;
+}
 
-/* INTRO ------------------------------------------------------ */
-#intro-top{background:#000;text-align:center;padding:100px 20px 80px;}
-#intro-top h1{font-family:"Baloo 2";font-size:72px;color:var(--accent);animation:flicker 2.5s infinite alternate;}
-@keyframes flicker{0%,18%,22%,25%,53%,57%,100%{opacity:1;text-shadow:0 0 15px rgba(245,158,11,.8);}20%,24%,55%{opacity:.5;text-shadow:none;}}
-#intro-top h2{font-size:32px;color:#fff;margin-top:10px;}
-.typing{display:inline-block;border-right:3px solid var(--accent);white-space:nowrap;overflow:hidden;animation:blink .8s infinite;}
-@keyframes blink{0%,100%{border-color:transparent;}50%{border-color:var(--accent);}}
+/* ---------- GENERAL BUBBLE STYLE ---------- */
+.bubble {
+  background:var(--cream);
+  border-radius:24px;
+  box-shadow:0 8px 25px rgba(255,255,255,0.05);
+  margin:60px auto;
+  max-width:1200px;
+  padding:60px 40px;
+}
 
-/* SHOWCASE --------------------------------------------------- */
-#showcase{background:linear-gradient(180deg,#fff6e5 0%,#fef9f3 100%);display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;
-padding:60px 60px 80px;gap:40px;max-width:1400px;margin:0 auto;}
-#slideshow{flex:1 1 450px;max-width:500px;aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:#000;
-box-shadow:0 12px 35px rgba(0,0,0,.25);position:relative;}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease-in-out;display:flex;align-items:center;justify-content:center;}
-.slide img{width:100%;height:100%;object-fit:contain;background:#000;}
-.slide.active{opacity:1;}
-#about-box{flex:1 1 450px;background:#fff;border-radius:20px;padding:50px 40px;box-shadow:0 12px 35px rgba(0,0,0,.15);
-display:flex;flex-direction:column;justify-content:center;}
-#about-box h3{font-family:"Baloo 2";font-size:36px;color:var(--accent);}
-#about-box p{font-size:20px;line-height:1.6;color:#0f172a;}
+/* ---------- INTRO ---------- */
+#intro-top {
+  background:#000;
+  text-align:center;
+  padding:100px 20px 60px;
+}
+#intro-top h1 {
+  font-family:"Baloo 2";
+  font-size:72px;
+  color:var(--accent);
+  animation:flicker 2.5s infinite alternate;
+}
+@keyframes flicker {
+  0%,18%,22%,25%,53%,57%,100% {opacity:1;text-shadow:0 0 15px rgba(245,158,11,.8);}
+  20%,24%,55% {opacity:.5;text-shadow:none;}
+}
+#intro-top h2 {
+  font-size:32px;
+  color:#fff;
+  margin-top:10px;
+}
+.typing {
+  display:inline-block;
+  border-right:3px solid var(--accent);
+  white-space:nowrap;
+  overflow:hidden;
+  animation:blink .8s infinite;
+}
+@keyframes blink {
+  0%,100%{border-color:transparent;}
+  50%{border-color:var(--accent);}
+}
 
-/* MAIN PROJECTS --------------------------------------------- */
-#highlights{background:#fdf9f3;text-align:center;padding:60px 40px 80px;}
-#highlights h2{font-family:"Baloo 2";font-size:32px;color:#0f172a;margin-bottom:40px;}
-.highlight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:20px;max-width:1400px;margin:0 auto;}
-.highlight-box{position:relative;height:65vh;overflow:hidden;cursor:pointer;border-radius:16px;
-transition:transform .4s ease,box-shadow .4s ease;}
-.highlight-box img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
-.highlight-overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);color:white;display:flex;align-items:center;justify-content:center;
-text-align:center;font-size:28px;font-weight:700;padding:15px;transition:background .3s ease;}
-.highlight-box:hover{transform:scale(1.03);}
-.highlight-box:hover img{transform:scale(1.1);}
-.highlight-box:hover .highlight-overlay{background:rgba(0,0,0,.65);}
+/* ---------- SHOWCASE ---------- */
+#showcase {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:stretch;
+  gap:40px;
+}
+#slideshow {
+  flex:1 1 450px;
+  max-width:500px;
+  aspect-ratio:1/1;
+  border-radius:20px;
+  overflow:hidden;
+  background:#000;
+  box-shadow:0 12px 35px rgba(0,0,0,.25);
+  position:relative;
+}
+.slide {
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity 1s ease-in-out;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.slide img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
+}
+.slide.active {opacity:1;}
+#about-box {
+  flex:1 1 450px;
+  background:var(--cream);
+  border-radius:20px;
+  padding:50px 40px;
+  box-shadow:0 12px 35px rgba(0,0,0,.15);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+#about-box h3 {
+  font-family:"Baloo 2";
+  font-size:36px;
+  color:var(--accent);
+}
+#about-box p {
+  font-size:20px;
+  line-height:1.6;
+  color:#0f172a;
+}
 
-/* AWARDS ----------------------------------------------------- */
-#awards{background:#fff;color:var(--blue);text-align:center;padding:100px 20px;}
-#awards h2{font-family:"Baloo 2";font-size:46px;color:var(--blue);margin-bottom:60px;letter-spacing:1px;}
-.award-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px 60px;max-width:1200px;margin:0 auto;}
-.award-item{background:rgba(14,165,233,0.08);border:2px dotted var(--blue);border-radius:12px;padding:20px 30px;
-font-size:20px;font-weight:600;color:var(--blue);transform:translateY(40px);opacity:0;transition:transform .8s ease,opacity .8s ease;}
-.award-item.visible{transform:translateY(0);opacity:1;}
-.award-item:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(14,165,233,0.3);}
+/* ---------- PROJECTS ---------- */
+.highlight-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+  gap:30px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.highlight-box {
+  position:relative;
+  height:55vh;
+  overflow:hidden;
+  cursor:pointer;
+  border-radius:16px;
+  transition:transform .4s ease,box-shadow .4s ease;
+}
+.highlight-box img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .6s ease;
+}
+.highlight-overlay {
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:26px;
+  font-weight:700;
+  padding:15px;
+  transition:background .3s ease;
+}
+.highlight-box:hover {transform:scale(1.03);}
+.highlight-box:hover img {transform:scale(1.1);}
+.highlight-box:hover .highlight-overlay {background:rgba(0,0,0,.65);}
 
-/* OTHER ------------------------------------------------------ */
-#other{background:var(--soft-orange);text-align:center;padding:80px 20px;}
-#other h2{font-family:"Baloo 2";font-size:40px;margin-bottom:40px;color:#0f172a;}
-.mini-grid{display:flex;justify-content:center;flex-wrap:wrap;gap:40px;}
-.mini-item{background:white;border-radius:16px;width:200px;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-box-shadow:0 8px 20px rgba(0,0,0,.1);transition:transform .3s ease,box-shadow .3s ease;}
-.mini-item:hover{transform:scale(1.07);box-shadow:0 14px 30px rgba(0,0,0,.15);}
-.mini-item span.emoji{font-size:42px;margin-bottom:12px;}
-.mini-item p{font-weight:600;font-size:18px;color:#0f172a;margin:0;}
+/* ---------- AWARDS ---------- */
+#awards {
+  text-align:center;
+}
+#awards h2 {
+  font-family:"Baloo 2";
+  font-size:42px;
+  color:var(--accent);
+  margin-bottom:50px;
+}
+.award-grid {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:30px;
+}
+.award-item {
+  background:#000;
+  color:var(--cream);
+  border:2px solid var(--accent);
+  border-radius:16px;
+  padding:25px 40px;
+  font-size:22px;
+  font-weight:600;
+  flex:1 1 400px;
+  max-width:480px;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.award-item:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 25px rgba(245,158,11,0.4);
+}
 
-footer{text-align:center;padding:20px;font-size:14px;color:var(--muted);background:var(--soft-orange);}
-@media(max-width:900px){
-  #intro-top h1{font-size:48px;}
-  #intro-top h2{font-size:24px;}
-  #showcase{flex-direction:column;padding:20px;}
-  #about-box,#slideshow{width:100%;max-width:none;}
-  .award-grid{grid-template-columns:1fr;}
+/* ---------- OTHER ---------- */
+.mini-grid {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:40px;
+}
+.mini-item {
+  background:white;
+  border-radius:16px;
+  width:200px;
+  height:200px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.mini-item:hover {
+  transform:scale(1.07);
+  box-shadow:0 14px 30px rgba(0,0,0,.15);
+}
+.mini-item span.emoji {
+  font-size:42px;
+  margin-bottom:12px;
+}
+.mini-item p {
+  font-weight:600;
+  font-size:18px;
+  color:#0f172a;
+  margin:0;
+}
+
+footer {
+  text-align:center;
+  padding:20px;
+  font-size:14px;
+  color:var(--muted);
+  background:#000;
+}
+@media(max-width:900px) {
+  #intro-top h1 {font-size:48px;}
+  #intro-top h2 {font-size:24px;}
+  #about-box,#slideshow {width:100%;max-width:none;}
+  .award-item {flex:1 1 100%;}
 }
 </style>
 </head>
@@ -89,34 +250,35 @@ footer{text-align:center;padding:20px;font-size:14px;color:var(--muted);backgrou
   <h2><span class="typing" id="typing"></span></h2>
 </section>
 
-<!-- SHOWCASE -->
-<section id="showcase">
-  <div id="slideshow">
-    <div class="slide active"><img src="/assets/images/harvard_box.png" alt="Harvard Research"></div>
-    <div class="slide"><img src="/assets/images/robotics_box.png" alt="Robotics"></div>
-    <div class="slide"><img src="/assets/images/Volleyball_box.png" alt="Volleyball"></div>
-  </div>
+<!-- ABOUT + SLIDESHOW -->
+<div class="bubble">
+  <section id="showcase">
+    <div id="slideshow">
+      <div class="slide active"><img src="/assets/images/harvard_box.png" alt="Harvard Research"></div>
+      <div class="slide"><img src="/assets/images/robotics_box.png" alt="Robotics"></div>
+      <div class="slide"><img src="/assets/images/Volleyball_box.png" alt="Volleyball"></div>
+    </div>
+    <div id="about-box">
+      <h3>About Me</h3>
+      <p>
+        I’m <strong>Ray Chen Zeng</strong> — a Harvard-trained robotics researcher and captain of a globally ranked robotics team.  
+        My work bridges <strong>AI, biomechanics, and design</strong>, building robots that move as intuitively as human muscles.  
+        <br><br>
+        Off the field, I lead <strong>BrobSTEM (#26 / 8000 worldwide)</strong>, coach <strong>Elevate Volleyball</strong>,  
+        and perform as the founder of an <strong>a cappella group</strong>.  
+        <br><br>
+        My projects have been featured on <strong>Pennsylvania’s largest newspaper</strong>, and I’m one of only  
+        <strong>15 people worldwide</strong> to ever type over <strong>300 wpm</strong>.  
+        <br><br>
+        <strong>zengrayc@gmail.com • 724-759-8523</strong>
+      </p>
+    </div>
+  </section>
+</div>
 
-  <div id="about-box">
-    <h3>About Me</h3>
-    <p>
-      I’m <strong>Ray Chen Zeng</strong> — a Harvard-trained robotics researcher and captain of a globally ranked robotics team.  
-      My work bridges <strong>AI, biomechanics, and design</strong>, building robots that move as intuitively as human muscles.  
-      <br><br>
-      Off the field, I lead <strong>BrobSTEM (#26 / 8000 worldwide)</strong>, coach <strong>Elevate Volleyball</strong>,  
-      and perform as the founder of an <strong>a cappella group</strong>.  
-      <br><br>
-      My projects have been featured on <strong>Pennsylvania’s largest newspaper</strong>, and I’m one of only  
-      <strong>15 people worldwide</strong> to ever type over <strong>300 wpm</strong>.  
-      <br><br>
-      <strong>zengrayc@gmail.com • 724-759-8523</strong>
-    </p>
-  </div>
-</section>
-
-<!-- MAIN PROJECTS -->
-<section id="highlights">
-  <h2>Click on a box to learn more!</h2>
+<!-- PROJECT BOXES -->
+<div class="bubble">
+  <h2 style="text-align:center;font-family:'Baloo 2';color:var(--accent);">Click on a box to learn more!</h2>
   <div class="highlight-grid">
     <a href="/harvard.html" class="highlight-box">
       <img src="/assets/images/harvard_box.png" alt="Harvard Research">
@@ -131,38 +293,32 @@ footer{text-align:center;padding:20px;font-size:14px;color:var(--muted);backgrou
       <div class="highlight-overlay">Volleyball</div>
     </a>
   </div>
-</section>
+</div>
 
 <!-- AWARDS -->
-<section id="awards">
-  <h2>Awards & Rankings</h2>
+<div class="bubble" id="awards">
+  <h2>Awards & Highlights</h2>
   <div class="award-grid">
-    <div class="award-item">#26 / 8,000+ — FIRST Tech Challenge</div>
-    <div class="award-item">Global Top 40 — Maryland Tech Invitational</div>
-    <div class="award-item">World Record Match Score — FTC PA Championship</div>
-    <div class="award-item">Outside Hitter — #2 Team in Pennsylvania</div>
-    <div class="award-item">#13 Ranked Speed Typist Worldwide</div>
-    <div class="award-item">Perfect ACT Score — 36</div>
-    <div class="award-item">Perfect PSAT Score — 1520 / 1520</div>
-    <div class="award-item">Featured in Pennsylvania’s Largest Newspaper</div>
+    <div class="award-item">Ranked #26 in Competitive Robotics</div>
+    <div class="award-item">Playing on the #2 Volleyball Team in Pennsylvania</div>
+    <div class="award-item">#13 Fastest Typing Speed of All Time</div>
+    <div class="award-item">Perfect Scores on the ACT and PSAT</div>
   </div>
-</section>
+</div>
 
 <!-- OTHER -->
-<section id="other">
-  <h2>Some other things that I do</h2>
+<div class="bubble">
+  <h2 style="text-align:center;font-family:'Baloo 2';color:var(--accent);">Some other things that I do</h2>
   <div class="mini-grid">
     <div class="mini-item"><span class="emoji">🎵</span><p>Music / Singing</p></div>
     <div class="mini-item"><span class="emoji">🎓</span><p>Academics</p></div>
     <div class="mini-item"><span class="emoji">⌨️</span><p>Speed Typing</p></div>
   </div>
-</section>
+</div>
 
 <footer>
   <p>© 2025 Ray Chen Zeng — Built with ❤️</p>
-  <p>
-    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://raychenzeng.github.io&count_bg=%23F59E0B&title_bg=%23000000&icon=&icon_color=%23FFFFFF&title=visits&edge_flat=false"/>
-  </p>
+  <p><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://raychenzeng.github.io&count_bg=%23F59E0B&title_bg=%23000000&icon=&icon_color=%23FFFFFF&title=visits&edge_flat=false"/></p>
 </footer>
 
 <script>
@@ -175,7 +331,7 @@ setInterval(()=>{
   slides[current].classList.add("active");
 },4000);
 
-/* typing */
+/* typing animation */
 const textEl=document.getElementById("typing");
 const phrases=["Roboticist.","Engineer.","Athlete.","Musician."];
 let i=0,j=0,del=false;
@@ -187,15 +343,6 @@ function type(){
   setTimeout(type,del?80:120);
 }
 type();
-
-/* scroll animation for awards */
-const awards=document.querySelectorAll(".award-item");
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){entry.target.classList.add("visible");}
-  });
-},{threshold:0.2});
-awards.forEach(a=>observer.observe(a));
 </script>
 
 </body>
