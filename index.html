@@ -29,9 +29,8 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      padding: 80px 60px 20px;
-      background: var(--bg);
-      max-width: 1600px;
+      padding: 80px 60px 40px;
+      max-width: 1800px;
       margin: 0 auto;
     }
 
@@ -42,29 +41,29 @@
 
     #intro-text h1 {
       font-family: "Baloo 2";
-      font-size: 100px;
+      font-size: 110px;
       line-height: 1.05;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       color: #0f172a;
     }
 
     #intro-text .accent {
       color: var(--accent);
-      font-size: 120px;
+      font-size: 150px;
       display: block;
       line-height: 1;
     }
 
     #intro-text p {
-      font-size: 22px;
+      font-size: 26px;
       color: var(--muted);
       margin: 0;
     }
 
     #intro img {
       flex: 0 0 auto;
-      width: 260px;
-      height: 260px;
+      width: 280px;
+      height: 280px;
       border-radius: 50%;
       object-fit: cover;
       margin-left: 60px;
@@ -78,58 +77,57 @@
     @media (max-width: 900px) {
       #intro { flex-direction: column; text-align: center; }
       #intro-text { text-align: center; }
+      #intro-text h1 { font-size: 60px; }
+      #intro-text .accent { font-size: 80px; }
       #intro img {
         margin-left: 0;
         margin-top: 30px;
         width: 200px;
         height: 200px;
       }
-      #intro-text h1 { font-size: 60px; }
-      #intro-text .accent { font-size: 70px; }
     }
 
-    /* ---------- Full-Width Slideshow ---------- */
+    /* ---------- Full-Width Sliding Slideshow ---------- */
     #slideshow {
-      width: 100%;
-      margin: 0;
-      position: relative;
-      border-radius: 0;
+      width: 100vw;
+      height: 75vh;
       overflow: hidden;
+      position: relative;
+      margin: 0;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      border-radius: 0;
+    }
+
+    .slide-track {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      transition: transform 1s ease-in-out;
     }
 
     #slideshow img {
-      width: 100%;
-      height: 600px;
+      width: 100vw;
+      height: 100%;
       object-fit: cover;
-      display: none;
-      transition: opacity 1s ease;
+      flex-shrink: 0;
     }
 
-    #slideshow img.active {
-      display: block;
-      opacity: 1;
-      animation: fade 1s ease-in-out;
-    }
-
-    @keyframes fade {
-      from { opacity: 0.4; }
-      to { opacity: 1; }
-    }
-
-    /* ---------- Main Boxes ---------- */
+    /* ---------- Main Three Boxes ---------- */
     #highlights {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-      gap: 30px;
-      padding: 40px 0 60px;
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: 0;
+      padding: 0;
       margin: 0;
     }
 
     .highlight-box {
       position: relative;
-      height: 85vh;
+      height: 90vh;
       overflow: hidden;
-      border-radius: 0;
       cursor: pointer;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
@@ -150,18 +148,14 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 36px;
+      font-size: 40px;
       font-weight: 700;
       padding: 15px;
       letter-spacing: 0.4px;
       transition: background 0.3s ease;
     }
 
-    .highlight-box:hover {
-      transform: scale(1.03);
-      box-shadow: 0 25px 45px rgba(0,0,0,0.3);
-    }
-
+    .highlight-box:hover { transform: scale(1.03); }
     .highlight-box:hover img { transform: scale(1.1); }
     .highlight-box:hover .highlight-overlay { background: rgba(0,0,0,0.65); }
 
@@ -174,7 +168,7 @@
 
     #other h2 {
       font-family: "Baloo 2";
-      font-size: 40px;
+      font-size: 42px;
       margin-bottom: 40px;
       color: #0f172a;
     }
@@ -204,17 +198,8 @@
       box-shadow: 0 14px 30px rgba(0,0,0,0.15);
     }
 
-    .mini-item span.emoji {
-      font-size: 42px;
-      margin-bottom: 12px;
-    }
-
-    .mini-item p {
-      font-weight: 600;
-      font-size: 18px;
-      color: #0f172a;
-      margin: 0;
-    }
+    .mini-item span.emoji { font-size: 42px; margin-bottom: 12px; }
+    .mini-item p { font-weight: 600; font-size: 18px; margin: 0; }
 
     footer {
       text-align: center;
@@ -237,11 +222,13 @@
     <img src="/assets/images/portrait.jpg" alt="Portrait of Ray Chen Zeng">
   </section>
 
-  <!-- ---------- Full-Width Slideshow ---------- -->
+  <!-- ---------- Full-Width Sliding Slideshow ---------- -->
   <section id="slideshow">
-    <img src="/assets/images/harvard_box.png" class="active" alt="Harvard photo 1">
-    <img src="/assets/images/robotics_box.png" alt="Robotics photo 2">
-    <img src="/assets/images/Volleyball_box.png" alt="Volleyball photo 3">
+    <div class="slide-track">
+      <img src="/assets/images/harvard_box.png" alt="Harvard Research">
+      <img src="/assets/images/robotics_box.png" alt="Robotics">
+      <img src="/assets/images/Volleyball_box.png" alt="Volleyball">
+    </div>
   </section>
 
   <!-- ---------- Main Boxes ---------- -->
@@ -262,37 +249,32 @@
     </a>
   </section>
 
-  <!-- ---------- Other Activities Section ---------- -->
+  <!-- ---------- Other Activities ---------- -->
   <section id="other">
     <h2>Some other things that I do</h2>
     <div class="mini-grid">
       <div class="mini-item">
-        <span class="emoji">🎵</span>
-        <p>Music / Singing</p>
+        <span class="emoji">🎵</span><p>Music / Singing</p>
       </div>
       <div class="mini-item">
-        <span class="emoji">🎓</span>
-        <p>Academics</p>
+        <span class="emoji">🎓</span><p>Academics</p>
       </div>
       <div class="mini-item">
-        <span class="emoji">⌨️</span>
-        <p>Speed Typing</p>
+        <span class="emoji">⌨️</span><p>Speed Typing</p>
       </div>
     </div>
   </section>
 
-  <footer>
-    <p>© 2025 Ray Chen Zeng — Built with ❤️</p>
-  </footer>
+  <footer><p>© 2025 Ray Chen Zeng — Built with ❤️</p></footer>
 
-  <!-- ---------- Slideshow Script ---------- -->
+  <!-- ---------- Sliding Script ---------- -->
   <script>
+    const track = document.querySelector('.slide-track');
     const slides = document.querySelectorAll('#slideshow img');
     let index = 0;
     setInterval(() => {
-      slides[index].classList.remove('active');
       index = (index + 1) % slides.length;
-      slides[index].classList.add('active');
+      track.style.transform = `translateX(-${index * 100}vw)`;
     }, 4000);
   </script>
 </body>
