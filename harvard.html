@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Harvard Research — Ray Chen Zeng</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f6fbfd;
+      color: #0f172a;
+      margin: 0;
+      padding: 0 20px 60px;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 0 20px;
+    }
+
+    header h1 {
+      font-family: "Baloo 2";
+      font-size: 48px;
+      color: #f59e0b;
+      margin: 0;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 20px auto;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+      max-width: 1200px;
+      margin: 40px auto;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    a.back {
+      display: inline-block;
+      margin: 40px auto 0;
+      text-decoration: none;
+      background: #f59e0b;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    a.back:hover { background: #e48a00; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Harvard Research</h1>
+  </header>
+
+  <p>
+    At Harvard’s School of Engineering and Applied Sciences, I developed an EMG-based controller that translates muscle signals into robotic motion.
+    My work focused on improving signal accuracy and responsiveness for assistive devices — blending mechanical design, embedded systems, and data processing.
+  </p>
+
+  <div class="gallery">
+    <img src="/assets/images/harvard1.jpg" alt="Harvard photo 1">
+    <img src="/assets/images/harvard2.jpg" alt="Harvard photo 2">
+    <img src="/assets/images/harvard3.jpg" alt="Harvard photo 3">
+    <img src="/assets/images/harvard4.jpg" alt="Harvard photo 4">
+  </div>
+
+  <div style="text-align:center;">
+    <a href="/" class="back">← Back to Home</a>
+  </div>
+</body>
+</html>
