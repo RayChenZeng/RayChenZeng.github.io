@@ -1,88 +1,145 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Harvard Research — Ray Chen Zeng</title>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: "Inter", sans-serif;
-      background: #f6fbfd;
-      color: #0f172a;
-      margin: 0;
-      padding: 0 20px 60px;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Harvard Research — Ray Chen Zeng</title>
+<link rel="icon" type="image/png" href="/assets/images/portrait.jpg" />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-    header {
-      text-align: center;
-      padding: 60px 0 20px;
-    }
-
-    header h1 {
-      font-family: "Baloo 2";
-      font-size: 48px;
-      color: #f59e0b;
-      margin: 0;
-    }
-
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 20px auto;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 16px;
-      max-width: 1200px;
-      margin: 40px auto;
-    }
-
-    .gallery img {
-      width: 100%;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-
-    a.back {
-      display: inline-block;
-      margin: 40px auto 0;
-      text-decoration: none;
-      background: #f59e0b;
-      color: white;
-      padding: 10px 24px;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: background 0.2s;
-    }
-
-    a.back:hover { background: #e48a00; }
-  </style>
+<style>
+:root {
+  --accent:#f59e0b;
+  --cream:#fff6e5;
+  --muted:#9ca3af;
+}
+body {
+  margin:0;
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto;
+  background:#000;
+  color:#0f172a;
+  overflow-x:hidden;
+}
+.bubble {
+  background:var(--cream);
+  border-radius:24px;
+  box-shadow:0 8px 25px rgba(255,255,255,0.05);
+  margin:60px auto;
+  max-width:1200px;
+  padding:60px 40px;
+}
+h1 {
+  font-family:"Baloo 2";
+  font-size:52px;
+  text-align:center;
+  color:var(--accent);
+}
+p.desc {
+  max-width:900px;
+  margin:20px auto 40px;
+  font-size:20px;
+  line-height:1.7;
+  color:#0f172a;
+  text-align:center;
+}
+#slideshow {
+  max-width:900px;
+  aspect-ratio:16/9;
+  margin:0 auto 50px;
+  border-radius:16px;
+  overflow:hidden;
+  background:#000;
+  box-shadow:0 12px 35px rgba(0,0,0,.25);
+  position:relative;
+}
+.slide {
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity 1s ease-in-out;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.slide img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.slide.active {opacity:1;}
+.video-section {
+  text-align:center;
+  margin-top:40px;
+}
+.video-section h2 {
+  font-family:"Baloo 2";
+  font-size:32px;
+  color:var(--accent);
+}
+.video-section iframe {
+  width:80%;
+  height:480px;
+  border:none;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,.2);
+}
+footer {
+  text-align:center;
+  padding:20px;
+  font-size:14px;
+  color:var(--muted);
+  background:#000;
+}
+a.back {
+  display:block;
+  text-align:center;
+  margin-top:40px;
+  font-weight:600;
+  color:var(--accent);
+  text-decoration:none;
+}
+a.back:hover { text-decoration:underline; }
+</style>
 </head>
 
 <body>
-  <header>
-    <h1>Harvard Research</h1>
-  </header>
-
-  <p>
-    At Harvard’s School of Engineering and Applied Sciences, I developed an EMG-based controller that translates muscle signals into robotic motion.
-    My work focused on improving signal accuracy and responsiveness for assistive devices — blending mechanical design, embedded systems, and data processing.
+<div class="bubble">
+  <h1>Harvard Research</h1>
+  <p class="desc">
+    My research at Harvard University explores the intersection of <strong>AI, robotics, and human biomechanics</strong>.
+    I worked on building EMG-controlled robotic systems capable of mimicking natural muscle movement — combining
+    neural signal analysis, control theory, and mechanical design. This project taught me the importance of persistence,
+    collaboration, and curiosity in scientific innovation.
   </p>
 
-  <div class="gallery">
-    <img src="/assets/images/harvard1.jpg" alt="Harvard photo 1">
-    <img src="/assets/images/harvard2.jpg" alt="Harvard photo 2">
-    <img src="/assets/images/harvard3.jpg" alt="Harvard photo 3">
-    <img src="/assets/images/harvard4.jpg" alt="Harvard photo 4">
+  <div id="slideshow">
+    <div class="slide active"><img src="/assets/images/harvard_1.jpg" alt="Harvard Research 1"></div>
+    <div class="slide"><img src="/assets/images/harvard_2.jpg" alt="Harvard Research 2"></div>
+    <div class="slide"><img src="/assets/images/harvard_3.jpg" alt="Harvard Research 3"></div>
   </div>
 
-  <div style="text-align:center;">
-    <a href="/" class="back">← Back to Home</a>
+  <div class="video-section">
+    <h2>Highlights Video</h2>
+    <!-- Replace the src link below with your YouTube embed link later -->
+    <iframe src="https://www.youtube.com/embed/" allowfullscreen></iframe>
   </div>
+
+  <a class="back" href="/index.html">← Back to Home</a>
+</div>
+
+<footer>
+  <p>© 2025 Ray Chen Zeng — Built with ❤️</p>
+</footer>
+
+<script>
+// simple auto slideshow
+const slides=document.querySelectorAll(".slide");
+let current=0;
+setInterval(()=>{
+  slides[current].classList.remove("active");
+  current=(current+1)%slides.length;
+  slides[current].classList.add("active");
+},4000);
+</script>
 </body>
 </html>
