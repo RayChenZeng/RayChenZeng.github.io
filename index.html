@@ -64,6 +64,55 @@ body {
   50%{border-color:var(--accent);}
 }
 
+/* ---------- FEATURED ---------- */
+#featured {
+  background:var(--cream);
+  border-radius:18px;
+  box-shadow:0 6px 20px rgba(0,0,0,.05);
+  max-width:1100px;
+  margin:40px auto;
+  padding:25px 30px;
+}
+#featured h3 {
+  font-family:"Baloo 2";
+  font-size:24px;
+  color:var(--muted);
+  margin-bottom:20px;
+  text-align:center;
+}
+.featured-grid {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.featured-item {
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  width:300px;
+  height:150px;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
+  text-align:center;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.featured-item:hover {
+  transform:scale(1.05);
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+.featured-item img {
+  width:100%;
+  height:100px;
+  object-fit:cover;
+}
+.featured-item p {
+  margin:5px 0 10px;
+  font-size:16px;
+  font-weight:600;
+  color:#0f172a;
+}
+
 /* ---------- SHOWCASE ---------- */
 #showcase {
   display:flex;
@@ -102,7 +151,7 @@ body {
   flex:1 1 450px;
   display:flex;
   flex-direction:column;
-  gap:30px;
+  gap:25px;
 }
 #about-box, #contact-box {
   background:var(--cream);
@@ -121,6 +170,14 @@ body {
   line-height:1.6;
   color:#0f172a;
 }
+#contact-box {
+  padding:15px 30px;
+  text-align:center;
+}
+#contact-box p {
+  font-size:18px;
+  margin:0;
+}
 
 /* ---------- PROJECTS ---------- */
 .highlight-grid {
@@ -128,7 +185,8 @@ body {
   justify-content:center;
   align-items:stretch;
   gap:30px;
-  flex-wrap:wrap;
+  flex-wrap:nowrap;
+  overflow-x:auto;
   max-width:1100px;
   margin:0 auto;
 }
@@ -140,6 +198,7 @@ body {
   cursor:pointer;
   border-radius:16px;
   transition:transform .4s ease,box-shadow .4s ease;
+  flex-shrink:0;
 }
 .highlight-box img {
   width:100%;
@@ -243,6 +302,7 @@ footer {
   #intro-top h1 {font-size:48px;}
   #intro-top h2 {font-size:24px;}
   #about-column {width:100%;max-width:none;}
+  .highlight-grid {flex-wrap:wrap;}
   .highlight-box {width:100%;height:auto;}
   .award-item {flex:1 1 100%;}
 }
@@ -256,6 +316,25 @@ footer {
   <h1>Hello. I'm Ray. Welcome to my website.</h1>
   <h2><span class="typing" id="typing"></span></h2>
 </section>
+
+<!-- PREVIOUSLY FEATURED -->
+<div id="featured">
+  <h3>Previously Featured On...</h3>
+  <div class="featured-grid">
+    <a href="https://www.post-gazette.com/business/tech-news/2025/06/21/maryland-technology-invitational-north-allegheny/stories/202506170006" class="featured-item" target="_blank">
+      <img src="/assets/images/postgazette_headline.jpg" alt="Pittsburgh Post-Gazette Feature">
+      <p>Pittsburgh Post-Gazette</p>
+    </a>
+    <a href="https://www.youtube.com/shorts/nsgedNzBrHw" class="featured-item" target="_blank">
+      <img src="/assets/images/funftc_thumb.jpg" alt="FUN FTC Network Video">
+      <p>FUN FTC Network</p>
+    </a>
+    <a href="#" class="featured-item">
+      <img src="/assets/images/research_acceptance.jpg" alt="Research Acceptance">
+      <p>Published Research Acceptance</p>
+    </a>
+  </div>
+</div>
 
 <!-- ABOUT + CONTACT + SLIDESHOW -->
 <div class="bubble">
@@ -271,15 +350,9 @@ footer {
         <h3>About Me</h3>
         <p>
           My name is <strong>Ray Chen Zeng</strong>, and I have lived 18 years filled with curiosity and passion.  
-          With the gift of life, each moment is something to be appreciated, and I’ve tried my best to fill every 24 hours pursuing the diverse passions of human life.  
+          With the gift of life, each moment is something to be appreciated, and I’ve tried my best to fill every 24 hours pursuing the diverse gifts this world has to offer.  
           <br><br>
-          Currently, my time is split between leading a globally ranked robotics team and continuing my research project at Harvard University, while continuously building  
-          <strong>ELEVATE Volleyball</strong> — a community volleyball accelerator that propels complete beginners into top clubs through biomechanics-focused coaching.  
-          <br><br>
-          In my free time, I enjoy playing the guitar, singing and beatboxing in my A Capella group <strong>"The Jimmy’s"</strong>, speed typing, and learning to backflip.  
-          <br><br>
-          My projects have been featured on <strong>Pennsylvania’s largest newspaper</strong>, and I’m one of only  
-          <strong>15 people worldwide</strong> to ever type over <strong>300 wpm</strong>.
+          Check out some pictures of what I do!
         </p>
       </div>
 
@@ -287,15 +360,14 @@ footer {
         <h3>Contact Me</h3>
         <p>
           Please do not hesitate to reach out with any questions or if you would like to collab or make music together.  
-          <br><br>
-          <strong>zengrayc@gmail.com • 724-759-8523</strong>
+          <br><strong>zengrayc@gmail.com • 724-759-8523</strong>
         </p>
       </div>
     </div>
   </section>
 </div>
 
-<!-- PROJECT BOXES (single row) -->
+<!-- PROJECT BOXES (ONE ROW) -->
 <div class="bubble">
   <h2 style="text-align:center;font-family:'Baloo 2';color:var(--accent);">Click on a box to learn more!</h2>
   <div class="highlight-grid">
