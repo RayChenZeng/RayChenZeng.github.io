@@ -64,62 +64,57 @@ body {
   50%{border-color:var(--accent);}
 }
 
-/* ---------- PREVIOUSLY FEATURED (thin) ---------- */
+/* ---------- FEATURED ---------- */
 #featured {
-  background:var(--cream);
-  border-radius:18px;
-  box-shadow:0 6px 20px rgba(0,0,0,.05);
-  max-width:1100px;
-  margin:40px auto 0;
-  padding:18px 20px;
+  background: transparent;
+  margin: 40px auto 0;
+  padding: 10px 0 0;
+  max-width: 1100px;
+  text-align: center;
 }
 #featured h3 {
-  font-family:"Baloo 2";
-  font-size:20px;
-  color:var(--muted);
-  margin:0 0 12px;
-  text-align:center;
-  letter-spacing:.4px;
+  font-family: "Baloo 2";
+  font-size: 20px;
+  color: var(--muted);
+  margin-bottom: 20px;
+  letter-spacing: 0.4px;
 }
 .featured-grid {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:16px;
-  flex-wrap:wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
 }
 .featured-item {
-  background:white;
-  border-radius:14px;
-  overflow:hidden;
-  width:240px;
-  height:110px;
-  box-shadow:0 4px 12px rgba(0,0,0,.08);
-  text-align:center;
-  transition:transform .25s ease, box-shadow .25s ease;
-  position:relative;
+  text-align: center;
+  transition: transform .25s ease, filter .25s ease;
 }
 .featured-item img {
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  padding:10px;
-  transition:transform .25s ease, filter .25s ease;
+  width: 180px;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  filter: brightness(0.95);
+  transition: transform .25s ease, filter .25s ease;
 }
-.featured-item:hover { transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.12); }
-.featured-item:hover img { transform:scale(1.04); filter:drop-shadow(0 0 8px var(--accent)); }
-.featured-caption {
-  position:absolute;
-  bottom:6px;
-  width:100%;
-  text-align:center;
-  font-size:12px;
-  font-weight:700;
-  color:#0f172a;
-  opacity:.9;
+.featured-item:hover img {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px var(--accent));
+}
+.featured-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cream);
+  margin-top: 8px;
+}
+@media(max-width:900px){
+  .featured-grid {gap: 30px;}
+  .featured-item img {width: 140px;}
+  .featured-text {font-size: 14px;}
 }
 
-/* ---------- SHOWCASE (slideshow + about + contact) ---------- */
+/* ---------- SHOWCASE ---------- */
 #showcase {
   display:flex;
   flex-wrap:wrap;
@@ -176,10 +171,16 @@ body {
   line-height:1.6;
   color:#0f172a;
 }
-#contact-box { padding:14px 24px; text-align:center; }
-#contact-box p { font-size:18px; margin:0; }
+#contact-box {
+  padding:15px 30px;
+  text-align:center;
+}
+#contact-box p {
+  font-size:18px;
+  margin:0;
+}
 
-/* ---------- PROJECTS (one row) ---------- */
+/* ---------- PROJECTS ---------- */
 .highlight-grid {
   display:flex;
   justify-content:center;
@@ -280,10 +281,17 @@ body {
   transform:scale(1.07);
   box-shadow:0 14px 30px rgba(0,0,0,.15);
 }
-.mini-item span.emoji { font-size:42px; margin-bottom:12px; }
-.mini-item p { font-weight:600; font-size:18px; color:#0f172a; margin:0; }
+.mini-item span.emoji {
+  font-size:42px;
+  margin-bottom:12px;
+}
+.mini-item p {
+  font-weight:600;
+  font-size:18px;
+  color:#0f172a;
+  margin:0;
+}
 
-/* ---------- FOOTER ---------- */
 footer {
   text-align:center;
   padding:20px;
@@ -291,8 +299,6 @@ footer {
   color:var(--muted);
   background:#000;
 }
-
-/* ---------- RESPONSIVE ---------- */
 @media(max-width:900px) {
   #intro-top h1 {font-size:48px;}
   #intro-top h2 {font-size:24px;}
@@ -312,24 +318,32 @@ footer {
   <h2><span class="typing" id="typing"></span></h2>
 </section>
 
-<!-- PREVIOUSLY FEATURED (thin, clickable logos) -->
-<div id="featured">
+<!-- PREVIOUSLY FEATURED -->
+<section id="featured">
   <h3>Previously Featured On...</h3>
   <div class="featured-grid">
-    <a href="https://www.post-gazette.com/business/tech-news/2025/06/21/maryland-technology-invitational-north-allegheny/stories/202506170006" class="featured-item" target="_blank" rel="noopener">
-      <img src="/assets/images/Post_Gazette_logo.jpeg" alt="Pittsburgh Post-Gazette">
-      <div class="featured-caption">Read the Article</div>
-    </a>
-    <a href="https://www.youtube.com/shorts/nsgedNzBrHw" class="featured-item" target="_blank" rel="noopener">
-      <img src="/assets/images/FUN_FTC_logo.png" alt="FUN FTC Network">
-      <div class="featured-caption">Watch the Feature</div>
-    </a>
-    <a href="#" class="featured-item">
-      <img src="/assets/images/ASEE_Logo.png" alt="Published Research">
-      <div class="featured-caption">View Recognition</div>
-    </a>
+    <div class="featured-item">
+      <a href="https://www.post-gazette.com/business/tech-news/2025/06/21/maryland-technology-invitational-north-allegheny/stories/202506170006" target="_blank" rel="noopener">
+        <img src="/assets/images/Post_Gazette_logo.jpeg" alt="Pittsburgh Post-Gazette">
+      </a>
+      <p class="featured-text">📰 Read the Article</p>
+    </div>
+
+    <div class="featured-item">
+      <a href="https://www.youtube.com/shorts/nsgedNzBrHw" target="_blank" rel="noopener">
+        <img src="/assets/images/FUN_FTC_logo.png" alt="FUN FTC Network">
+      </a>
+      <p class="featured-text">🎥 Watch the Feature</p>
+    </div>
+
+    <div class="featured-item">
+      <a href="#" target="_blank" rel="noopener">
+        <img src="/assets/images/ASEE_Logo.png" alt="Published Research">
+      </a>
+      <p class="featured-text">📜 View Recognition</p>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- ABOUT + CONTACT + SLIDESHOW -->
 <div class="bubble">
@@ -344,9 +358,8 @@ footer {
       <div id="about-box">
         <h3>About Me</h3>
         <p>
-          My name is <strong>Ray Chen Zeng</strong>, and I have lived 18 years filled with curiosity and passion.
-          With the gift of life, each moment is something to be appreciated, and I’ve tried my best to fill every 24 hours
-          pursuing the diverse gifts this world has to offer.
+          My name is <strong>Ray Chen Zeng</strong>, and I have lived 18 years filled with curiosity and passion.  
+          With the gift of life, each moment is something to be appreciated, and I’ve tried my best to fill every 24 hours pursuing the diverse gifts this world has to offer.  
           <br><br>
           Check out some pictures of what I do!
         </p>
@@ -355,15 +368,15 @@ footer {
       <div id="contact-box">
         <h3>Contact Me</h3>
         <p>
-          Please do not hesitate to reach out with any questions or if you would like to collab or make music together.<br>
-          <strong>zengrayc@gmail.com • 724-759-8523</strong>
+          Please do not hesitate to reach out with any questions or if you would like to collab or make music together.  
+          <br><strong>zengrayc@gmail.com • 724-759-8523</strong>
         </p>
       </div>
     </div>
   </section>
 </div>
 
-<!-- PROJECT BOXES (ONE STRAIGHT ROW) -->
+<!-- PROJECT BOXES -->
 <div class="bubble">
   <h2 style="text-align:center;font-family:'Baloo 2';color:var(--accent);">Click on a box to learn more!</h2>
   <div class="highlight-grid">
@@ -382,7 +395,7 @@ footer {
   </div>
 </div>
 
-<!-- AWARDS (RESTORED) -->
+<!-- AWARDS -->
 <div class="bubble" id="awards">
   <h2>Awards & Highlights</h2>
   <div class="award-grid">
@@ -410,26 +423,27 @@ footer {
 
 <script>
 /* slideshow */
-const slides = document.querySelectorAll(".slide");
-let current = 0;
+const slides=document.querySelectorAll(".slide");
+let current=0;
 setInterval(()=>{
   slides[current].classList.remove("active");
-  current = (current+1) % slides.length;
+  current=(current+1)%slides.length;
   slides[current].classList.add("active");
-}, 4000);
+},4000);
 
 /* typing animation */
-const textEl = document.getElementById("typing");
-const phrases = ["Roboticist.","Engineer.","Athlete.","Musician."];
+const textEl=document.getElementById("typing");
+const phrases=["Roboticist.","Engineer.","Athlete.","Musician."];
 let i=0,j=0,del=false;
 function type(){
-  const cur = phrases[i];
-  textEl.textContent = del ? cur.substring(0, j--) : cur.substring(0, j++);
-  if(!del && j===cur.length+5) del=true;
-  if(del && j===0){ del=false; i=(i+1)%phrases.length; }
-  setTimeout(type, del?80:120);
+  const cur=phrases[i];
+  textEl.textContent=del?cur.substring(0,j--):cur.substring(0,j++);
+  if(!del&&j===cur.length+5)del=true;
+  if(del&&j===0){del=false;i=(i+1)%phrases.length;}
+  setTimeout(type,del?80:120);
 }
 type();
 </script>
+
 </body>
 </html>
