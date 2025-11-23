@@ -83,28 +83,36 @@ body{
   .hero-grid{flex-direction:column;align-items:flex-start}
   .avatar{transform:none}
 }
+
+
 .video-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 1fr;   /* Left 75%, right 25% */
   gap: 30px;
   align-items: stretch;
 }
 
+/* Left column style */
 .video-box {
   background: #f7f7f7;
   border-radius: 16px;
   box-shadow: 0 8px 25px rgba(0,0,0,.15);
   padding: 20px;
   display: grid;
-  grid-template-rows: auto 1fr auto; /* desc, video, caption */
-  min-width: 280px;
+  grid-template-rows: auto auto auto; /* text, video, caption */
 }
 
+/* Research text style */
 .video-desc {
   padding-bottom: 16px;
   text-align: left;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #0f172a;
+  margin: 0;
 }
 
+/* Caption style */
 .video-caption {
   width: 100%;
   margin-top: 16px;
@@ -116,13 +124,13 @@ body{
   box-sizing: border-box;
 }
 
+/* The right video, no box */
 .video-full {
-  /* This fills the right column with the video */
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: stretch;
-  background: none; /* No box background/borders! */
+  width: 100%;
+  height: 100%;
+  background: none;
 }
 
 .video-full .video-el {
@@ -133,6 +141,7 @@ body{
   box-shadow: 0 8px 25px rgba(0,0,0,.11);
 }
 
+/* All videos fill available space */
 .video-el {
   width: 100%;
   height: 100%;
@@ -142,7 +151,7 @@ body{
   box-shadow: 0 4px 10px rgba(0,0,0,.11);
 }
 
-/* Responsive fallback */
+/* Responsive for mobile */
 @media (max-width:1000px) {
   .video-row {
     display: flex;
@@ -154,7 +163,6 @@ body{
     width: 90vw;
     max-width: 500px;
     height: auto;
-    min-width: unset;
   }
   .video-full .video-el,
   .video-el {

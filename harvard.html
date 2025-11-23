@@ -150,20 +150,18 @@ a.back:hover { text-decoration:underline; }
 <div class="video-section">
   <h2>Research Videos</h2>
   <div class="video-row">
-    <!-- LEFT: Box with desc + video + textarea -->
+    <!-- Left: Wide column with research text, video, and caption -->
     <div class="video-box">
-      <div class="video-desc">
-        <p>
-          My research at Harvard University explores the intersection of <strong>AI, robotics, and human biomechanics</strong>.
-          I worked on building EMG-controlled robotic systems capable of mimicking natural muscle movement — combining neural signal analysis, control theory, and mechanical design. This project taught me the importance of persistence, collaboration, and curiosity in scientific innovation.
-        </p>
-      </div>
+      <p class="video-desc">
+        My research at Harvard University explores the intersection of <strong>AI, robotics, and human biomechanics</strong>.
+        I worked on building EMG-controlled robotic systems capable of mimicking natural muscle movement — combining neural signal analysis, control theory, and mechanical design. This project taught me the importance of persistence, collaboration, and curiosity in scientific innovation.
+      </p>
       <video controls class="video-el">
         <source src="/assets/videos/harvard_results.mp4" type="video/mp4">
       </video>
       <textarea class="video-caption" placeholder="Add a description for this video..."></textarea>
     </div>
-    <!-- RIGHT: Just the video, no box, no caption -->
+    <!-- Right: Solo video, no box, no caption -->
     <div class="video-full">
       <video controls class="video-el">
         <source src="/assets/videos/Video2.mp4" type="video/mp4">
@@ -171,6 +169,7 @@ a.back:hover { text-decoration:underline; }
     </div>
   </div>
 </div>
+
 
 <script>
 function updateSpacerHeight() {
