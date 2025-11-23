@@ -178,14 +178,18 @@ a.back:hover { text-decoration:underline; }
   </div>
 </div>
 <script>
-// Make right spacer match left description height
-window.addEventListener('DOMContentLoaded', function() {
+function updateSpacerHeight() {
   var descLeft = document.getElementById('video-description-left');
   var spacerRight = document.getElementById('spacer-right');
-  if(descLeft && spacerRight) {
+  if (descLeft && spacerRight) {
     spacerRight.style.height = descLeft.offsetHeight + 'px';
   }
-});
+}
+// Run after fonts and images are loaded
+window.onload = updateSpacerHeight;
+window.onresize = updateSpacerHeight;
+// Also run on DOMContentLoaded to catch fast loads
+document.addEventListener('DOMContentLoaded', updateSpacerHeight);
 </script>
 
   <a class="back" href="/index.html">← Back to Home</a>
