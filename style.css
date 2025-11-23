@@ -83,3 +83,49 @@ body{
   .hero-grid{flex-direction:column;align-items:flex-start}
   .avatar{transform:none}
 }
+
+
+.video-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: stretch;
+}
+.video-box {
+  background: #f7f7f7;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.15);
+  padding: 20px;
+  width: 480px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+.video-desc {
+  padding-bottom: 16px;
+  text-align: left;
+}
+.video-caption {
+  width: 100%;
+  margin-top: 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+@media (max-width:1000px) {
+  .video-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 30px;
+  }
+  .video-box {
+    width: 90vw;
+    max-width: 500px;
+  }
+}

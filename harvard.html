@@ -147,36 +147,46 @@ a.back:hover { text-decoration:underline; }
   </p>
 
 
-   <div class="video-section">
-    <h2>
-      Research Videos
-    </h2>
-    <div class="video-row" style="align-items: stretch;">
-      <!-- Left side: Description + Video + Caption -->
-      <div class="video-box" style="flex: 1 1 0; display: flex; flex-direction: column; justify-content: flex-start;">
-        <div style="padding-bottom:16px; text-align:left;">
-          <p style="font-size:18px;color:#0f172a;line-height:1.7;margin:0;">
-            My research at Harvard University explores the intersection of <strong>AI, robotics, and human biomechanics</strong>.
-            I worked on building EMG-controlled robotic systems capable of mimicking natural muscle movement — combining neural signal analysis, control theory, and mechanical design. This project taught me the importance of persistence, collaboration, and curiosity in scientific innovation.
-          </p>
-        </div>
-        <video controls style="margin-bottom:0;">
-          <source src="/assets/videos/harvard_results.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <textarea class="video-caption" placeholder="Add a description for this video..."></textarea>
+  <div class="video-section">
+  <h2>
+    Research Videos
+  </h2>
+  <div class="video-row" style="align-items: stretch;">
+    <!-- Left: Description + video + caption -->
+    <div class="video-box" style="flex: 1 1 0; display: flex; flex-direction: column; height:100%;">
+      <div class="video-desc" id="video-description-left" style="padding-bottom:16px; text-align:left;">
+        <p style="font-size:18px;color:#0f172a;line-height:1.7;margin:0;">
+          My research at Harvard University explores the intersection of <strong>AI, robotics, and human biomechanics</strong>.
+          I worked on building EMG-controlled robotic systems capable of mimicking natural muscle movement — combining neural signal analysis, control theory, and mechanical design. This project taught me the importance of persistence, collaboration, and curiosity in scientific innovation.
+        </p>
       </div>
-      <!-- Right side: Spacer + Video + Caption matching left block height -->
-      <div class="video-box" style="flex: 1 1 0; display: flex; flex-direction: column; justify-content: flex-start;">
-        <div style="flex-grow:1"></div> <!-- this spacer matches description height on left -->
-        <video controls style="margin-bottom:0;">
-          <source src="/assets/videos/Video2.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <textarea class="video-caption" placeholder="Add a description for this video..."></textarea>
-      </div>
+      <video controls style="margin-bottom:0;">
+        <source src="/assets/videos/harvard_results.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <textarea class="video-caption" placeholder="Add a description for this video..."></textarea>
+    </div>
+    <!-- Right: Spacer (matches left description), then video + caption -->
+    <div class="video-box" style="flex: 1 1 0; display: flex; flex-direction: column; height:100%;">
+      <div id="spacer-right" style="height:0;"></div>
+      <video controls style="margin-bottom:0;">
+        <source src="/assets/videos/Video2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <textarea class="video-caption" placeholder="Add a description for this video..."></textarea>
     </div>
   </div>
+</div>
+<script>
+// Make right spacer match left description height
+window.addEventListener('DOMContentLoaded', function() {
+  var descLeft = document.getElementById('video-description-left');
+  var spacerRight = document.getElementById('spacer-right');
+  if(descLeft && spacerRight) {
+    spacerRight.style.height = descLeft.offsetHeight + 'px';
+  }
+});
+</script>
 
   <a class="back" href="/index.html">← Back to Home</a>
 </div>
