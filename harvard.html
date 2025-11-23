@@ -147,10 +147,9 @@ a.back:hover { text-decoration:underline; }
   </p>
 
 
-  <div class="video-section">
+<div class="video-section">
   <h2>Research Videos</h2>
   <div class="video-row">
-    <!-- Left: Description + video + caption -->
     <div class="video-box">
       <div class="video-desc">
         <p>
@@ -158,24 +157,20 @@ a.back:hover { text-decoration:underline; }
           I worked on building EMG-controlled robotic systems capable of mimicking natural muscle movement — combining neural signal analysis, control theory, and mechanical design. This project taught me the importance of persistence, collaboration, and curiosity in scientific innovation.
         </p>
       </div>
-      <video controls>
+      <video controls class="video-el">
         <source src="/assets/videos/harvard_results.mp4" type="video/mp4">
-        Your browser does not support the video tag.
       </video>
       <textarea class="video-caption" placeholder="Add a description for this video..."></textarea>
     </div>
-    <!-- Right: Blank desc for grid, video + caption -->
     <div class="video-box">
-      <div class="video-desc"></div>  <!-- An empty div matches the height of the left description -->
-      <video controls>
+      <div class="video-desc"></div>
+      <video controls class="video-el">
         <source src="/assets/videos/Video2.mp4" type="video/mp4">
-        Your browser does not support the video tag.
       </video>
       <textarea class="video-caption" placeholder="Add a description for this video..."></textarea>
     </div>
   </div>
-</div>
-<script>
+</div><script>
 function updateSpacerHeight() {
   var descLeft = document.getElementById('video-description-left');
   var spacerRight = document.getElementById('spacer-right');
