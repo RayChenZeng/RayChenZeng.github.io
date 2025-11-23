@@ -152,20 +152,29 @@ a.back:hover { text-decoration:underline; }
     <div class="slide"><img src="/assets/images/harvard_3.jpg" alt="Harvard Research 3"></div>
   </div>
 
-  <div class="video-section">
+   <div class="video-section">
     <h2>
       Research Videos
     </h2>
-    <div class="video-row">
-      <div class="video-box">
-        <video controls>
+    <div class="video-row" style="align-items: stretch;">
+      <!-- Left side: Description + Video + Caption -->
+      <div class="video-box" style="flex: 1 1 0; display: flex; flex-direction: column; justify-content: flex-start;">
+        <div style="padding-bottom:16px; text-align:left;">
+          <p style="font-size:18px;color:#0f172a;line-height:1.7;margin:0;">
+            My research at Harvard University explores the intersection of <strong>AI, robotics, and human biomechanics</strong>.
+            I worked on building EMG-controlled robotic systems capable of mimicking natural muscle movement — combining neural signal analysis, control theory, and mechanical design. This project taught me the importance of persistence, collaboration, and curiosity in scientific innovation.
+          </p>
+        </div>
+        <video controls style="margin-bottom:0;">
           <source src="/assets/videos/harvard_results.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
         <textarea class="video-caption" placeholder="Add a description for this video..."></textarea>
       </div>
-      <div class="video-box">
-        <video controls>
+      <!-- Right side: Spacer + Video + Caption matching left block height -->
+      <div class="video-box" style="flex: 1 1 0; display: flex; flex-direction: column; justify-content: flex-start;">
+        <div style="flex-grow:1"></div> <!-- this spacer matches description height on left -->
+        <video controls style="margin-bottom:0;">
           <source src="/assets/videos/Video2.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
