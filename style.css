@@ -95,10 +95,9 @@ body{
   border-radius: 16px;
   box-shadow: 0 8px 25px rgba(0,0,0,.15);
   padding: 20px;
-  min-width: 280px;
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  height: 100%;
+  grid-template-rows: auto 1fr auto; /* desc, video, caption */
+  min-width: 280px;
 }
 
 .video-desc {
@@ -106,11 +105,32 @@ body{
   text-align: left;
 }
 
-.video-el-wrap {
-  /* This makes the video container stretch and take all free space */
+.video-caption {
+  width: 100%;
+  margin-top: 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.video-full {
+  /* This fills the right column with the video */
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: stretch;
+  background: none; /* No box background/borders! */
+}
+
+.video-full .video-el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.11);
 }
 
 .video-el {
@@ -122,23 +142,21 @@ body{
   box-shadow: 0 4px 10px rgba(0,0,0,.11);
 }
 
-/* Responsive fallback for mobile screens */
+/* Responsive fallback */
 @media (max-width:1000px) {
   .video-row {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
     gap: 30px;
   }
-  .video-box {
-    grid-template-rows: auto auto auto;
+  .video-box,
+  .video-full {
     width: 90vw;
     max-width: 500px;
-    display: block;
-  }
-  .video-el-wrap {
     height: auto;
+    min-width: unset;
   }
+  .video-full .video-el,
   .video-el {
     height: 270px;
   }
