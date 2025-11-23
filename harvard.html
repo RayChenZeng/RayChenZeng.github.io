@@ -71,17 +71,51 @@ p.desc {
   text-align:center;
   margin-top:40px;
 }
-.video-section h2 {
-  font-family:"Baloo 2";
-  font-size:32px;
-  color:var(--accent);
+.video-row {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:30px;
 }
-.video-section iframe {
-  width:80%;
-  height:480px;
-  border:none;
-  border-radius:16px;
-  box-shadow:0 8px 25px rgba(0,0,0,.2);
+.video-box {
+  background: #f7f7f7;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.15);
+  padding: 20px;
+  width: 480px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+video {
+  width: 100%;
+  height: 270px;
+  border-radius: 12px;
+  background: #ddd;
+  box-shadow: 0 4px 10px rgba(0,0,0,.11);
+  object-fit:cover;
+}
+.video-caption {
+  width: 100%;
+  margin-top: 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+@media (max-width:1000px) {
+  .video-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  .video-box {
+    width: 90vw;
+    max-width: 500px;
+  }
 }
 footer {
   text-align:center;
@@ -103,21 +137,46 @@ a.back:hover { text-decoration:underline; }
 </head>
 
 <body>
-<div class="video-section">
-  <h2>
-    Research Videos
-  </h2>
-  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:30px;">
-    <video controls width="480">
-      <source src="/assets/videos/harvard_results.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <video controls width="480">
-      <source src="/assets/videos/Video2.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+<div class="bubble">
+  <h1>Harvard Research</h1>
+  <p class="desc">
+    My research at Harvard University explores the intersection of <strong>AI, robotics, and human biomechanics</strong>.
+    I worked on building EMG-controlled robotic systems capable of mimicking natural muscle movement — combining
+    neural signal analysis, control theory, and mechanical design. This project taught me the importance of persistence,
+    collaboration, and curiosity in scientific innovation.
+  </p>
+
+  <div id="slideshow">
+    <div class="slide active"><img src="/assets/images/harvard_1.jpg" alt="Harvard Research 1"></div>
+    <div class="slide"><img src="/assets/images/harvard_2.jpg" alt="Harvard Research 2"></div>
+    <div class="slide"><img src="/assets/images/harvard_3.jpg" alt="Harvard Research 3"></div>
   </div>
+
+  <div class="video-section">
+    <h2>
+      Research Videos
+    </h2>
+    <div class="video-row">
+      <div class="video-box">
+        <video controls>
+          <source src="/assets/videos/harvard_results.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <textarea class="video-caption" placeholder="Add a description for this video..."></textarea>
+      </div>
+      <div class="video-box">
+        <video controls>
+          <source src="/assets/videos/Video2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <textarea class="video-caption" placeholder="Add a description for this video..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <a class="back" href="/index.html">← Back to Home</a>
 </div>
+
 <footer>
   <p>© 2025 Ray Chen Zeng — Built with ❤️</p>
 </footer>
