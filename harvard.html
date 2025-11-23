@@ -148,28 +148,26 @@ a.back:hover { text-decoration:underline; }
 
 
   <div class="video-section">
-  <h2>
-    Research Videos
-  </h2>
-  <div class="video-row" style="align-items: stretch;">
+  <h2>Research Videos</h2>
+  <div class="video-row">
     <!-- Left: Description + video + caption -->
-    <div class="video-box" style="flex: 1 1 0; display: flex; flex-direction: column; height:100%;">
-      <div class="video-desc" id="video-description-left" style="padding-bottom:16px; text-align:left;">
-        <p style="font-size:18px;color:#0f172a;line-height:1.7;margin:0;">
+    <div class="video-box">
+      <div class="video-desc">
+        <p>
           My research at Harvard University explores the intersection of <strong>AI, robotics, and human biomechanics</strong>.
           I worked on building EMG-controlled robotic systems capable of mimicking natural muscle movement — combining neural signal analysis, control theory, and mechanical design. This project taught me the importance of persistence, collaboration, and curiosity in scientific innovation.
         </p>
       </div>
-      <video controls style="margin-bottom:0;">
+      <video controls>
         <source src="/assets/videos/harvard_results.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <textarea class="video-caption" placeholder="Add a description for this video..."></textarea>
     </div>
-    <!-- Right: Spacer (matches left description), then video + caption -->
-    <div class="video-box" style="flex: 1 1 0; display: flex; flex-direction: column; height:100%;">
-      <div id="spacer-right" style="height:0;"></div>
-      <video controls style="margin-bottom:0;">
+    <!-- Right: Blank desc for grid, video + caption -->
+    <div class="video-box">
+      <div class="video-desc"></div>  <!-- An empty div matches the height of the left description -->
+      <video controls>
         <source src="/assets/videos/Video2.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>

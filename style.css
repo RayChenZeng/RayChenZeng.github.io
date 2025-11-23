@@ -84,11 +84,9 @@ body{
   .avatar{transform:none}
 }
 
-
 .video-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 30px;
   align-items: stretch;
 }
@@ -97,11 +95,10 @@ body{
   border-radius: 16px;
   box-shadow: 0 8px 25px rgba(0,0,0,.15);
   padding: 20px;
-  width: 480px;
   min-width: 280px;
-  display: flex;
+  display: flex;                   /* Keep column layout for children */
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   height: 100%;
 }
 .video-desc {
@@ -120,6 +117,7 @@ body{
 }
 @media (max-width:1000px) {
   .video-row {
+    display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 30px;
